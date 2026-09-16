@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengajian Selasa Kliwon — Portal Dokumentasi & Presensi</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #059669; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        /* Custom Glass Panel dengan Efek Cahaya */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(6, 78, 59, 0.18) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .media-card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .media-card-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.35);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        /* Animasi Transisi Halaman (Fade & Scale) */
+        @keyframes pageEnter {
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-page {
+            animation: pageEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Animasi Baris Tabel */
+        @keyframes fadeInRow {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-row { animation: fadeInRow 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* Animasi Pulsa Glow Background */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.08); }
+        }
+        .bg-glow-animate {
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen relative selection:bg-emerald-500 selection:text-white">
+
+    <!-- Ornamen Dynamic Background Glow (Lebih Estetik) -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-600/15 blur-[180px] rounded-full pointer-events-none -z-10 bg-glow-animate"></div>
+    <div class="fixed bottom-0 right-[-5%] w-[600px] h-[600px] bg-teal-950/20 blur-[200px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- Header Navigation -->
+    <header class="bg-slate-950/80 backdrop-blur-2xl border-b border-emerald-950/80 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo Web / Beranda -->
+            <div onclick="switchPage('home')" class="flex items-center space-x-3.5 cursor-pointer group" data-aos="fade-right">
+                <div class="relative w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-emerald-500 via-teal-300 to-emerald-600 shadow-lg shadow-emerald-950/60 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-slate-900">
+                        <img src="https://lh3.googleusercontent.com/d/1wXTaYINwOtdSRYLqCQZsK5Kf5Q9t7oa8" alt="Logo Pengajian" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-400 group-hover:brightness-125 transition-all">
+                        Pengajian Selasa Kliwon
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        Portal Resmi Dokumentasi & Presensi
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Actions -->
+            <nav class="flex items-center space-x-3" data-aos="fade-left">
+                <button onclick="switchPage('galeri')" id="navGaleriBtn" 
+                   class="px-4 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 hover:border-emerald-500/60 text-emerald-300 text-xs font-semibold transition-all duration-300 flex items-center shadow-lg hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-images mr-2 text-emerald-400 group-hover:rotate-12 transition-transform"></i> Galeri Dokumentasi
+                </button>
+                <button onclick="switchPage('presensi')" id="navPresensiBtn" 
+                   class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition-all duration-300 shadow-lg shadow-emerald-950/60 flex items-center hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-clipboard-user mr-2"></i> Presensi Kehadiran
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 py-12 flex-grow w-full">
+
+        <!-- ================= PAGE 1: HALAMAN UTAMA (BERANDA & PROFIL) ================= -->
+        <div id="pageHome" class="space-y-16 animate-page">
+            <!-- Hero Section -->
+            <section class="relative py-10 px-4 text-center overflow-hidden" data-aos="zoom-in">
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <div class="font-serif text-2xl md:text-3xl text-emerald-400/90 mb-3 tracking-wide drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-emerald-400 to-teal-200 tracking-tight leading-tight">
+                        Arsip Kegiatan & Silaturahmi Jamaah
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                        Menghimpun kenangan kebersamaan, dokumentasi foto & video pengajian, serta rekapitulasi presensi jamaah Pengajian Selasa Kliwon.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs">
+                        <button onclick="switchPage('galeri')" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold transition-all duration-300 shadow-xl shadow-emerald-950/80 flex items-center hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-folder-open mr-2 text-base"></i> Buka Galeri Dokumentasi
+                        </button>
+                        <button onclick="switchPage('presensi')" class="px-6 py-3.5 rounded-xl bg-slate-900 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950 font-bold transition-all duration-300 shadow-xl flex items-center hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-clipboard-user mr-2 text-base text-emerald-400"></i> Lihat Rekap Presensi
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profil & Kegiatan -->
+            <section class="scroll-mt-28" data-aos="fade-up">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2 mb-2 bg-emerald-950/50 py-1 px-4 rounded-full border border-emerald-500/20 w-fit mx-auto">
+                        <i class="fa-solid fa-mosque"></i> Profil & Kegiatan
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">Mengenal Lebih Dekat</h3>
+                    <p class="text-sm text-slate-400 mt-2">Informasi seputar pelaksanaan, tujuan, dan agenda rutin jamaah.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between media-card-hover group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Jadwal Rutin Selapanan</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Dilaksanakan secara istiqomah setiap siklus penanggalan Jawa <b>Selasa Kliwon</b> bertempat secara bergilir di kediaman para anggota jamaah.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Siklus Pertemuan</span>
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between media-card-hover group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-users-rectangle"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Tujuan & Silaturahmi</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Mempererat tali persaudaraan antarwarga dan jamaah, memperdalam ilmu agama islam, serta menumbuhkan kepedulian sosial sesama.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Ukhuwah Islamiyah</span>
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between media-card-hover group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-book-quran"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Agenda Utama</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Pembacaan ayat suci Al-Qur'an, tahlil bersama, tausiyah keagamaan, serta musyawarah dan ramah tamah antarjamaah.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Kajian & Doa Bersama</span>
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= PAGE 2: HALAMAN GALERI DOKUMENTASI ================= -->
+        <div id="pageGaleri" class="hidden space-y-8 animate-page">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4 border-b border-slate-800/80 pb-5">
+                <div>
+                    <button onclick="switchPage('home')" class="mb-3 inline-flex items-center text-xs text-emerald-400 hover:text-emerald-300 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-all hover:scale-105">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
+                    </button>
+                    <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-images"></i> Media Gallery Hub
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white" id="galleryTitle">
+                        Folder Kegiatan Terbaru
+                    </h3>
+                    <p class="text-sm text-slate-400 mt-1" id="gallerySubtitle">Pilih salah satu folder di bawah ini untuk melihat foto & video kegiatan</p>
+                </div>
+                
+                <div>
+                    <button id="backBtn" onclick="showFolderList()" class="hidden items-center px-4 py-2.5 bg-slate-900 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-950 text-xs font-bold rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Daftar Folder
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAMPILAN 1: DAFTAR KARTU FOLDER -->
+            <div id="folderListContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="col-span-full text-center py-16 text-slate-400 glass-panel rounded-2xl">
+                    <i class="fa-solid fa-circle-notch animate-spin text-emerald-400 text-3xl mb-3"></i>
+                    <p class="text-xs font-medium">Memuat daftar folder dari Google Drive...</p>
+                </div>
+            </div>
+
+            <!-- TAMPILAN 2: ISI FOTO & VIDEO DALAM FOLDER -->
+            <div id="folderContentContainer" class="hidden space-y-6">
+                <div class="glass-panel p-4 rounded-2xl flex items-center justify-between border border-emerald-500/30">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg shadow-md">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-mono text-emerald-400 font-bold uppercase">Album Aktif</p>
+                            <h4 class="text-sm font-extrabold text-white" id="currentFolderName">Nama Folder</h4>
+                        </div>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium hidden sm:inline">Klik foto untuk memperbesar & menggeser kanan-kiri</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="mediaGrid"></div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 3: HALAMAN PRESENSI KEHADIRAN ================= -->
+        <div id="pagePresensi" class="hidden space-y-8 animate-page">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4 border-b border-slate-800/80 pb-5">
+                <div>
+                    <button onclick="switchPage('home')" class="mb-3 inline-flex items-center text-xs text-emerald-400 hover:text-emerald-300 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-all hover:scale-105">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
+                    </button>
+                    <span class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-chart-pie"></i> Rekapitulasi Presensi
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">
+                        Daftar Kehadiran Anggota
+                    </h3>
+                    <p class="text-sm text-slate-400 mt-1">Rekapitulasi status kehadiran jamaah per bulan dari Google Spreadsheet</p>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 shadow-md">
+                        <i class="fa-regular fa-calendar-days text-emerald-400 text-xs"></i>
+                        <label for="yearSelect" class="text-xs text-slate-400 font-medium">Tahun:</label>
+                        <select id="yearSelect" onchange="changeYear()" class="bg-transparent text-emerald-300 text-xs font-bold focus:outline-none cursor-pointer">
+                            <option value="2026" class="bg-slate-900 text-slate-200">2026</option>
+                            <option value="2025" class="bg-slate-900 text-slate-200">2025</option>
+                            <option value="2024" class="bg-slate-900 text-slate-200">2024</option>
+                        </select>
+                    </div>
+
+                    <div class="relative min-w-[240px]">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari Kode / Nama / Alamat..." 
+                               class="w-full pl-9 pr-4 py-2.5 text-xs border border-slate-800 rounded-xl focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500 shadow-md transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4 text-xs mb-5 bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 backdrop-blur-md">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Keterangan:</span>
+                <span class="inline-flex items-center bg-emerald-950/40 px-3 py-1 rounded-lg border border-emerald-500/30 font-medium"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span> H (Hadir)</span>
+                <span class="inline-flex items-center bg-slate-800/40 px-3 py-1 rounded-lg border border-slate-700/30 font-medium"><span class="w-2.5 h-2.5 rounded-full bg-slate-600 mr-2"></span> - (Belum Ada Data)</span>
+            </div>
+
+            <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs whitespace-nowrap" id="attendanceTable">
+                        <thead>
+                            <tr class="bg-slate-900/95 text-slate-200 border-b border-slate-800 font-bold uppercase tracking-wider text-[11px]">
+                                <th class="py-4 px-3 text-center sticky left-0 bg-slate-900 z-10 border-r border-slate-800">No</th>
+                                <th class="py-4 px-3 text-emerald-400 font-bold sticky left-[41px] bg-slate-900 z-10 border-r border-slate-800">NO KODE</th>
+                                <th class="py-4 px-4 min-w-[170px]">Nama Jamaah</th>
+                                <th class="py-4 px-4 min-w-[130px]">Alamat / RT</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Jan</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Feb</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Mar</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Apr</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Mei</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Jun</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Jul</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Agu</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Sep</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Okt</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Nov</th>
+                                <th class="py-4 px-2 text-center min-w-[45px]">Des</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody" class="divide-y divide-slate-800/60 text-slate-300">
+                            <tr>
+                                <td colspan="16" class="text-center py-14 text-slate-500">
+                                    <i class="fa-solid fa-circle-notch animate-spin text-emerald-500 text-3xl mb-3"></i>
+                                    <p class="text-xs">Memuat data presensi dari Google Spreadsheet...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- MODAL LIGHTBOX VIEW FOTO & VIDEO (SWIPER INTERAKTIF) -->
+    <div id="lightboxModal" onclick="closeLightbox()" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-[100] hidden items-center justify-center p-4 cursor-pointer select-none">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-slate-300 hover:text-white text-xl font-bold bg-slate-900/90 w-11 h-11 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110 z-20">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <button onclick="event.stopPropagation(); prevMedia()" class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-emerald-300 hover:text-white text-lg bg-slate-900/80 hover:bg-emerald-600/80 w-12 h-12 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110 z-20">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button onclick="event.stopPropagation(); nextMedia()" class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-emerald-300 hover:text-white text-lg bg-slate-900/80 hover:bg-emerald-600/80 w-12 h-12 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110 z-20">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div class="relative max-w-5xl w-full flex flex-col items-center" onclick="event.stopPropagation()" id="lightboxTouchArea">
+            <div class="glass-panel p-2 rounded-2xl overflow-hidden max-h-[78vh] w-full flex items-center justify-center shadow-2xl">
+                <img id="lightboxImg" src="" alt="Pratinjau Foto" class="max-h-[74vh] w-auto max-w-full object-contain rounded-xl transition-all duration-300">
+            </div>
+
+            <div class="mt-3 flex flex-col sm:flex-row items-center justify-between w-full gap-2 px-2">
+                <span id="lightboxCounter" class="text-[11px] font-mono bg-emerald-950/80 text-emerald-300 px-3 py-1 rounded-xl border border-emerald-500/30 font-bold"></span>
+                <p id="lightboxCaption" class="text-xs font-mono text-slate-200 font-semibold text-center bg-slate-900/90 px-4 py-1.5 rounded-xl border border-slate-800 shadow-md truncate max-w-md"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900/90 border-t border-slate-800/80 text-slate-500 py-8 text-center text-xs mt-auto">
+        <p>© 2026 Pengajian Selasa Kliwon. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbySPpw7C8ktUmQGtb6QWLhZ_QwL8TVwrht40VePuzt0FllsLPENo143Od01mGWAfyaK/exec";
+
+        let folderDatabase = {};
+        let currentActiveFolderId = '';
+        let currentMediaIndex = 0;
+
+        function switchPage(pageId) {
+            document.getElementById('pageHome').classList.add('hidden');
+            document.getElementById('pageGaleri').classList.add('hidden');
+            document.getElementById('pagePresensi').classList.add('hidden');
+
+            const navGaleriBtn = document.getElementById('navGaleriBtn');
+            const navPresensiBtn = document.getElementById('navPresensiBtn');
+
+            navGaleriBtn.className = "px-4 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 text-emerald-300 text-xs font-semibold transition-all flex items-center shadow-lg";
+            navPresensiBtn.className = "px-4 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 text-emerald-300 text-xs font-semibold transition-all flex items-center shadow-lg";
+
+            if (pageId === 'home') {
+                document.getElementById('pageHome').classList.remove('hidden');
+            } else if (pageId === 'galeri') {
+                const galeriEl = document.getElementById('pageGaleri');
+                galeriEl.classList.remove('hidden');
+                navGaleriBtn.className = "px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold transition-all shadow-lg shadow-emerald-950/60 flex items-center";
+            } else if (pageId === 'presensi') {
+                const presensiEl = document.getElementById('pagePresensi');
+                presensiEl.classList.remove('hidden');
+                navPresensiBtn.className = "px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold transition-all shadow-lg shadow-emerald-950/60 flex items-center";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function fetchMediaAutomated() {
+            const folderListContainer = document.getElementById('folderListContainer');
+            
+            try {
+                const response = await fetch(GAS_API_URL);
+                const folders = await response.json();
+                
+                folderDatabase = {};
+                folderListContainer.innerHTML = '';
+
+                if (folders.length === 0) {
+                    folderListContainer.innerHTML = `
+                        <div class="col-span-full text-center py-12 text-slate-500 glass-panel rounded-2xl">
+                            <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-600"></i>
+                            <p class="text-xs">Belum ada folder dokumentasi di dalam Google Drive.</p>
+                        </div>`;
+                    return;
+                }
+
+                folders.forEach((folder, index) => {
+                    folderDatabase[folder.id] = {
+                        title: folder.name,
+                        media: folder.files.map(file => ({
+                            src: file.url,
+                            title: file.name
+                        }))
+                    };
+
+                    const fileCount = folder.files.length;
+                    const isLatest = index === 0;
+
+                    folderListContainer.innerHTML += `
+                        <div onclick="openFolder('${folder.id}')" class="glass-panel rounded-2xl p-6 media-card-hover cursor-pointer group flex flex-col justify-between border border-slate-800 relative">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-md">
+                                    <i class="fa-solid fa-folder-closed"></i>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${isLatest ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30' : 'bg-slate-900 text-slate-400 border border-slate-800'}">
+                                    ${isLatest ? 'Terbaru' : `${fileCount} File`}
+                                </span>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-extrabold text-white group-hover:text-emerald-300 transition-colors mb-2 uppercase">
+                                    ${folder.name}
+                                </h4>
+                                <p class="text-xs text-slate-400 line-clamp-2">Dokumentasi foto dan video kegiatan pengajian periode ${folder.name}.</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-emerald-400">
+                                <span>Buka Album (${fileCount} Foto/Video)</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+                            </div>
+                        </div>
+                    `;
+                });
+
+            } catch (error) {
+                console.error("Gagal memuat otomatis:", error);
+                folderListContainer.innerHTML = `
+                    <div class="col-span-full text-center py-10 text-rose-400 text-xs glass-panel rounded-2xl">
+                        <i class="fa-solid fa-triangle-exclamation text-xl mb-2"></i><br>
+                        Gagal memuat album otomatis. Pastikan deployment Google Apps Script sudah disetting "Anyone" (Siapa saja).
+                    </div>`;
+            }
+        }
+
+        function openFolder(folderId) {
+            currentActiveFolderId = folderId;
+            document.getElementById('folderListContainer').classList.add('hidden');
+            document.getElementById('folderContentContainer').classList.remove('hidden');
+            document.getElementById('backBtn').classList.remove('hidden');
+            document.getElementById('backBtn').classList.add('inline-flex');
+            
+            const folderData = folderDatabase[folderId];
+            document.getElementById('galleryTitle').innerText = 'Isi Album Kegiatan';
+            document.getElementById('gallerySubtitle').innerText = 'Klik foto untuk memperbesar & menggeser kanan-kiri';
+            document.getElementById('currentFolderName').innerText = folderData ? folderData.title : 'Album Kegiatan';
+
+            const mediaGrid = document.getElementById('mediaGrid');
+            mediaGrid.innerHTML = '';
+
+            if (folderData && folderData.media.length > 0) {
+                folderData.media.forEach((item, index) => {
+                    mediaGrid.innerHTML += `
+                        <div onclick="openLightbox(${index})" 
+                             class="glass-panel rounded-2xl overflow-hidden media-card-hover group cursor-pointer relative">
+                            <div class="aspect-[4/3] overflow-hidden bg-slate-900 relative">
+                                <img src="${item.src}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <span class="w-10 h-10 rounded-full bg-emerald-500/90 text-slate-950 flex items-center justify-center shadow-lg"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <p class="text-[11px] font-mono text-emerald-400 font-semibold truncate">${item.title}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                mediaGrid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-500 glass-panel rounded-2xl">
+                        <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-600"></i>
+                        <p class="text-xs">Belum ada foto atau video di dalam folder ini.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showFolderList() {
+            document.getElementById('folderContentContainer').classList.add('hidden');
+            document.getElementById('folderListContainer').classList.remove('hidden');
+            document.getElementById('backBtn').classList.add('hidden');
+            document.getElementById('backBtn').classList.remove('inline-flex');
+
+            document.getElementById('galleryTitle').innerText = 'Folder Kegiatan Terbaru';
+            document.getElementById('gallerySubtitle').innerText = 'Pilih salah satu folder di bawah ini untuk melihat foto & video kegiatan';
+        }
+
+        function openLightbox(index) {
+            currentMediaIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightboxModal').classList.remove('hidden');
+            document.getElementById('lightboxModal').classList.add('flex');
+        }
+
+        function updateLightboxContent() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData || !folderData.media[currentMediaIndex]) return;
+
+            const item = folderData.media[currentMediaIndex];
+            const imgEl = document.getElementById('lightboxImg');
+            
+            imgEl.style.opacity = '0.3';
+            setTimeout(() => {
+                imgEl.src = item.src;
+                imgEl.style.opacity = '1';
+            }, 100);
+
+            document.getElementById('lightboxCaption').innerText = item.title;
+            document.getElementById('lightboxCounter').innerText = `Foto ${currentMediaIndex + 1} dari ${folderData.media.length}`;
+        }
+
+        function nextMedia() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData) return;
+            currentMediaIndex = (currentMediaIndex + 1) % folderData.media.length;
+            updateLightboxContent();
+        }
+
+        function prevMedia() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData) return;
+            currentMediaIndex = (currentMediaIndex - 1 + folderData.media.length) % folderData.media.length;
+            updateLightboxContent();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+            document.getElementById('lightboxModal').classList.remove('flex');
+            document.getElementById('lightboxImg').src = '';
+        }
+
+        window.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightboxModal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') nextMedia();
+                if (e.key === 'ArrowLeft') prevMedia();
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const touchArea = document.getElementById('lightboxTouchArea');
+        if(touchArea) {
+            touchArea.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            touchArea.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) nextMedia();
+                if (touchEndX > touchStartX + 50) prevMedia();
+            }, false);
+        }
+
+        const sheetUrls = {
+            '2026': 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSCgcLcHxMroDJOaTWPiuzg5TMTAIdvnF1vXiZ0XokXPYHGAl4nZLTTRZpKKJAsv5HQ_UhotSAdLSKM/pub?gid=203264463&single=true&output=csv',
+            '2025': '', 
+            '2024': ''  
+        };
+
+        async function fetchPresensi() {
+            const selectedYear = document.getElementById('yearSelect').value;
+            const csvUrl = sheetUrls[selectedYear];
+            const tableBody = document.getElementById('tableBody');
+
+            if (!csvUrl) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="16" class="text-center py-10 text-amber-400 text-xs">
+                            <i class="fa-solid fa-triangle-exclamation text-xl mb-2"></i><br>
+                            Data presensi untuk tahun <b>${selectedYear}</b> belum dikaitkan.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="16" class="text-center py-14 text-slate-500">
+                        <i class="fa-solid fa-circle-notch animate-spin text-emerald-500 text-3xl mb-3"></i>
+                        <p class="text-xs">Memuat data presensi tahun ${selectedYear}...</p>
+                    </td>
+                </tr>`;
+
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                const rows = data.split('\n').map(row => row.split(','));
+                tableBody.innerHTML = '';
+
+                let count = 0;
+                const monthColumnMapping = [7, 8, 9, 10, 11, 12, 13, 14, 3, 4, 5, 6];
+                const START_ROW_INDEX = 5;
+
+                for (let i = START_ROW_INDEX; i < rows.length; i++) {
+                    const cols = rows[i];
+                    if (cols.length >= 2 && cols[1] && cols[1].replace(/"/g, '').trim() !== '') {
+                        count++;
+                        const noKode = cols[0] ? cols[0].replace(/"/g, '').trim() : '-';
+                        const nama = cols[1].replace(/"/g, '').trim();
+                        const alamat = cols[2] ? cols[2].replace(/"/g, '').trim() : '-';
+
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-emerald-950/30 transition-all duration-200 animate-row";
+                        tr.style.animationDelay = `${(count % 15) * 25}ms`;
+
+                        let rowHtml = `
+                            <td class="py-3.5 px-3 text-center text-slate-500 sticky left-0 bg-slate-950 border-r border-slate-800/80 font-mono text-[11px]">${count}</td>
+                            <td class="py-3.5 px-3 font-mono font-bold text-emerald-400 sticky left-[41px] bg-slate-950 border-r border-slate-800/80">${noKode}</td>
+                            <td class="py-3.5 px-4 font-semibold text-slate-200">${nama}</td>
+                            <td class="py-3.5 px-4 text-slate-400">${alamat}</td>
+                        `;
+
+                        monthColumnMapping.forEach(sheetIdx => {
+                            const colVal = cols[sheetIdx] ? cols[sheetIdx].replace(/"/g, '').trim() : '';
+                            rowHtml += `<td class="py-3.5 px-2 text-center">${getStatusBadge(colVal)}</td>`;
+                        });
+
+                        tr.innerHTML = rowHtml;
+                        tableBody.appendChild(tr);
+                    }
+                }
+
+                if (count === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="16" class="text-center py-10 text-slate-500">Tidak ada data presensi yang ditemukan.</td></tr>`;
+                }
+
+            } catch (error) {
+                console.error('Error fetching Google Sheets data:', error);
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="16" class="text-center py-8 text-rose-400 text-xs">
+                            <i class="fa-solid fa-triangle-exclamation text-lg mb-1"></i><br>
+                            Gagal memuat data presensi. Pastikan link Google Spreadsheet CSV disetting dengan benar.
+                        </td>
+                    </tr>`;
+            }
+        }
+
+        function getStatusBadge(status) {
+            const val = status.trim().toUpperCase();
+            if (val === 'H' || val === 'HADIR') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold text-[11px] hover:scale-110 transition-transform cursor-default shadow-[0_0_8px_rgba(16,185,129,0.2)]">H</span>`;
+            } else if (val === 'I' || val === 'IZIN') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold text-[11px] hover:scale-110 transition-transform cursor-default shadow-[0_0_8px_rgba(245,158,11,0.2)]">I</span>`;
+            } else if (val === 'S' || val === 'SAKIT') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold text-[11px] hover:scale-110 transition-transform cursor-default shadow-[0_0_8px_rgba(59,130,246,0.2)]">S</span>`;
+            } else if (val === 'A' || val === 'ALPA') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold text-[11px] hover:scale-110 transition-transform cursor-default shadow-[0_0_8px_rgba(244,63,94,0.2)]">A</span>`;
+            } else {
+                return `<span class="text-slate-600 font-mono">-</span>`;
+            }
+        }
+
+        function changeYear() { fetchPresensi(); }
+
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('attendanceTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let tdArray = tr[i].getElementsByTagName('td');
+                if (tdArray.length > 0) {
+                    let match = false;
+                    for (let j = 1; j <= 3; j++) {
+                        if (tdArray[j] && tdArray[j].innerText.toLowerCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                    tr[i].style.display = match ? '' : 'none';
+                }
+            }
+        }
+
+        window.onload = function() {
+            fetchMediaAutomated();
+            fetchPresensi();
+        };
+    </script>
+</body>
+</html>
