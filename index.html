@@ -292,8 +292,13 @@
                     </h3>
                     <p class="text-sm text-slate-400 mt-1">Presensi status kehadiran jamaah per bulan</p>
                 </div>
-
+                
                 <div class="flex flex-wrap items-center gap-3">
+                    <!-- Tombol Refresh Presensi -->
+                    <button onclick="refreshPresensiData()" title="Muat Ulang Data" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 text-emerald-300 text-xs font-semibold transition-all shadow-md flex items-center hover:scale-105 active:scale-95">
+                        <i id="refreshIcon" class="fa-solid fa-rotate mr-1.5 text-emerald-400"></i> Refresh
+                    </button>
+
                     <div class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 shadow-md">
                         <i class="fa-regular fa-calendar-days text-emerald-400 text-xs"></i>
                         <label for="yearSelect" class="text-xs text-slate-400 font-medium">Tahun:</label>
@@ -311,34 +316,6 @@
                     </div>
                 </div>
             </div>
-
-
-            
-            <div class="flex flex-wrap items-center gap-3">
-                <!-- Tombol Refresh Presensi -->
-                <button onclick="refreshPresensiData()" title="Muat Ulang Data" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 text-emerald-300 text-xs font-semibold transition-all shadow-md flex items-center hover:scale-105 active:scale-95">
-                    <i id="refreshIcon" class="fa-solid fa-rotate mr-1.5 text-emerald-400"></i> Refresh
-                </button>
-            
-                <div class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 shadow-md">
-                    <i class="fa-regular fa-calendar-days text-emerald-400 text-xs"></i>
-                    <label for="yearSelect" class="text-xs text-slate-400 font-medium">Tahun:</label>
-                    <select id="yearSelect" onchange="changeYear()" class="bg-transparent text-emerald-300 text-xs font-bold focus:outline-none cursor-pointer">
-                        <option value="2026" class="bg-slate-900 text-slate-200">2026</option>
-                        <option value="2025" class="bg-slate-900 text-slate-200">2025</option>
-                        <option value="2024" class="bg-slate-900 text-slate-200">2024</option>
-                    </select>
-                </div>
-            
-                <div class="relative min-w-[240px]">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari Kode / Nama / Alamat..." 
-                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-slate-800 rounded-xl focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500 shadow-md transition-all">
-                </div>
-            </div>
-
-
-            
 
             <div class="flex flex-wrap items-center gap-4 text-xs mb-5 bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 backdrop-blur-md">
                 <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Keterangan:</span>
@@ -721,6 +698,17 @@
             }
         }
 
+        async function refreshPresensiData() {
+            const icon = document.getElementById('refreshIcon');
+            icon.classList.add('fa-spin');
+            
+            await fetchPresensi();
+            
+            setTimeout(() => {
+                icon.classList.remove('fa-spin');
+            }, 500);
+        }
+
         function getStatusBadge(status) {
             const val = status.trim().toUpperCase();
             if (val === 'H' || val === 'HADIR') {
@@ -763,25 +751,6 @@
             fetchMediaAutomated();
             fetchPresensi();
         };
-
-
-
-        async function refreshPresensiData() {
-            const icon = document.getElementById('refreshIcon');
-            // Tambahkan animasi putar pada ikon refresh
-            icon.classList.add('fa-spin');
-            
-            // Panggil ulang fungsi fetch presensi
-            await fetchPresensi();
-            
-            // Hentikan animasi putar setelah selesai
-            setTimeout(() => {
-                icon.classList.remove('fa-spin');
-            }, 500);
-        }
-
-        
-        
     </script>
 </body>
 </html>
