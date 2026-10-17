@@ -2252,14 +2252,10 @@
     </script>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
             apiKey: "AIzaSyD3Ti6lSX6NRQ6EGME2l4lVRali8owadM8",
             authDomain: "database-web-selasa-kliwon.firebaseapp.com",
@@ -2270,9 +2266,281 @@
             measurementId: "G-8KT6Z57BEN"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Fungsi untuk memuat konten dinamis dari Firestore ke index.html
+        async function loadDynamicSiteContentFromFirebase() {
+            try {
+                const docRef = doc(db, "settings", "siteContent");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    currentSiteContent = docSnap.data();
+                } else {
+                    const fallback = await fetch('/content.json');
+                    currentSiteContent = await fallback.json();
+                }
+            } catch (e) {
+                console.warn("Gagal memuat dari Firestore, menggunakan fallback:", e);
+                try {
+                    const fallback = await fetch('/content.json');
+                    currentSiteContent = await fallback.json();
+                } catch (err) {
+                    console.warn("Menggunakan konten default statis");
+                }
+            }
+
+            if (!currentSiteContent) return;
+            const c = currentSiteContent;
+
+            // 1. General & Branding
+            if (c.general) {
+                if (c.general.siteTitle) document.title = c.general.siteTitle;
+                if (c.general.brandName) {
+                    const el = document.getElementById('mainHeaderBrandName');
+                    if (el) el.innerText = c.general.brandName;
+                    const ft = document.getElementById('mainFooterBrand');
+                    if (ft) ft.innerText = c.general.brandName;
+                }
+                if (c.general.brandTagline) {
+                    const el = document.getElementById('mainHeaderBrandTagline');
+                    if (el) el.innerText = c.general.brandTagline;
+                }
+                if (c.general.logoUrl) {
+                    const lg = document.getElementById('mainHeaderLogo');
+                    if (lg) lg.src = c.general.logoUrl;
+                    const ftLg = document.getElementById('mainFooterLogo');
+                    if (ftLg) ftLg.src = c.general.logoUrl;
+                }
+
+                // Announcement Banner
+                const annContainer = document.getElementById('mainAnnouncementBanner');
+                if (annContainer) {
+                    const ann = c.general.announcement;
+                    if (ann && ann.enabled && ann.text) {
+                        annContainer.innerHTML = `
+                            <div class="bg-gradient-to-r from-emerald-950 via-slate-950 to-emerald-950 border-b border-emerald-500/30 py-2.5 px-4 text-xs">
+                                <div class="max-w-7xl mx-auto flex items-center justify-center gap-2.5 text-center flex-wrap">
+                                    <span class="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">${ann.badge || 'PENGUMUMAN'}</span>
+                                    <span class="text-emerald-200 font-medium">${ann.text}</span>
+                                </div>
+                            </div>
+                        `;
+                        annContainer.classList.remove('hidden');
+                    } else {
+                        annContainer.innerHTML = '';
+                        annContainer.classList.add('hidden');
+                    }
+                }
+            }
+
+            // 2. Hero Section
+            if (c.hero) {
+                if (c.hero.bismillah) {
+                    const el = document.getElementById('mainHeroBismillah');
+                    if (el) el.innerText = c.hero.bismillah;
+                }
+                if (c.hero.headline) {
+                    const el = document.getElementById('mainHeroHeadline');
+                    if (el) el.innerText = c.hero.headline;
+                }
+                if (c.hero.description) {
+                    const el = document.getElementById('mainHeroDescription');
+                    if (el) el.innerText = c.hero.description;
+                }
+                if (c.hero.ctaGalleryText) {
+                    const el = document.getElementById('mainHeroCtaGallery');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-folder-open mr-2.5 text-base"></i> ${c.hero.ctaGalleryText}`;
+                }
+                if (c.hero.ctaPresensiText) {
+                    const el = document.getElementById('mainHeroCtaPresensi');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-clipboard-user mr-2.5 text-base text-emerald-400"></i> ${c.hero.ctaPresensiText}`;
+                }
+                if (c.hero.ctaScheduleText) {
+                    const el = document.getElementById('mainHeroCtaSchedule');
+                    if (el) el.innerHTML = `<i class="fa-regular fa-calendar-check mr-2 text-amber-400"></i> ${c.hero.ctaScheduleText}`;
+                }
+            }
+
+            // 3. Next Meeting
+            if (c.nextMeeting) {
+                const sec = document.getElementById('nextMeetingCard');
+                if (sec) {
+                    if (c.nextMeeting.enabled === false) {
+                        sec.classList.add('hidden');
+                    } else {
+                        sec.classList.remove('hidden');
+                    }
+                }
+                if (c.nextMeeting.badge) {
+                    const el = document.getElementById('mainNextMeetingBadge');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-bell animate-bounce text-amber-400 mr-1.5"></i> ${c.nextMeeting.badge}`;
+                }
+                if (c.nextMeeting.dateDisplay) {
+                    const el = document.getElementById('mainNextMeetingDate');
+                    if (el) el.innerText = c.nextMeeting.dateDisplay;
+                }
+                if (c.nextMeeting.location) {
+                    const textEl = document.getElementById('mainNextMeetingLocationText');
+                    if (textEl) textEl.innerText = c.nextMeeting.location;
+                }
+                const addressEl = document.getElementById('mainNextMeetingAddress');
+                const addressText = document.getElementById('mainNextMeetingAddressText');
+                if (c.nextMeeting.address && c.nextMeeting.address.trim() !== '') {
+                    if (addressText) addressText.innerText = c.nextMeeting.address;
+                    if (addressEl) addressEl.classList.remove('hidden');
+                } else if (addressEl) {
+                    addressEl.classList.add('hidden');
+                }
+                const mapsLink = document.getElementById('mainNextMeetingMapsLink');
+                if (c.nextMeeting.mapsUrl && c.nextMeeting.mapsUrl.trim() !== '') {
+                    if (mapsLink) {
+                        mapsLink.href = c.nextMeeting.mapsUrl;
+                        mapsLink.classList.remove('hidden');
+                    }
+                } else if (mapsLink) {
+                    mapsLink.classList.add('hidden');
+                }
+                if (c.nextMeeting.time) {
+                    const textEl = document.getElementById('mainNextMeetingTimeText');
+                    if (textEl) textEl.innerText = c.nextMeeting.time;
+                }
+                if (c.nextMeeting.calendarUrl) {
+                    const el = document.getElementById('mainNextMeetingCalendarBtn');
+                    if (el) el.href = c.nextMeeting.calendarUrl;
+                }
+                if (c.nextMeeting.shareMessage) {
+                    currentMeetingShareMessage = c.nextMeeting.shareMessage;
+                }
+                if (c.nextMeeting.targetDate) {
+                    const parsedTarget = new Date(c.nextMeeting.targetDate).getTime();
+                    if (!isNaN(parsedTarget)) {
+                        TARGET_MEETING_DATE = parsedTarget;
+                    }
+                }
+            }
+
+            // 4. Stats & Pillars & Schedules & Presensi Config
+            if (c.stats) {
+                if (!c.stats.useAutoJamaah && c.stats.totalJamaahManual) {
+                    const el = document.getElementById('statTotalJamaah');
+                    if (el) el.innerText = c.stats.totalJamaahManual;
+                }
+                if (!c.stats.useAutoWilayah && c.stats.totalWilayahManual) {
+                    const el = document.getElementById('statTotalWilayah');
+                    if (el) el.innerText = c.stats.totalWilayahManual;
+                }
+                if (c.stats.cycleText) {
+                    const el = document.getElementById('statCycleText');
+                    if (el) el.innerText = c.stats.cycleText;
+                }
+                if (c.stats.cycleSubtext) {
+                    const el = document.getElementById('statCycleSubtext');
+                    if (el) el.innerText = c.stats.cycleSubtext;
+                }
+            }
+
+            if (c.pillars && Array.isArray(c.pillars) && c.pillars.length > 0) {
+                const grid = document.getElementById('pillarsGridContainer');
+                if (grid) {
+                    grid.innerHTML = c.pillars.map(p => `
+                        <div class="glass-panel p-7 rounded-3xl border border-slate-800 flex flex-col justify-between glass-card-hover group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                            <div>
+                                <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                    <i class="${p.icon || 'fa-solid fa-star'}"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2.5 group-hover:text-emerald-300 transition-colors">${p.title}</h4>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">${p.description}</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-emerald-400 font-semibold flex items-center justify-between">
+                                <span>${p.footerLabel || 'Kegiatan'}</span>
+                                <i class="${p.footerIcon || 'fa-solid fa-arrow-right'}"></i>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            if (c.schedules && Array.isArray(c.schedules) && c.schedules.length > 0) {
+                const grid = document.getElementById('schedulesGridContainer');
+                if (grid) {
+                    grid.innerHTML = c.schedules.map(sch => {
+                        let badgeClass = "bg-slate-900 text-slate-400 border-slate-800";
+                        let panelClass = "glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between relative";
+                        let titleClass = "text-base font-bold text-white mb-1";
+                        let hostClass = "fa-solid fa-house-chimney text-emerald-400 mr-1.5";
+                        let footClass = "text-xs font-semibold text-slate-500 flex items-center justify-between pt-2 border-t border-slate-800/80";
+
+                        if (sch.statusType === 'completed') {
+                            badgeClass = "bg-slate-800 text-slate-300 border-slate-700";
+                        } else if (sch.statusType === 'active') {
+                            panelClass = "glass-panel-gold p-5 rounded-2xl border border-amber-500/40 flex flex-col justify-between relative shadow-glow-amber";
+                            badgeClass = "bg-amber-500/20 text-amber-300 border-amber-500/40 animate-pulse";
+                            titleClass = "text-base font-bold text-amber-200 mb-1";
+                            hostClass = "fa-solid fa-house-chimney text-amber-400 mr-1.5";
+                            footClass = "text-xs font-semibold text-amber-400 flex items-center justify-between pt-2 border-t border-amber-500/30";
+                        }
+
+                        return `
+                            <div class="${panelClass}">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-[11px] font-bold ${sch.statusType === 'active' ? 'text-amber-300' : 'text-slate-400'}">${sch.roundNumber}</span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeClass}">${sch.status}</span>
+                                </div>
+                                <h5 class="${titleClass}">${sch.date}</h5>
+                                <p class="text-xs text-slate-400 mb-3"><i class="${hostClass}"></i>${sch.host}</p>
+                                ${sch.actionType === 'galeri' ?
+                                `<button onclick="switchPage('galeri')" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center justify-between pt-2 border-t border-slate-800/80">
+                                        <span>${sch.note || 'Lihat Foto Kegiatan'}</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>` :
+                                `<div class="${footClass}">
+                                        <span>${sch.note || '-'}</span>
+                                        <i class="fa-regular fa-clock"></i>
+                                    </div>`
+                            }
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            if (c.galleryConfig) {
+                if (c.galleryConfig.gasApiUrl) GAS_API_URL = c.galleryConfig.gasApiUrl;
+            }
+
+            if (c.presensiConfig) {
+                if (c.presensiConfig.sheetUrls && typeof c.presensiConfig.sheetUrls === 'object') {
+                    sheetUrls = Object.assign({}, c.presensiConfig.sheetUrls);
+                }
+                const yearSelect = document.getElementById('yearSelect');
+                if (yearSelect && sheetUrls) {
+                    const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
+                    if (years.length > 0) {
+                        yearSelect.innerHTML = '';
+                        const defaultTarget = c.presensiConfig.defaultYear || years[0];
+                        years.forEach(yr => {
+                            const opt = document.createElement('option');
+                            opt.value = yr;
+                            opt.className = "bg-slate-900 text-slate-200";
+                            opt.innerText = yr;
+                            if (yr === defaultTarget) opt.selected = true;
+                            yearSelect.appendChild(opt);
+                        });
+                    }
+                }
+            }
+        }
+
+        // Inisialisasi Saat Halaman Dimuat
+        window.onload = async function () {
+            await loadDynamicSiteContentFromFirebase();
+            startCountdown();
+            fetchMediaAutomated();
+            fetchPresensi();
+        };
     </script>
 
 </body>

@@ -1966,14 +1966,10 @@
     </script>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
             apiKey: "AIzaSyD3Ti6lSX6NRQ6EGME2l4lVRali8owadM8",
             authDomain: "database-web-selasa-kliwon.firebaseapp.com",
@@ -1984,9 +1980,46 @@
             measurementId: "G-8KT6Z57BEN"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Override fungsi loadContentData dan saveAllContent agar menggunakan Firestore
+        window.loadContentDataFromFirebase = async function () {
+            try {
+                const docRef = doc(db, "settings", "siteContent");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    currentContent = docSnap.data();
+                } else {
+                    // Jika belum ada di Firestore, gunakan default dan simpan
+                    currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
+                    await setDoc(docRef, currentContent);
+                }
+            } catch (err) {
+                console.error("Gagal memuat dari Firestore:", err);
+                currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
+            }
+            populateForms(currentContent);
+            updateOverviewWidgets();
+            markClean();
+        };
+
+        window.saveAllContentToFirebase = async function (updatedData) {
+            try {
+                const docRef = doc(db, "settings", "siteContent");
+                await setDoc(docRef, updatedData);
+                return true;
+            } catch (err) {
+                console.error("Gagal menyimpan ke Firestore:", err);
+                throw err;
+            }
+        };
+
+        // Jalankan pemuatan data saat halaman siap
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
     </script>
 
 </body>
