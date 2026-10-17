@@ -549,6 +549,7 @@
                 rawFoldersList = folders;
                 folderDatabase = {};
                 const container = document.getElementById('folderListContainer');
+                if (!container) return;
                 container.innerHTML = '';
                 folders.forEach(f => {
                     folderDatabase[f.id] = { title: f.name, media: f.files.map(file => ({ src: file.url, title: file.name })) };
@@ -587,6 +588,7 @@
                 const data = await res.text();
                 const rows = data.split('\n').map(r => r.split(','));
                 const tbody = document.getElementById('tableBody');
+                if (!tbody) return;
                 tbody.innerHTML = '';
                 for (let i = 4; i < rows.length; i++) {
                     const cols = rows[i];
@@ -600,7 +602,7 @@
         function changeYear() { fetchPresensi(); }
     </script>
 
-    <!-- ================= INTEGRASI FIREBASE FIRESTORE KE ADMIN ================= -->
+    <!-- ================= INTEGRASI REAL-TIME FIRESTORE (MENYESUAIKAN ELEMEN ASLI) ================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -618,167 +620,167 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        async function loadContentFromFirebase() {
+        async function syncFirestoreToDOM() {
             try {
                 const docRef = doc(db, "content", "main");
                 const docSnap = await getDoc(docRef);
+
                 if (docSnap.exists()) {
-                    applyFirebaseData(docSnap.data());
-                }
-            } catch (err) {
-                console.error("Gagal menyinkronkan data dari Firebase:", err);
-            }
-        }
+                    const c = docSnap.data();
 
-        function applyFirebaseData(d) {
-            // 1. General & Branding
-            if (d.general) {
-                if (d.general.siteTitle) document.title = d.general.siteTitle;
-                if (d.general.brandName) {
-                    const el = document.getElementById('mainHeaderBrandName');
-                    if (el) el.innerText = d.general.brandName;
-                    const ft = document.getElementById('mainFooterBrand');
-                    if (ft) ft.innerText = d.general.brandName;
-                }
-                if (d.general.brandTagline) {
-                    const el = document.getElementById('mainHeaderBrandTagline');
-                    if (el) el.innerText = d.general.brandTagline;
-                }
-                if (d.general.logoUrl) {
-                    const lg = document.getElementById('mainHeaderLogo');
-                    if (lg) lg.src = d.general.logoUrl;
-                }
+                    // 1. General & Branding
+                    if (c.general) {
+                        if (c.general.siteTitle) document.title = c.general.siteTitle;
+                        if (c.general.brandName) {
+                            const brandEl = document.getElementById('mainHeaderBrandName');
+                            if (brandEl) brandEl.innerText = c.general.brandName;
+                            const footerBrand = document.getElementById('mainFooterBrand');
+                            if (footerBrand) footerBrand.innerText = c.general.brandName;
+                        }
+                        if (c.general.brandTagline) {
+                            const tagEl = document.getElementById('mainHeaderBrandTagline');
+                            if (tagEl) tagEl.innerText = c.general.brandTagline;
+                        }
+                        if (c.general.logoUrl) {
+                            const logoEl = document.getElementById('mainHeaderLogo');
+                            if (logoEl) logoEl.src = c.general.logoUrl;
+                        }
 
-                const ann = d.general.announcement;
-                const annContainer = document.getElementById('mainAnnouncementBanner');
-                if (ann && ann.enabled && ann.text) {
-                    annContainer.innerHTML = `
-                        <div class="bg-emerald-950/90 border-b border-emerald-500/30 py-2 px-4 text-center text-xs text-emerald-200 sticky top-[65px] z-40 backdrop-blur-md">
-                            <span class="bg-emerald-500 text-slate-950 font-extrabold px-2 py-0.5 rounded text-[10px] uppercase">${ann.badge || 'PENGUMUMAN'}</span>
-                            <span class="ml-2">${ann.text}</span>
-                        </div>`;
-                }
-            }
-
-            // 2. Hero Section
-            if (d.hero) {
-                if (d.hero.bismillah) document.getElementById('mainHeroBismillah').innerText = d.hero.bismillah;
-                if (d.hero.headline) document.getElementById('mainHeroHeadline').innerText = d.hero.headline;
-                if (d.hero.description) document.getElementById('mainHeroDescription').innerText = d.hero.description;
-            }
-
-            // 3. Next Meeting
-            if (d.nextMeeting) {
-                const m = d.nextMeeting;
-                const card = document.getElementById('nextMeetingCard');
-                if (card) {
-                    if (m.enabled === false) {
-                        card.classList.add('hidden');
-                    } else {
-                        card.classList.remove('hidden');
-                        if (m.badge) {
-                            const badgeEl = document.getElementById('mainNextMeetingBadge');
-                            if (badgeEl) badgeEl.innerHTML = `<i class="fa-solid fa-bell text-amber-400"></i> ${m.badge}`;
-                        }
-                        if (m.dateDisplay) {
-                            const dateEl = document.getElementById('mainNextMeetingDate');
-                            if (dateEl) dateEl.innerText = m.dateDisplay;
-                        }
-                        if (m.location) {
-                            const locEl = document.getElementById('mainNextMeetingLocationText');
-                            if (locEl) locEl.innerText = m.location;
-                        }
-                        if (m.address) {
-                            const addrEl = document.getElementById('mainNextMeetingAddressText');
-                            if (addrEl) addrEl.innerText = m.address;
-                        }
-                        if (m.time) {
-                            const timeEl = document.getElementById('mainNextMeetingTimeText');
-                            if (timeEl) timeEl.innerText = m.time;
-                        }
-                        if (m.mapsUrl) {
-                            const mapsBtn = document.getElementById('mainNextMeetingMapsLink');
-                            if (mapsBtn) {
-                                mapsBtn.href = m.mapsUrl;
-                                mapsBtn.classList.remove('hidden');
-                            }
-                        }
-                        if (m.targetDate) {
-                            const parsed = new Date(m.targetDate).getTime();
-                            if (!isNaN(parsed)) TARGET_MEETING_DATE = parsed;
+                        // Banner Pengumuman
+                        const annContainer = document.getElementById('mainAnnouncementBanner');
+                        if (annContainer && c.general.announcement && c.general.announcement.enabled && c.general.announcement.text) {
+                            const ann = c.general.announcement;
+                            annContainer.innerHTML = `
+                                <div class="bg-emerald-950/90 border-b border-emerald-500/30 py-2 px-4 text-center text-xs text-emerald-200 sticky top-[65px] z-40 backdrop-blur-md">
+                                    <span class="bg-emerald-500 text-slate-950 font-extrabold px-2 py-0.5 rounded text-[10px] uppercase">${ann.badge || 'PENGUMUMAN'}</span>
+                                    <span class="ml-2">${ann.text}</span>
+                                </div>`;
+                        } else if (annContainer) {
+                            annContainer.innerHTML = '';
                         }
                     }
-                }
-            }
 
-            // 4. Stats
-            if (d.stats) {
-                if (d.stats.totalJamaahManual) {
-                    const el = document.getElementById('statTotalJamaah');
-                    if (el) el.innerText = d.stats.totalJamaahManual;
-                }
-                if (d.stats.totalWilayahManual) {
-                    const el = document.getElementById('statTotalWilayah');
-                    if (el) el.innerText = d.stats.totalWilayahManual;
-                }
-            }
+                    // 2. Hero Section
+                    if (c.hero) {
+                        if (c.hero.bismillah) {
+                            const el = document.getElementById('mainHeroBismillah');
+                            if (el) el.innerText = c.hero.bismillah;
+                        }
+                        if (c.hero.headline) {
+                            const el = document.getElementById('mainHeroHeadline');
+                            if (el) el.innerText = c.hero.headline;
+                        }
+                        if (c.hero.description) {
+                            const el = document.getElementById('mainHeroDescription');
+                            if (el) el.innerText = c.hero.description;
+                        }
+                    }
 
-            // 5. Pillars
-            if (d.pillars && d.pillars.length > 0) {
-                const grid = document.getElementById('pillarsGridContainer');
-                if (grid) {
-                    grid.innerHTML = d.pillars.map(p => `
-                        <div class="glass-panel p-7 rounded-3xl border border-slate-800 space-y-3">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl">
-                                <i class="${p.icon || 'fa-solid fa-star'}"></i>
-                            </div>
-                            <h4 class="text-lg font-bold text-white">${p.title}</h4>
-                            <p class="text-xs sm:text-sm text-slate-400">${p.description}</p>
-                        </div>`).join('');
-                }
-            }
+                    // 3. Next Meeting (Pertemuan Terdekat)
+                    if (c.nextMeeting) {
+                        const m = c.nextMeeting;
+                        const card = document.getElementById('nextMeetingCard');
+                        if (card) {
+                            if (m.enabled === false) {
+                                card.classList.add('hidden');
+                            } else {
+                                card.classList.remove('hidden');
+                                if (m.badge) {
+                                    const bEl = document.getElementById('mainNextMeetingBadge');
+                                    if (bEl) bEl.innerHTML = `<i class="fa-solid fa-bell text-amber-400"></i> ${m.badge}`;
+                                }
+                                if (m.dateDisplay) {
+                                    const dEl = document.getElementById('mainNextMeetingDate');
+                                    if (dEl) dEl.innerText = m.dateDisplay;
+                                }
+                                if (m.location) {
+                                    const lEl = document.getElementById('mainNextMeetingLocationText');
+                                    if (lEl) lEl.innerText = m.location;
+                                }
+                                if (m.address) {
+                                    const aEl = document.getElementById('mainNextMeetingAddressText');
+                                    if (aEl) aEl.innerText = m.address;
+                                }
+                                if (m.time) {
+                                    const tEl = document.getElementById('mainNextMeetingTimeText');
+                                    if (tEl) tEl.innerText = m.time;
+                                }
+                                if (m.mapsUrl) {
+                                    const mapsBtn = document.getElementById('mainNextMeetingMapsLink');
+                                    if (mapsBtn) {
+                                        mapsBtn.href = m.mapsUrl;
+                                        mapsBtn.classList.remove('hidden');
+                                    }
+                                }
+                                if (m.targetDate) {
+                                    const parsed = new Date(m.targetDate).getTime();
+                                    if (!isNaN(parsed)) TARGET_MEETING_DATE = parsed;
+                                }
+                            }
+                        }
+                    }
 
-            // 6. Schedules
-            if (d.schedules && d.schedules.length > 0) {
-                const grid = document.getElementById('schedulesGridContainer');
-                if (grid) {
-                    grid.innerHTML = d.schedules.map(sch => `
-                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-2">
-                            <span class="text-[11px] font-bold text-emerald-400">${sch.roundNumber} - ${sch.date}</span>
-                            <h5 class="text-base font-bold text-white"><i class="fa-solid fa-house mr-1"></i>${sch.host}</h5>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">${sch.status}</span>
-                        </div>`).join('');
-                }
-            }
+                    // 4. Stats
+                    if (c.stats) {
+                        if (c.stats.totalJamaahManual) {
+                            const el = document.getElementById('statTotalJamaah');
+                            if (el) el.innerText = c.stats.totalJamaahManual;
+                        }
+                        if (c.stats.totalWilayahManual) {
+                            const el = document.getElementById('statTotalWilayah');
+                            if (el) el.innerText = c.stats.totalWilayahManual;
+                        }
+                    }
 
-            // 7. Gallery Config
-            if (d.galleryConfig && d.galleryConfig.gasApiUrl) {
-                GAS_API_URL = d.galleryConfig.gasApiUrl;
-                fetchMediaAutomated();
-            }
+                    // 5. Pillars / Profil
+                    if (c.pillars && Array.isArray(c.pillars) && c.pillars.length > 0) {
+                        const grid = document.getElementById('pillarsGridContainer');
+                        if (grid) {
+                            grid.innerHTML = c.pillars.map(p => `
+                                <div class="glass-panel p-7 rounded-3xl border border-slate-800 space-y-3">
+                                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl">
+                                        <i class="${p.icon || 'fa-solid fa-star'}"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white">${p.title}</h4>
+                                    <p class="text-xs sm:text-sm text-slate-400">${p.description}</p>
+                                </div>`).join('');
+                        }
+                    }
 
-            // 8. Presensi Config & Tahun
-            if (d.presensiConfig && d.presensiConfig.sheetUrls) {
-                sheetUrls = d.presensiConfig.sheetUrls;
-                const yearSelect = document.getElementById('yearSelect');
-                const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
-                if (years.length > 0 && yearSelect) {
-                    yearSelect.innerHTML = '';
-                    const defaultTarget = d.presensiConfig.defaultYear || years[0];
-                    years.forEach(yr => {
-                        const opt = document.createElement('option');
-                        opt.value = yr;
-                        opt.innerText = yr;
-                        if (yr === defaultTarget) opt.selected = true;
-                        yearSelect.appendChild(opt);
-                    });
+                    // 6. Gallery Config (GAS API URL)
+                    if (c.galleryConfig && c.galleryConfig.gasApiUrl) {
+                        GAS_API_URL = c.galleryConfig.gasApiUrl;
+                        fetchMediaAutomated();
+                    }
+
+                    // 7. Presensi Config (Google Sheets URLs & Years)
+                    if (c.presensiConfig && c.presensiConfig.sheetUrls) {
+                        sheetUrls = c.presensiConfig.sheetUrls;
+                        const yearSelect = document.getElementById('yearSelect');
+                        const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
+                        if (years.length > 0 && yearSelect) {
+                            yearSelect.innerHTML = '';
+                            const defaultTarget = c.presensiConfig.defaultYear || years[0];
+                            years.forEach(yr => {
+                                const opt = document.createElement('option');
+                                opt.value = yr;
+                                opt.innerText = yr;
+                                if (yr === defaultTarget) opt.selected = true;
+                                yearSelect.appendChild(opt);
+                            });
+                        }
+                        fetchPresensi();
+                    }
+
+                    console.log("Berhasil menyinkronkan data Firestore ke index.html!");
                 }
-                fetchPresensi();
+            } catch (err) {
+                console.error("Gagal mengambil data dari Firestore:", err);
             }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadContentFromFirebase();
+            syncFirestoreToDOM();
             startCountdown();
             fetchMediaAutomated();
             fetchPresensi();
