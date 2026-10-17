@@ -60,6 +60,7 @@
             color: #f1f5f9;
         }
 
+        /* Pattern Background */
         .bg-islamic-pattern {
             background-color: #030806;
             background-image:
@@ -69,6 +70,7 @@
             background-attachment: fixed;
         }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -108,6 +110,29 @@
             background-color: rgba(3, 18, 13, 0.95);
         }
 
+        .text-gradient-emerald {
+            background: linear-gradient(135deg, #ecfdf5 0%, #6ee7b7 40%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Toggle Switch Styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #10b981;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #059669;
+        }
+
+        /* Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -166,12 +191,14 @@
                     <i class="fa-solid fa-unlock-keyhole"></i> Masuk ke Panel Kontrol
                 </button>
             </form>
+
         </div>
     </div>
 
     <!-- ================= TOP HEADER BAR ================= -->
     <header class="bg-slate-950/90 backdrop-blur-xl border-b border-emerald-950 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <!-- Brand & Badge -->
             <div class="flex items-center space-x-3">
                 <a href="/index.html" target="_blank" title="Lihat Website"
                     class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-emerald-500 p-[2px] shadow-md flex-shrink-0 group">
@@ -186,39 +213,44 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="text-base font-extrabold text-white flex items-center gap-1.5">
-                            Panel Admin Firebase CMS
+                            Panel Admin CMS
                         </h1>
                         <span
                             class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            Terhubung
+                            Online
                         </span>
                     </div>
-                    <p class="text-[11px] text-slate-400">Database: database-web-selasa-kliwon</p>
+                    <p class="text-[11px] text-slate-400">Portal Pengajian Selasa Kliwon</p>
                 </div>
             </div>
 
+            <!-- Top Actions -->
             <div class="flex items-center space-x-2.5">
+                <!-- Status Perubahan -->
                 <div id="saveStatusIndicator"
                     class="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
                     <span class="w-2 h-2 rounded-full bg-emerald-400" id="saveStatusDot"></span>
                     <span id="saveStatusText">Semua tersimpan</span>
                 </div>
 
+                <!-- Buka Web -->
                 <a href="/index.html" target="_blank"
                     class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold border border-slate-800 transition-all flex items-center gap-1.5">
                     <i class="fa-solid fa-arrow-up-right-from-square text-emerald-400"></i>
                     <span class="hidden md:inline">Buka Website</span>
                 </a>
 
+                <!-- Simpan Konten -->
                 <button onclick="saveAllContent()" id="globalSaveBtn"
                     class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold text-xs transition-all shadow-md shadow-emerald-950/80 flex items-center gap-2 hover:scale-105 active:scale-95">
                     <i class="fa-solid fa-floppy-disk"></i>
-                    <span>Simpan ke Firebase</span>
+                    <span>Simpan Perubahan</span>
                     <span
                         class="hidden lg:inline text-[10px] font-mono opacity-70 bg-emerald-900/40 text-emerald-200 px-1.5 py-0.5 rounded">Ctrl+S</span>
                 </button>
 
+                <!-- Logout -->
                 <button onclick="handleLogout()" title="Keluar dari Panel Admin"
                     class="p-2 rounded-xl bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 border border-slate-800 transition-all">
                     <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
@@ -304,11 +336,17 @@
                     </button>
                 </nav>
 
+                <!-- Sidebar Footer Quick Actions -->
                 <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-2">
                     <button onclick="exportBackupJson()"
                         class="w-full py-2 px-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-[11px] font-semibold text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-download text-emerald-400"></i>
                         <span>Ekspor File Cadangan</span>
+                    </button>
+                    <button onclick="confirmResetDefaults()"
+                        class="w-full py-2 px-3 rounded-xl bg-slate-900/80 hover:bg-rose-950/40 text-[11px] font-semibold text-slate-400 hover:text-rose-300 border border-slate-800 transition-all flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-rotate-left text-rose-400"></i>
+                        <span>Reset ke Standar</span>
                     </button>
                 </div>
             </div>
@@ -317,8 +355,9 @@
         <!-- ================= CONTENT TAB PANELS ================= -->
         <main class="flex-1 w-full space-y-6">
 
-            <!-- TAB 1: OVERVIEW -->
+            <!-- TAB 1: OVERVIEW / IKHTISAR -->
             <section id="tab-overview" class="tab-pane space-y-6">
+                <!-- Welcome Banner -->
                 <div class="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden border border-emerald-500/30">
                     <div
                         class="absolute -top-12 -right-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none">
@@ -326,85 +365,143 @@
                     <div class="max-w-2xl relative z-10 space-y-3">
                         <span
                             class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5">
-                            <i class="fa-solid fa-cloud"></i> Firebase Firestore Terhubung
+                            <i class="fa-solid fa-sliders"></i> Pusat Kendali Konten
                         </span>
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
-                            Panel Kontrol Admin Utama
+                            Selamat Datang di Admin Panel
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            Semua perubahan yang Anda simpan akan langsung memperbarui database cloud Firebase dan
-                            tampil secara real-time di website utama.
+                            Kelola seluruh informasi portal pengajian secara terpusat: ubah pengumuman, perbarui jadwal
+                            selapanan, ganti tanggal pertemuan terdekat, atur integrasi Google Drive & Spreadsheet,
+                            hingga nomor rekening infaq.
                         </p>
                         <div class="pt-2 flex flex-wrap gap-2.5">
                             <button onclick="switchTab('tab-meeting')"
                                 class="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
                                 <i class="fa-solid fa-calendar-check"></i> Atur Pertemuan Terdekat
                             </button>
-                            <button onclick="switchTab('tab-presensi')"
+                            <button onclick="switchTab('tab-schedules')"
                                 class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-semibold transition-all flex items-center gap-1.5">
-                                <i class="fa-solid fa-table text-emerald-400"></i> Kelola Presensi & Tahun
+                                <i class="fa-solid fa-list-check text-emerald-400"></i> Kelola Putaran Jadwal
                             </button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Quick Stat Cards -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="glass-panel p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-medium">Putaran Jadwal</span>
                         <div class="text-2xl font-black text-white mt-1" id="overviewTotalSchedules">-</div>
+                        <span class="text-[10px] text-emerald-400 font-semibold"><i
+                                class="fa-solid fa-calendar-days mr-1"></i>Agenda Selapanan</span>
                     </div>
+
                     <div class="glass-panel p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-medium">Pertemuan Terdekat</span>
-                        <div class="text-xs font-extrabold text-amber-300 mt-1 truncate" id="overviewNextMeeting">-
+                        <div class="text-sm font-extrabold text-amber-300 mt-1 truncate" id="overviewNextMeeting">-
                         </div>
+                        <span class="text-[10px] text-slate-400 font-medium" id="overviewCountdownStatus">Hitung mundur
+                            aktif</span>
                     </div>
+
                     <div class="glass-panel p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-medium">Pengumuman</span>
                         <div class="text-sm font-extrabold text-white mt-1" id="overviewAnnouncementStatus">-</div>
+                        <span class="text-[10px] text-slate-400 truncate block" id="overviewAnnouncementBadge">Banner
+                            aktif</span>
                     </div>
+
                     <div class="glass-panel p-4 rounded-2xl border border-slate-800">
                         <span class="text-[11px] text-slate-400 font-medium">Pilar Kegiatan</span>
                         <div class="text-2xl font-black text-white mt-1" id="overviewTotalPillars">-</div>
+                        <span class="text-[10px] text-teal-400 font-semibold"><i
+                                class="fa-solid fa-mosque mr-1"></i>Kartu Profil</span>
+                    </div>
+                </div>
+
+                <!-- Quick Checklist Guide -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800/80 space-y-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question text-emerald-400"></i> Panduan Singkat Admin
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/70 space-y-1.5">
+                            <span class="text-emerald-400 font-bold block">1. Edit & Sesuaikan</span>
+                            <p class="text-slate-400 leading-relaxed">Pilih tab di menu kiri dan ubah teks, tanggal,
+                                atau tautan sesuai kegiatan pengajian terkini.</p>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/70 space-y-1.5">
+                            <span class="text-emerald-400 font-bold block">2. Tekan Simpan</span>
+                            <p class="text-slate-400 leading-relaxed">Klik tombol <b class="text-white">Simpan
+                                    Perubahan</b> di kanan atas atau tekan <kbd
+                                    class="px-1.5 py-0.5 rounded bg-slate-800 font-mono text-[10px]">Ctrl+S</kbd>.</p>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/70 space-y-1.5">
+                            <span class="text-emerald-400 font-bold block">3. Cek Website</span>
+                            <p class="text-slate-400 leading-relaxed">Buka <b class="text-white">index.html</b>.
+                                Perubahan konten langsung otomatis aktif tanpa restart server!</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- TAB 2: IDENTITAS & PENGUMUMAN -->
             <section id="tab-general" class="tab-pane hidden space-y-6">
-                <div class="border-b border-slate-800 pb-4">
-                    <h2 class="text-xl font-extrabold text-white">Identitas Website & Banner Pengumuman</h2>
-                    <p class="text-xs text-slate-400">Konfigurasi nama brand, logo, judul tab browser, serta pesan
-                        pengumuman.</p>
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-white">Identitas Website & Banner Pengumuman</h2>
+                        <p class="text-xs text-slate-400">Konfigurasi nama brand, logo, judul tab browser, serta pesan
+                            pengumuman berjalan.</p>
+                    </div>
                 </div>
 
+                <!-- Form Identitas -->
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i class="fa-solid fa-globe text-emerald-400"></i> Identitas Portal & Branding
                     </h3>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Judul Halaman (Browser Title)</label>
+                            <label class="text-xs font-semibold text-slate-300">Judul Halaman (Browser Title
+                                Bar)</label>
                             <input type="text" id="gen_siteTitle"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Pengajian Selasa Kliwon — Portal Resmi...">
+                            <p class="text-[10px] text-slate-500">Judul yang muncul pada tab peramban/Google SEO.</p>
                         </div>
+
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-300">Nama Brand / Komunitas</label>
                             <input type="text" id="gen_brandName"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Pengajian Selasa Kliwon">
                         </div>
+
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Slogan / Tagline</label>
+                            <label class="text-xs font-semibold text-slate-300">Slogan / Tagline Komunitas</label>
                             <input type="text" id="gen_brandTagline"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Arsip Dokumentasi & Presensi Jamaah">
                         </div>
+
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-300">Tautan Gambar Logo (URL)</label>
-                            <input type="text" id="gen_logoUrl"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                            <div class="flex gap-2">
+                                <input type="text" id="gen_logoUrl" oninput="updateLogoPreview(this.value)"
+                                    class="glass-input flex-1 px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                    placeholder="https://...">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
+                                    <img id="formLogoPreview" src="" alt="Preview" class="w-full h-full object-contain">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Banner Pengumuman -->
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="text-sm font-bold text-white flex items-center gap-2">
@@ -413,21 +510,40 @@
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" id="gen_announcement_enabled" class="sr-only peer">
                             <div
-                                class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
+                                class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
                             </div>
-                            <span class="ml-2 text-xs font-semibold text-slate-300">Aktifkan</span>
+                            <span class="ml-2 text-xs font-semibold text-slate-300">Aktifkan Banner</span>
                         </label>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Badge</label>
+                            <label class="text-xs font-semibold text-slate-300">Badge / Label</label>
                             <input type="text" id="gen_announcement_badge"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold"
+                                placeholder="PENGUMUMAN">
                         </div>
                         <div class="md:col-span-3 space-y-1.5">
                             <label class="text-xs font-semibold text-slate-300">Isi Pesan Pengumuman</label>
                             <input type="text" id="gen_announcement_text"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Selamat datang di Portal Resmi Pengajian Selasa Kliwon...">
+                        </div>
+                    </div>
+
+                    <!-- Live Preview Box -->
+                    <div class="pt-2">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Pratinjau
+                            Tampilan Banner:</span>
+                        <div
+                            class="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-3 flex items-center gap-3 text-xs">
+                            <span id="previewAnnouncementBadge"
+                                class="bg-emerald-500 text-slate-950 font-extrabold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">
+                                PENGUMUMAN
+                            </span>
+                            <span id="previewAnnouncementText" class="text-emerald-200">
+                                Isi pengumuman akan ditampilkan di sini.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -437,23 +553,60 @@
             <section id="tab-hero" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Beranda & Hero Section</h2>
-                    <p class="text-xs text-slate-400">Atur kaligrafi pembuka, headline utama, dan tombol aksi.</p>
+                    <p class="text-xs text-slate-400">Atur kaligrafi pembuka, headline utama, pengantar, dan teks tombol
+                        aksi.</p>
                 </div>
+
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
                     <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-300">Kaligrafi Pembuka (Bismillah)</label>
+                        <label class="text-xs font-semibold text-slate-300 flex items-center gap-2">
+                            <span>Kaligrafi Pembuka (Bismillah Arab)</span>
+                            <span
+                                class="text-[10px] text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">Font
+                                Arab</span>
+                        </label>
                         <input type="text" id="hero_bismillah" dir="rtl"
-                            class="glass-input w-full px-4 py-3 rounded-xl text-xl text-amber-300 font-arabic text-center">
+                            class="glass-input w-full px-4 py-3 rounded-xl text-xl text-amber-300 font-arabic text-center"
+                            placeholder="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ">
                     </div>
+
                     <div class="space-y-1.5">
                         <label class="text-xs font-semibold text-slate-300">Headline / Judul Utama</label>
                         <input type="text" id="hero_headline"
-                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-base font-extrabold text-white">
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-base font-extrabold text-white"
+                            placeholder="Arsip Kegiatan & Silaturahmi Jamaah">
                     </div>
+
                     <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-300">Deskripsi Singkat</label>
+                        <label class="text-xs font-semibold text-slate-300">Deskripsi Singkat / Subtitle</label>
                         <textarea id="hero_description" rows="3"
-                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-200"></textarea>
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-200 leading-relaxed"
+                            placeholder="Portal resmi dokumentasi foto & video kenangan pengajian..."></textarea>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-800">
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Teks Tombol
+                            Aksi (CTA)</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="space-y-1">
+                                <span class="text-[11px] text-slate-400">Tombol Galeri</span>
+                                <input type="text" id="hero_ctaGallery"
+                                    class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white"
+                                    placeholder="Buka Galeri Dokumentasi">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-[11px] text-slate-400">Tombol Presensi</span>
+                                <input type="text" id="hero_ctaPresensi"
+                                    class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white"
+                                    placeholder="Rekap Presensi Jamaah">
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-[11px] text-slate-400">Tombol Jadwal Acara</span>
+                                <input type="text" id="hero_ctaSchedule"
+                                    class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white"
+                                    placeholder="Jadwal Acara">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -463,8 +616,9 @@
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Pertemuan Terdekat & Hitung Mundur</h2>
                     <p class="text-xs text-slate-400">Kontrol kartu pengingat pengajian terdekat, target tanggal timer,
-                        dan lokasi.</p>
+                        lokasi, dan link Google Calendar.</p>
                 </div>
+
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
                     <div class="flex items-center justify-between pb-3 border-b border-slate-800">
                         <span class="text-sm font-bold text-white flex items-center gap-2">
@@ -473,46 +627,99 @@
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" id="meet_enabled" class="sr-only peer">
                             <div
-                                class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
+                                class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
                             </div>
                             <span class="ml-2 text-xs font-semibold text-slate-300">Tampilkan Widget</span>
                         </label>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Badge</label>
+                            <label class="text-xs font-semibold text-slate-300">Label / Badge</label>
                             <input type="text" id="meet_badge"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Pengajian Selapanan Terdekat">
                         </div>
+
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Teks Tanggal Tampilan</label>
+                            <label class="text-xs font-semibold text-slate-300">Teks Hari & Tanggal Tampilan</label>
                             <input type="text" id="meet_dateDisplay"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-bold">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-bold"
+                                placeholder="Selasa Kliwon, 20 Oktober 2026">
+                            <p class="text-[10px] text-slate-500">Teks yang dibaca jamaah pada kartu pengingat.</p>
                         </div>
+
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Target Waktu Hitung Mundur (ISO)</label>
-                            <input type="text" id="meet_targetDate"
+                            <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                                <span>Target Waktu Hitung Mundur (Timer)</span>
+                                <span class="text-[10px] font-mono text-emerald-400"
+                                    id="meet_targetDate_readable"></span>
+                            </label>
+                            <input type="datetime-local" id="meet_targetDate_input"
+                                onchange="handleTargetDateChange(this.value)"
                                 class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                            <input type="hidden" id="meet_targetDate">
+                            <p class="text-[10px] text-slate-500">Waktu yang menjadi patokan timer hitung mundur
+                                (Hari/Jam/Menit/Detik).</p>
                         </div>
+
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Jam Acara</label>
+                            <label class="text-xs font-semibold text-slate-300">Waktu Pelaksanaan / Jam</label>
                             <input type="text" id="meet_time"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Pukul 19.30 WIB (Ba'da Isya) - Selesai">
                         </div>
+
                         <div class="md:col-span-2 space-y-1.5">
                             <label class="text-xs font-semibold text-slate-300">Lokasi / Tuan Rumah</label>
                             <input type="text" id="meet_location"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Kediaman Bp. Budhy Hersunarto & Sekitarnya">
                         </div>
+
                         <div class="md:col-span-2 space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Alamat Lengkap</label>
+                            <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                                <span>Alamat Lengkap / Wilayah Pertemuan</span>
+                                <span
+                                    class="text-[10px] text-amber-400 font-bold bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
+                                    <i class="fa-solid fa-map-pin mr-1"></i>Tampil di Beranda
+                                </span>
+                            </label>
                             <input type="text" id="meet_address"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-semibold">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-semibold"
+                                placeholder="contoh: JL LANGENASTRAN LOR NO. 6">
+                            <p class="text-[10px] text-slate-500">Alamat lengkap atau jalan kediaman yang akan tampil
+                                pada kartu hitung mundur beranda.</p>
                         </div>
+
                         <div class="md:col-span-2 space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">URL Google Maps</label>
+                            <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                                <span>Tautan Google Maps Lokasi (Opsional)</span>
+                                <span
+                                    class="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                                    <i class="fa-solid fa-diamond-turn-right mr-1"></i>Tombol Buka Peta
+                                </span>
+                            </label>
                             <input type="text" id="meet_mapsUrl"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                placeholder="https://maps.google.com/?q=...">
+                            <p class="text-[10px] text-slate-500">Tautan navigasi Google Maps agar jamaah mudah membuka
+                                rute dan denah lokasi.</p>
+                        </div>
+
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Tautan Tambah ke Google Kalender</label>
+                            <input type="text" id="meet_calendarUrl"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                placeholder="https://calendar.google.com/calendar/render?...">
+                        </div>
+
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Teks Pesan Bagikan (WhatsApp
+                                Share)</label>
+                            <textarea id="meet_shareMessage" rows="2"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-200"
+                                placeholder="Insya Allah Pengajian Rutin Selapanan Selasa Kliwon berikutnya..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -522,19 +729,75 @@
             <section id="tab-stats" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Metrik & Statistik Jamaah</h2>
-                    <p class="text-xs text-slate-400">Atur angka statistik manual.</p>
+                    <p class="text-xs text-slate-400">Atur mode perhitungan statistik (otomatis dihitung dari Google
+                        Sheets presensi vs angka manual).</p>
                 </div>
+
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Total Jamaah</label>
-                            <input type="text" id="stat_totalJamaahManual"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Stat Total Jamaah -->
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-slate-800 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-emerald-400"></i> Total Jamaah Terdaftar
+                                </span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="stat_useAutoJamaah" class="sr-only peer">
+                                    <div
+                                        class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600">
+                                    </div>
+                                    <span class="ml-2 text-[11px] font-semibold text-slate-300">Hitung Otomatis</span>
+                                </label>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-[11px] text-slate-400">Nilai Manual (Jika mode otomatis mati)</label>
+                                <input type="text" id="stat_totalJamaahManual"
+                                    class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white font-bold"
+                                    placeholder="140+">
+                            </div>
                         </div>
-                        <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Total Wilayah</label>
-                            <input type="text" id="stat_totalWilayahManual"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+
+                        <!-- Stat Total Wilayah -->
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-slate-800 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-map-location-dot text-amber-400"></i> Total Wilayah / Kampung
+                                </span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="stat_useAutoWilayah" class="sr-only peer">
+                                    <div
+                                        class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600">
+                                    </div>
+                                    <span class="ml-2 text-[11px] font-semibold text-slate-300">Hitung Otomatis</span>
+                                </label>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-[11px] text-slate-400">Nilai Manual (Jika mode otomatis mati)</label>
+                                <input type="text" id="stat_totalWilayahManual"
+                                    class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white font-bold"
+                                    placeholder="9">
+                            </div>
+                        </div>
+
+                        <!-- Stat Siklus -->
+                        <div class="bg-slate-900/70 p-5 rounded-2xl border border-slate-800 space-y-3 md:col-span-2">
+                            <span class="text-xs font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-rotate text-indigo-400"></i> Pengaturan Siklus Pertemuan
+                            </span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[11px] text-slate-400">Teks Utama Siklus</label>
+                                    <input type="text" id="stat_cycleText"
+                                        class="glass-input w-full px-3 py-2 rounded-xl text-xs text-white font-bold"
+                                        placeholder="35 Hari">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[11px] text-slate-400">Sub-Teks Penjelasan</label>
+                                    <input type="text" id="stat_cycleSubtext"
+                                        class="glass-input w-full px-3 py-2 rounded-xl text-xs text-slate-300"
+                                        placeholder="Siklus Selapanan">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -545,14 +808,17 @@
                 <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-white">Pilar & Agenda Kegiatan Jamaah</h2>
-                        <p class="text-xs text-slate-400">Kelola kartu profil pilar kegiatan.</p>
+                        <p class="text-xs text-slate-400">Kelola 3 pilar kartu profil kegiatan pengajian di beranda.</p>
                     </div>
                     <button onclick="addNewPillar()"
                         class="px-3 py-1.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
                         <i class="fa-solid fa-plus"></i> Tambah Pilar
                     </button>
                 </div>
-                <div id="pillarsListContainer" class="space-y-4"></div>
+
+                <div id="pillarsListContainer" class="space-y-4">
+                    <!-- Rendered by JavaScript -->
+                </div>
             </section>
 
             <!-- TAB 7: JADWAL SELAPANAN -->
@@ -560,84 +826,194 @@
                 <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-white">Kalender Putaran Jadwal Selapanan</h2>
-                        <p class="text-xs text-slate-400">Tambah, sunting, dan hapus putaran jadwal 35 harian.</p>
+                        <p class="text-xs text-slate-400">Tambah, sunting, dan atur status tiap putaran jadwal pengajian
+                            35 harian.</p>
                     </div>
                     <button onclick="addNewSchedule()"
                         class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-slate-950 text-xs font-extrabold transition-all shadow-md flex items-center gap-1.5 hover:scale-105">
                         <i class="fa-solid fa-plus"></i> Tambah Putaran
                     </button>
                 </div>
-                <div id="schedulesListContainer" class="space-y-3.5"></div>
+
+                <div id="schedulesListContainer" class="space-y-3.5">
+                    <!-- Rendered by JavaScript -->
+                </div>
             </section>
 
             <!-- TAB 8: GALERI & GOOGLE DRIVE -->
             <section id="tab-gallery" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Galeri Dokumentasi & Google Drive</h2>
-                    <p class="text-xs text-slate-400">Konfigurasi endpoint Google Apps Script untuk galeri otomatis.</p>
+                    <p class="text-xs text-slate-400">Integrasi Google Apps Script (GAS) Web App untuk membaca folder
+                        Google Drive secara otomatis.</p>
                 </div>
+
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
                     <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-300">Google Apps Script Web App URL (GAS
-                            API)</label>
-                        <input type="text" id="gal_gasApiUrl"
-                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                        <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                            <span>Google Apps Script Web App URL (GAS API)</span>
+                            <a id="testGasApiBtn" href="#" target="_blank"
+                                class="text-[10px] text-emerald-400 hover:underline">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Uji Endpoint API
+                            </a>
+                        </label>
+                        <input type="text" id="gal_gasApiUrl" oninput="updateGasTestLink(this.value)"
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                            placeholder="https://script.google.com/macros/s/.../exec">
+                        <p class="text-[10px] text-slate-500">URL endpoint Apps Script yang mengembalikan JSON daftar
+                            folder & file Google Drive pengajian.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Judul Bagian Galeri</label>
+                            <input type="text" id="gal_sectionTitle"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold"
+                                placeholder="Album Kegiatan Pengajian">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Subjudul / Keterangan</label>
+                            <input type="text" id="gal_sectionSubtitle"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-300"
+                                placeholder="Pilih salah satu folder di bawah ini untuk melihat foto & video kegiatan.">
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- TAB 9: PRESENSI GOOGLE SHEETS (DENGAN FITUR TAMBAH/HAPUS TAHUN) -->
+            <!-- TAB 9: PRESENSI GOOGLE SHEETS -->
             <section id="tab-presensi" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-white">Integrasi Presensi Google Sheets</h2>
-                        <p class="text-xs text-slate-400">Kelola tautan spreadsheet presensi, **tambah tahun baru**,
-                            atau **hapus tahun**.</p>
+                        <p class="text-xs text-slate-400">Kelola tautan CSV export Google Spreadsheet presensi kehadiran
+                            jamaah per tahun.</p>
                     </div>
                     <button onclick="addNewPresensiYear()"
-                        class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-slate-950 text-xs font-extrabold transition-all shadow-md flex items-center gap-1.5 hover:scale-105">
-                        <i class="fa-solid fa-plus"></i> Tambah Tahun Presensi
+                        class="px-3 py-1.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Tambah Tahun
                     </button>
                 </div>
 
-                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
                     <div class="space-y-1.5">
-                        <label class="text-xs font-semibold text-slate-300">Tahun Presensi Default Saat Dibuka</label>
+                        <label class="text-xs font-semibold text-slate-300">Tahun Presensi Aktif Bawaan</label>
                         <select id="pres_defaultYear"
-                            class="glass-input w-full sm:w-64 px-3.5 py-2.5 rounded-xl text-xs text-white"></select>
+                            class="glass-input w-full sm:w-64 px-3.5 py-2.5 rounded-xl text-xs text-white">
+                            <!-- Populated dynamically -->
+                        </select>
+                        <p class="text-[10px] text-slate-500">Tahun ini akan otomatis dipilih pertama kali saat jamaah
+                            membuka tab Presensi.</p>
                     </div>
 
                     <div class="pt-3 border-t border-slate-800 space-y-3">
-                        <span class="text-xs font-bold text-slate-300 block">Daftar Link Spreadsheet per Tahun:</span>
-                        <div id="presensiSheetsContainer" class="space-y-3"></div>
+                        <span class="text-xs font-bold text-slate-300 block">Daftar Link CSV Google Sheets:</span>
+                        <div id="presensiSheetsContainer" class="space-y-3">
+                            <!-- Rendered by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+                        <p class="font-bold text-emerald-400"><i class="fa-solid fa-circle-info mr-1"></i> Cara
+                            Mendapatkan Link CSV Google Sheets:</p>
+                        <p>1. Buka spreadsheet presensi di Google Sheets.</p>
+                        <p>2. Pastikan izin akses share disetel ke <b class="text-white">"Anyone with the link can view"
+                                (Siapa saja yang memiliki link)</b>.</p>
+                        <p>3. Format link ekspor: <code
+                                class="text-amber-300 font-mono">https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/export?format=csv&gid={GID_TAB}</code>
+                        </p>
                     </div>
                 </div>
             </section>
 
-            <!-- TAB 10: KONTAK & REKENING -->
+            <!-- TAB 10: KONTAK & REKENING INFAQ -->
             <section id="tab-contact" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Kontak Sekretariat & Rekening Infaq</h2>
-                    <p class="text-xs text-slate-400">Atur informasi sekretariat dan hak cipta footer.</p>
+                    <p class="text-xs text-slate-400">Atur nomor WhatsApp pengurus, alamat, kotak donasi/infaq, serta
+                        hak cipta footer.</p>
                 </div>
+
+                <!-- Kontak & Sekretariat -->
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-address-book text-emerald-400"></i> Sekretariat Pengajian
+                    </h3>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Kontak Person</label>
+                            <label class="text-xs font-semibold text-slate-300">Nama Kontak Person / Pengurus</label>
                             <input type="text" id="cnt_contactPerson"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="Sekretariat Pengajian">
                         </div>
+
                         <div class="space-y-1.5">
-                            <label class="text-xs font-semibold text-slate-300">Nomor WhatsApp</label>
+                            <label class="text-xs font-semibold text-slate-300">Nomor WhatsApp (Diawali kode negara
+                                misal: 628...)</label>
                             <input type="text" id="cnt_whatsappNumber"
-                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                placeholder="6281234567890">
+                        </div>
+
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Alamat Wilayah / Sekretariat</label>
+                            <input type="text" id="cnt_address"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="nJero Benteng Kraton, DI Yogyakarta">
                         </div>
                     </div>
-                    <div class="space-y-1.5 pt-3">
-                        <label class="text-xs font-semibold text-slate-300">Teks Copyright Footer</label>
-                        <input type="text" id="cnt_copyrightText"
-                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-300">
+                </div>
+
+                <!-- Rekening Donasi / Infaq -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-hand-holding-dollar text-amber-400"></i> Rekening Donasi & Infaq
+                            Jamaah
+                        </h3>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="cnt_donation_enabled" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
+                            </div>
+                            <span class="ml-2 text-xs font-semibold text-slate-300">Aktifkan Info Infaq</span>
+                        </label>
                     </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Nama Bank</label>
+                            <input type="text" id="cnt_donation_bank"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white"
+                                placeholder="BSI (Bank Syariah Indonesia)">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Nomor Rekening</label>
+                            <input type="text" id="cnt_donation_accNumber"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono font-bold"
+                                placeholder="123-456-7890">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Atas Nama Pemilik Rekening</label>
+                            <input type="text" id="cnt_donation_accName"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-semibold"
+                                placeholder="Pengajian Selasa Kliwon">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Copyright -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-3">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-regular fa-copyright text-slate-400"></i> Teks Copyright Footer
+                    </h3>
+                    <input type="text" id="cnt_copyrightText"
+                        class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-300"
+                        placeholder="© 2026 Pengajian Selasa Kliwon. All rights reserved.">
                 </div>
             </section>
 
@@ -645,25 +1021,99 @@
             <section id="tab-security" class="tab-pane hidden space-y-6">
                 <div class="border-b border-slate-800 pb-4">
                     <h2 class="text-xl font-extrabold text-white">Keamanan & Cadangan Data</h2>
-                    <p class="text-xs text-slate-400">Ekspor file backup JSON atau ubah password admin.</p>
+                    <p class="text-xs text-slate-400">Ganti Password keamanan akses admin, ekspor backup file
+                        konfigurasi,
+                        atau impor data dari komputer.</p>
                 </div>
+
+                <!-- Ganti PIN -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-key text-emerald-400"></i> Ganti Password Keamanan Admin
+                    </h3>
+
+                    <form onsubmit="handleUpdatePin(event)" class="max-w-md space-y-3">
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold text-slate-300">Password Baru</label>
+                            <div class="relative">
+                                <input type="password" id="sec_newPin" required minlength="4"
+                                    class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                    placeholder="Minimal 4 karakter">
+                                <button type="button" onclick="togglePinVisibility('sec_newPin', this)"
+                                    class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold text-slate-300">Konfirmasi Password Baru</label>
+                            <input type="password" id="sec_confirmPin" required minlength="4"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono"
+                                placeholder="Ulangi PIN baru...">
+                        </div>
+
+                        <button type="submit"
+                            class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs transition-all flex items-center gap-2 shadow-md">
+                            <i class="fa-solid fa-check"></i> Simpan Password Baru
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Ekspor & Impor File JSON -->
                 <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
                     <h3 class="text-sm font-bold text-white flex items-center gap-2">
                         <i class="fa-solid fa-file-export text-teal-400"></i> Cadangkan & Pulihkan Konfigurasi (JSON)
                     </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="exportBackupJson()"
-                            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white flex items-center gap-2 transition-all">
-                            <i class="fa-solid fa-download text-emerald-400"></i> Unduh File Backup JSON
-                        </button>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                            <span class="text-xs font-bold text-white block">Cadangkan Data (Download)</span>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Unduh seluruh konfigurasi dan teks
+                                website saat ini ke file <code class="text-emerald-400 font-mono">content.json</code>.
+                            </p>
+                            <button onclick="exportBackupJson()"
+                                class="mt-2 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white flex items-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-download text-emerald-400"></i> Unduh File Backup
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                            <span class="text-xs font-bold text-white block">Pulihkan Data (Upload File)</span>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Unggah file <code
+                                    class="text-emerald-400 font-mono">content.json</code> yang sudah dicadangkan
+                                sebelumnya untuk mengembalikan konten.</p>
+                            <input type="file" id="importJsonFileInput" accept=".json"
+                                onchange="handleImportJson(event)" class="hidden">
+                            <button onclick="document.getElementById('importJsonFileInput').click()"
+                                class="mt-2 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white flex items-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-upload text-teal-400"></i> Pilih File JSON Backup
+                            </button>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Reset ke Setelan Awal -->
+                <div class="glass-panel rounded-2xl p-6 border border-rose-950/40 space-y-3">
+                    <h3 class="text-sm font-bold text-rose-300 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-400"></i> Zona Berbahaya: Reset ke Setelan
+                        Pabrik
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Tindakan ini akan mengembalikan seluruh teks, tanggal pertemuan, dan konfigurasi ke setelan
+                        bawaan sistem. Data yang belum dicadangkan akan tertimpa.
+                    </p>
+                    <button onclick="confirmResetDefaults()"
+                        class="px-4 py-2.5 rounded-xl bg-rose-900/40 hover:bg-rose-900/70 border border-rose-500/30 text-rose-300 hover:text-white font-bold text-xs transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Seluruh Konten ke Standar
+                    </button>
                 </div>
             </section>
 
         </main>
     </div>
 
-    <!-- ================= FLOATING TOAST ================= -->
+    <!-- ================= FLOATING TOAST NOTIFICATION ================= -->
     <div id="toastNotification"
         class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <div id="toastInnerBox"
@@ -673,181 +1123,254 @@
         </div>
     </div>
 
-    <!-- ================= FIREBASE & ADMIN CONTROLLER ================= -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD3Ti6lSX6NRQ6EGME2l4lVRali8owadM8",
-            authDomain: "database-web-selasa-kliwon.firebaseapp.com",
-            projectId: "database-web-selasa-kliwon",
-            storageBucket: "database-web-selasa-kliwon.firebasestorage.app",
-            messagingSenderId: "159790295414",
-            appId: "1:159790295414:web:11db0314892a4c136c7257",
-            measurementId: "G-8KT6Z57BEN"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
+    <!-- ================= JAVASCRIPT CONTROLLER ================= -->
+    <script>
+        // State Global Aplikasi Admin
         let currentContent = null;
-        let authToken = sessionStorage.getItem('psk_admin_token') || '';
+        let isContentDirty = false;
+        let authToken = sessionStorage.getItem('psk_admin_token') || localStorage.getItem('psk_admin_token') || '';
 
+        // Default Model
         const DEFAULT_CONTENT_STRUCTURE = {
             general: { siteTitle: "", brandName: "", brandTagline: "", logoUrl: "", announcement: { enabled: true, badge: "", text: "" } },
-            hero: { bismillah: "", headline: "", description: "" },
+            hero: { bismillah: "", headline: "", description: "", ctaGalleryText: "", ctaPresensiText: "", ctaScheduleText: "" },
             nextMeeting: { enabled: true, badge: "", dateDisplay: "", targetDate: "", location: "", address: "", mapsUrl: "", time: "", calendarUrl: "", shareMessage: "" },
-            stats: { totalJamaahManual: "140+", totalWilayahManual: "9" },
+            stats: { totalJamaahManual: "140+", useAutoJamaah: true, totalWilayahManual: "9", useAutoWilayah: true, cycleText: "35 Hari", cycleSubtext: "Siklus Selapanan" },
             pillars: [],
             schedules: [],
-            galleryConfig: { gasApiUrl: "" },
-            presensiConfig: { sheetUrls: { "2026": "" }, defaultYear: "2026" },
-            contactAndFooter: { contactPerson: "", whatsappNumber: "", copyrightText: "" },
+            galleryConfig: { gasApiUrl: "", sectionTitle: "", sectionSubtitle: "", customAlbums: [] },
+            presensiConfig: { sheetUrls: {}, defaultYear: "2026" },
+            contactAndFooter: { contactPerson: "", whatsappNumber: "", address: "", donationInfo: { enabled: true, bank: "", accountNumber: "", accountName: "" }, copyrightText: "" },
             adminSettings: { adminPin: "admin123" }
         };
 
-        window.checkAuth = function () {
+        /* ----------------------------------------------------
+         * AUTENTIKASI & LOGIN GATE
+         * ---------------------------------------------------- */
+        function checkAuth() {
             const modal = document.getElementById('authGateModal');
             if (authToken) {
                 modal.classList.add('hidden');
-                loadContentFromFirebase();
+                loadContentData();
             } else {
                 modal.classList.remove('hidden');
                 document.getElementById('loginPinInput').focus();
             }
-        };
+        }
 
-        window.handleLoginSubmit = function (event) {
+        async function handleLoginSubmit(event) {
             event.preventDefault();
             const pin = document.getElementById('loginPinInput').value.trim();
             const errorMsg = document.getElementById('loginErrorMsg');
+            const loginBtn = document.getElementById('loginBtn');
 
-            if (pin === 'admin123' || pin === (currentContent?.adminSettings?.adminPin || 'admin123')) {
-                authToken = 'psk_auth_' + Date.now();
-                sessionStorage.setItem('psk_admin_token', authToken);
-                document.getElementById('authGateModal').classList.add('hidden');
-                showToast('Akses masuk disetujui!', 'success');
-                loadContentFromFirebase();
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        };
+            loginBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memverifikasi...';
+            errorMsg.classList.add('hidden');
 
-        window.handleLogout = function () {
-            if (confirm("Keluar dari Panel Admin?")) {
-                sessionStorage.removeItem('psk_admin_token');
-                authToken = '';
-                document.getElementById('authGateModal').classList.remove('hidden');
-            }
-        };
-
-        window.togglePinVisibility = function (inputId, btn) {
-            const input = document.getElementById(inputId);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        };
-
-        async function loadContentFromFirebase() {
             try {
-                const docRef = doc(db, "content", "main");
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    currentContent = docSnap.data();
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin })
+                });
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    authToken = data.token;
+                    sessionStorage.setItem('psk_admin_token', authToken);
+                    document.getElementById('authGateModal').classList.add('hidden');
+                    showToast('Selamat datang, Admin! Akses berhasil.', 'success');
+                    loadContentData();
                 } else {
-                    currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.querySelector('span').innerText = data.error || 'PIN Keamanan salah!';
                 }
             } catch (err) {
-                console.error("Gagal memuat dari Firebase:", err);
-                currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
+                // Fallback jika API backend belum aktif
+                if (pin === 'admin123') {
+                    authToken = 'psk_fallback_' + Date.now();
+                    sessionStorage.setItem('psk_admin_token', authToken);
+                    document.getElementById('authGateModal').classList.add('hidden');
+                    showToast('Akses masuk disetujui (Mode Lokal).', 'success');
+                    loadContentData();
+                } else {
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.querySelector('span').innerText = 'Gagal menghubungkan ke server / PIN salah.';
+                }
+            } finally {
+                loginBtn.innerHTML = '<i class="fa-solid fa-unlock-keyhole"></i> Masuk ke Panel Kontrol';
             }
-            populateForms(currentContent);
-            updateOverviewWidgets();
         }
 
-        window.saveAllContent = async function () {
-            const saveBtn = document.getElementById('globalSaveBtn');
-            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyimpan...';
-            saveBtn.disabled = true;
-
-            const updatedData = collectFormData();
-
-            try {
-                await setDoc(doc(db, "content", "main"), updatedData);
-                currentContent = updatedData;
-                updateOverviewWidgets();
-                showToast('Berhasil disimpan ke Firebase Firestore!', 'success');
-            } catch (err) {
-                console.error(err);
-                showToast('Gagal menyimpan ke Firebase: ' + err.message, 'error');
-            } finally {
-                saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i><span>Simpan ke Firebase</span>';
-                saveBtn.disabled = false;
+        function handleLogout() {
+            if (confirm("Apakah Anda yakin ingin keluar dari Panel Admin?")) {
+                sessionStorage.removeItem('psk_admin_token');
+                localStorage.removeItem('psk_admin_token');
+                authToken = '';
+                document.getElementById('authGateModal').classList.remove('hidden');
+                document.getElementById('loginPinInput').value = '';
+                showToast("Anda telah keluar.", "info");
             }
-        };
+        }
 
+        function togglePinVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-solid fa-eye';
+            }
+        }
+
+        /* ----------------------------------------------------
+         * LOAD DATA DARI BACKEND
+         * ---------------------------------------------------- */
+        async function loadContentData() {
+            try {
+                const res = await fetch('/api/content');
+                if (res.ok) {
+                    currentContent = await res.json();
+                } else {
+                    throw new Error('Gagal memuat dari /api/content');
+                }
+            } catch (err) {
+                console.warn('Menggunakan fallback data lokal:', err);
+                // Coba ambil dari content.json statis
+                try {
+                    const fallbackRes = await fetch('/content.json');
+                    currentContent = await fallbackRes.json();
+                } catch (e) {
+                    currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
+                }
+            }
+
+            populateForms(currentContent);
+            updateOverviewWidgets();
+            markClean();
+        }
+
+        /* ----------------------------------------------------
+         * POPULATE DATA KE FORM UI
+         * ---------------------------------------------------- */
         function populateForms(data) {
             if (!data) return;
+
+            // 1. General
             const gen = data.general || {};
             setVal('gen_siteTitle', gen.siteTitle);
             setVal('gen_brandName', gen.brandName);
             setVal('gen_brandTagline', gen.brandTagline);
             setVal('gen_logoUrl', gen.logoUrl);
+            updateLogoPreview(gen.logoUrl);
+
             const ann = gen.announcement || {};
             setCheckbox('gen_announcement_enabled', ann.enabled !== false);
-            setVal('gen_announcement_badge', ann.badge);
-            setVal('gen_announcement_text', ann.text);
+            setVal('gen_announcement_badge', ann.badge || 'PENGUMUMAN');
+            setVal('gen_announcement_text', ann.text || '');
+            updateAnnouncementPreview();
 
+            // 2. Hero
             const hero = data.hero || {};
-            setVal('hero_bismillah', hero.bismillah);
-            setVal('hero_headline', hero.headline);
-            setVal('hero_description', hero.description);
+            setVal('hero_bismillah', hero.bismillah || 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ');
+            setVal('hero_headline', hero.headline || '');
+            setVal('hero_description', hero.description || '');
+            setVal('hero_ctaGallery', hero.ctaGalleryText || 'Buka Galeri Dokumentasi');
+            setVal('hero_ctaPresensi', hero.ctaPresensiText || 'Rekap Presensi Jamaah');
+            setVal('hero_ctaSchedule', hero.ctaScheduleText || 'Jadwal Acara');
 
+            // 3. Next Meeting
             const meet = data.nextMeeting || {};
             setCheckbox('meet_enabled', meet.enabled !== false);
-            setVal('meet_badge', meet.badge);
-            setVal('meet_dateDisplay', meet.dateDisplay);
-            setVal('meet_targetDate', meet.targetDate);
-            setVal('meet_time', meet.time);
-            setVal('meet_location', meet.location);
-            setVal('meet_address', meet.address);
-            setVal('meet_mapsUrl', meet.mapsUrl);
+            setVal('meet_badge', meet.badge || 'Pengajian Selapanan Terdekat');
+            setVal('meet_dateDisplay', meet.dateDisplay || '');
+            setVal('meet_location', meet.location || '');
+            setVal('meet_address', meet.address || '');
+            setVal('meet_mapsUrl', meet.mapsUrl || '');
+            setVal('meet_time', meet.time || '');
+            setVal('meet_calendarUrl', meet.calendarUrl || '');
+            setVal('meet_shareMessage', meet.shareMessage || '');
+            setVal('meet_targetDate', meet.targetDate || '');
+            if (meet.targetDate) {
+                try {
+                    // Konversi ISO ke YYYY-MM-DDTHH:mm
+                    const d = new Date(meet.targetDate);
+                    const pad = num => String(num).padStart(2, '0');
+                    const localISO = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+                    document.getElementById('meet_targetDate_input').value = localISO;
+                    document.getElementById('meet_targetDate_readable').innerText = d.toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' });
+                } catch (e) { }
+            }
 
+            // 4. Stats
             const stats = data.stats || {};
-            setVal('stat_totalJamaahManual', stats.totalJamaahManual);
-            setVal('stat_totalWilayahManual', stats.totalWilayahManual);
+            setCheckbox('stat_useAutoJamaah', stats.useAutoJamaah !== false);
+            setVal('stat_totalJamaahManual', stats.totalJamaahManual || '140+');
+            setCheckbox('stat_useAutoWilayah', stats.useAutoWilayah !== false);
+            setVal('stat_totalWilayahManual', stats.totalWilayahManual || '9');
+            setVal('stat_cycleText', stats.cycleText || '35 Hari');
+            setVal('stat_cycleSubtext', stats.cycleSubtext || 'Siklus Selapanan');
 
+            // 5. Pillars
             renderPillarsList(data.pillars || []);
+
+            // 6. Schedules
             renderSchedulesList(data.schedules || []);
 
+            // 7. Gallery
             const gal = data.galleryConfig || {};
-            setVal('gal_gasApiUrl', gal.gasApiUrl);
+            setVal('gal_gasApiUrl', gal.gasApiUrl || '');
+            setVal('gal_sectionTitle', gal.sectionTitle || 'Album Kegiatan Pengajian');
+            setVal('gal_sectionSubtitle', gal.sectionSubtitle || '');
+            updateGasTestLink(gal.gasApiUrl);
 
+            // 8. Presensi Sheets
             renderPresensiConfig(data.presensiConfig || {});
 
+            // 9. Contact & Footer
             const cnt = data.contactAndFooter || {};
-            setVal('cnt_contactPerson', cnt.contactPerson);
-            setVal('cnt_whatsappNumber', cnt.whatsappNumber);
-            setVal('cnt_copyrightText', cnt.copyrightText);
+            setVal('cnt_contactPerson', cnt.contactPerson || '');
+            setVal('cnt_whatsappNumber', cnt.whatsappNumber || '');
+            setVal('cnt_address', cnt.address || '');
+            const don = cnt.donationInfo || {};
+            setCheckbox('cnt_donation_enabled', don.enabled !== false);
+            setVal('cnt_donation_bank', don.bank || '');
+            setVal('cnt_donation_accNumber', don.accountNumber || '');
+            setVal('cnt_donation_accName', don.accountName || '');
+            setVal('cnt_copyrightText', cnt.copyrightText || '© 2026 Pengajian Selasa Kliwon. All rights reserved.');
         }
 
+        /* ----------------------------------------------------
+         * AMBIL DATA DARI FORM KE OBJECT
+         * ---------------------------------------------------- */
         function collectFormData() {
             const data = JSON.parse(JSON.stringify(currentContent || DEFAULT_CONTENT_STRUCTURE));
-            data.general = {
-                siteTitle: getVal('gen_siteTitle'),
-                brandName: getVal('gen_brandName'),
-                brandTagline: getVal('gen_brandTagline'),
-                logoUrl: getVal('gen_logoUrl'),
-                announcement: {
-                    enabled: getCheckbox('gen_announcement_enabled'),
-                    badge: getVal('gen_announcement_badge'),
-                    text: getVal('gen_announcement_text')
-                }
+
+            // General
+            data.general = data.general || {};
+            data.general.siteTitle = getVal('gen_siteTitle');
+            data.general.brandName = getVal('gen_brandName');
+            data.general.brandTagline = getVal('gen_brandTagline');
+            data.general.logoUrl = getVal('gen_logoUrl');
+            data.general.announcement = {
+                enabled: getCheckbox('gen_announcement_enabled'),
+                badge: getVal('gen_announcement_badge'),
+                text: getVal('gen_announcement_text')
             };
+
+            // Hero
             data.hero = {
                 bismillah: getVal('hero_bismillah'),
                 headline: getVal('hero_headline'),
-                description: getVal('hero_description')
+                description: getVal('hero_description'),
+                ctaGalleryText: getVal('hero_ctaGallery'),
+                ctaPresensiText: getVal('hero_ctaPresensi'),
+                ctaScheduleText: getVal('hero_ctaSchedule')
             };
+
+            // Next Meeting
             data.nextMeeting = {
                 enabled: getCheckbox('meet_enabled'),
                 badge: getVal('meet_badge'),
@@ -856,183 +1379,587 @@
                 location: getVal('meet_location'),
                 address: getVal('meet_address'),
                 mapsUrl: getVal('meet_mapsUrl'),
-                time: getVal('meet_time')
+                time: getVal('meet_time'),
+                calendarUrl: getVal('meet_calendarUrl'),
+                shareMessage: getVal('meet_shareMessage')
             };
+
+            // Stats
             data.stats = {
                 totalJamaahManual: getVal('stat_totalJamaahManual'),
-                totalWilayahManual: getVal('stat_totalWilayahManual')
+                useAutoJamaah: getCheckbox('stat_useAutoJamaah'),
+                totalWilayahManual: getVal('stat_totalWilayahManual'),
+                useAutoWilayah: getCheckbox('stat_useAutoWilayah'),
+                cycleText: getVal('stat_cycleText'),
+                cycleSubtext: getVal('stat_cycleSubtext')
             };
-            data.galleryConfig = { gasApiUrl: getVal('gal_gasApiUrl') };
-            data.presensiConfig = currentContent.presensiConfig || { sheetUrls: {}, defaultYear: "2026" };
+
+            // Gallery
+            data.galleryConfig = data.galleryConfig || {};
+            data.galleryConfig.gasApiUrl = getVal('gal_gasApiUrl');
+            data.galleryConfig.sectionTitle = getVal('gal_sectionTitle');
+            data.galleryConfig.sectionSubtitle = getVal('gal_sectionSubtitle');
+
+            // Presensi default year
+            data.presensiConfig = data.presensiConfig || {};
+            data.presensiConfig.defaultYear = getVal('pres_defaultYear');
+
+            // Contact & Footer
             data.contactAndFooter = {
                 contactPerson: getVal('cnt_contactPerson'),
                 whatsappNumber: getVal('cnt_whatsappNumber'),
+                address: getVal('cnt_address'),
+                donationInfo: {
+                    enabled: getCheckbox('cnt_donation_enabled'),
+                    bank: getVal('cnt_donation_bank'),
+                    accountNumber: getVal('cnt_donation_accNumber'),
+                    accountName: getVal('cnt_donation_accName')
+                },
                 copyrightText: getVal('cnt_copyrightText')
             };
+
             return data;
         }
 
-        // Pilar CRUD
-        window.renderPillarsList = function (pillars) {
+        /* ----------------------------------------------------
+         * SIMPAN SEMUA KONTEN KE BACKEND
+         * ---------------------------------------------------- */
+        async function saveAllContent() {
+            const saveBtn = document.getElementById('globalSaveBtn');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyimpan...';
+            saveBtn.disabled = true;
+
+            const updatedData = collectFormData();
+
+            try {
+                const res = await fetch('/api/content', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updatedData)
+                });
+                const result = await res.json();
+
+                if (res.ok && result.success) {
+                    currentContent = updatedData;
+                    markClean();
+                    updateOverviewWidgets();
+                    showToast('Semua perubahan berhasil disimpan!', 'success');
+                } else {
+                    throw new Error(result.error || 'Gagal menyimpan konten');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Gagal menyimpan: ' + err.message, 'error');
+            } finally {
+                saveBtn.innerHTML = originalHtml;
+                saveBtn.disabled = false;
+            }
+        }
+
+        /* ----------------------------------------------------
+         * PILAR CRUD
+         * ---------------------------------------------------- */
+        function renderPillarsList(pillars) {
             const container = document.getElementById('pillarsListContainer');
             container.innerHTML = '';
+
             if (!pillars || pillars.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Belum ada pilar.</p>`;
+                container.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Belum ada pilar kegiatan.</p>`;
                 return;
             }
+
             pillars.forEach((p, idx) => {
-                container.innerHTML += `
-                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex justify-between items-center">
-                        <div>
-                            <h4 class="text-sm font-bold text-white">${p.title}</h4>
-                            <p class="text-xs text-slate-400">${p.description}</p>
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-3 relative group";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/30">
+                                <i class="${p.icon || 'fa-solid fa-star'}"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase">Pilar #${idx + 1}</span>
+                                <h4 class="text-sm font-bold text-white">${p.title || 'Tanpa Judul'}</h4>
+                            </div>
                         </div>
-                        <button onclick="deletePillar(${idx})" class="p-2 rounded-xl bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs"><i class="fa-solid fa-trash"></i></button>
-                    </div>`;
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="editPillar(${idx})" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deletePillar(${idx})" class="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-950/70 text-slate-400 hover:text-rose-300 text-xs">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">${p.description || ''}</p>
+                    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
+                        <span>Label Footer: <b class="text-slate-300">${p.footerLabel || '-'}</b></span>
+                        <i class="${p.footerIcon || 'fa-solid fa-arrow-right'} text-emerald-400"></i>
+                    </div>
+                `;
+                container.appendChild(card);
             });
-        };
+        }
 
-        window.addNewPillar = function () {
-            const title = prompt("Judul Pilar:");
+        function addNewPillar() {
+            const title = prompt("Judul Pilar Kegiatan:");
             if (!title) return;
-            const desc = prompt("Deskripsi:");
+            const desc = prompt("Deskripsi Singkat:", "Agenda rutin keagamaan dan silaturahmi...");
+            const icon = prompt("Kelas Ikon FontAwesome (contoh: fa-solid fa-book-quran):", "fa-solid fa-star");
+            const footerLabel = prompt("Label Kaki Kartu:", "Ukhuwah Islamiyah");
+
             currentContent.pillars = currentContent.pillars || [];
-            currentContent.pillars.push({ title, description: desc || "", icon: "fa-solid fa-star", footerLabel: "Kegiatan" });
-            renderPillarsList(currentContent.pillars);
-        };
+            currentContent.pillars.push({
+                id: "pilar-" + (currentContent.pillars.length + 1),
+                icon: icon || "fa-solid fa-star",
+                title: title,
+                description: desc || "",
+                footerLabel: footerLabel || "Kegiatan",
+                footerIcon: "fa-solid fa-arrow-right"
+            });
 
-        window.deletePillar = function (idx) {
-            currentContent.pillars.splice(idx, 1);
             renderPillarsList(currentContent.pillars);
-        };
+            markDirty();
+            showToast("Pilar baru ditambahkan. Jangan lupa Simpan!", "info");
+        }
 
-        // Jadwal CRUD
-        window.renderSchedulesList = function (schedules) {
+        function editPillar(index) {
+            const p = currentContent.pillars[index];
+            const newTitle = prompt("Ubah Judul Pilar:", p.title);
+            if (newTitle === null) return;
+            const newDesc = prompt("Ubah Deskripsi:", p.description);
+            const newIcon = prompt("Ubah Kelas Ikon FontAwesome:", p.icon);
+            const newFooter = prompt("Ubah Label Kaki Kartu:", p.footerLabel);
+
+            p.title = newTitle;
+            if (newDesc !== null) p.description = newDesc;
+            if (newIcon !== null) p.icon = newIcon;
+            if (newFooter !== null) p.footerLabel = newFooter;
+
+            renderPillarsList(currentContent.pillars);
+            markDirty();
+        }
+
+        function deletePillar(index) {
+            if (confirm("Hapus pilar kegiatan ini?")) {
+                currentContent.pillars.splice(index, 1);
+                renderPillarsList(currentContent.pillars);
+                markDirty();
+            }
+        }
+
+        /* ----------------------------------------------------
+         * JADWAL SELAPANAN CRUD
+         * ---------------------------------------------------- */
+        function renderSchedulesList(schedules) {
             const container = document.getElementById('schedulesListContainer');
             container.innerHTML = '';
+
             if (!schedules || schedules.length === 0) {
                 container.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Belum ada putaran jadwal.</p>`;
                 return;
             }
-            schedules.forEach((sch, idx) => {
-                container.innerHTML += `
-                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex justify-between items-center">
-                        <div>
-                            <span class="text-xs font-bold text-amber-300">${sch.roundNumber} - ${sch.date}</span>
-                            <p class="text-xs text-slate-300"><i class="fa-solid fa-house mr-1"></i>${sch.host}</p>
-                        </div>
-                        <button onclick="deleteSchedule(${idx})" class="p-2 rounded-xl bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs"><i class="fa-solid fa-trash"></i></button>
-                    </div>`;
-            });
-        };
 
-        window.addNewSchedule = function () {
+            schedules.forEach((sch, idx) => {
+                let badgeClass = "bg-slate-800 text-slate-300 border-slate-700";
+                if (sch.statusType === 'completed') badgeClass = "bg-emerald-950/80 text-emerald-300 border-emerald-500/40";
+                if (sch.statusType === 'active') badgeClass = "bg-amber-950/80 text-amber-300 border-amber-500/40 animate-pulse";
+
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4";
+                card.innerHTML = `
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center flex-shrink-0">
+                            <span class="text-[9px] font-mono text-slate-400">Putaran</span>
+                            <span class="text-sm font-black text-white">#${idx + 1}</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="text-sm font-extrabold text-white">${sch.roundNumber || ('Putaran #' + (idx + 1))}</h4>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeClass}">
+                                    ${sch.status || 'Mendatang'}
+                                </span>
+                            </div>
+                            <p class="text-xs font-semibold text-emerald-300"><i class="fa-solid fa-calendar-check mr-1.5"></i>${sch.date || '-'}</p>
+                            <p class="text-[11px] text-slate-400"><i class="fa-solid fa-house-chimney mr-1 text-slate-500"></i>${sch.host || '-'}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 justify-end pt-2 md:pt-0 border-t md:border-t-0 border-slate-800">
+                        <span class="text-[11px] text-slate-500 hidden sm:inline">${sch.note || ''}</span>
+                        <button onclick="editSchedule(${idx})" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-pen"></i> Sunting
+                        </button>
+                        <button onclick="deleteSchedule(${idx})" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-950/80 text-slate-400 hover:text-rose-300 text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function addNewSchedule() {
             const roundNumber = prompt("Nama Putaran (contoh: Putaran #5):", "Putaran #" + ((currentContent.schedules || []).length + 1));
             if (!roundNumber) return;
-            const date = prompt("Hari & Tanggal:", "Selasa Kliwon, ...");
-            const host = prompt("Tuan Rumah:", "Kediaman...");
+            const date = prompt("Hari & Tanggal Pertemuan (contoh: 02 Februari 2027):", "02 Februari 2027");
+            const host = prompt("Tuan Rumah / Kediaman:", "Kediaman Jamaah");
+            const status = prompt("Status Badge (contoh: Mendatang / Berikutnya ✨ / Terlaksana ✓):", "Mendatang");
+            const statusType = prompt("Tipe Status (upcoming / active / completed):", "upcoming");
+            const note = prompt("Catatan Kaki:", "Pukul 19.30 WIB");
+
             currentContent.schedules = currentContent.schedules || [];
-            currentContent.schedules.push({ roundNumber, date: date || "", host: host || "", status: "Mendatang", statusType: "upcoming" });
-            renderSchedulesList(currentContent.schedules);
-        };
+            currentContent.schedules.push({
+                id: Date.now(),
+                roundNumber,
+                status: status || "Mendatang",
+                statusType: statusType || "upcoming",
+                date: date || "",
+                host: host || "",
+                note: note || "",
+                actionType: "calendar"
+            });
 
-        window.deleteSchedule = function (idx) {
-            currentContent.schedules.splice(idx, 1);
             renderSchedulesList(currentContent.schedules);
-        };
+            markDirty();
+            showToast("Putaran jadwal baru ditambahkan!", "info");
+        }
 
-        // Presensi Sheets & Tambah/Hapus Tahun
-        window.renderPresensiConfig = function (cfg) {
+        function editSchedule(index) {
+            const s = currentContent.schedules[index];
+            const roundNumber = prompt("Nama Putaran:", s.roundNumber);
+            if (roundNumber === null) return;
+            const date = prompt("Tanggal Pertemuan:", s.date);
+            const host = prompt("Tuan Rumah:", s.host);
+            const status = prompt("Status Badge:", s.status);
+            const statusType = prompt("Tipe Status (upcoming / active / completed):", s.statusType);
+            const note = prompt("Catatan Kaki:", s.note);
+
+            s.roundNumber = roundNumber;
+            if (date !== null) s.date = date;
+            if (host !== null) s.host = host;
+            if (status !== null) s.status = status;
+            if (statusType !== null) s.statusType = statusType;
+            if (note !== null) s.note = note;
+
+            renderSchedulesList(currentContent.schedules);
+            markDirty();
+        }
+
+        function deleteSchedule(index) {
+            if (confirm("Hapus putaran jadwal ini?")) {
+                currentContent.schedules.splice(index, 1);
+                renderSchedulesList(currentContent.schedules);
+                markDirty();
+            }
+        }
+
+        /* ----------------------------------------------------
+         * PRESENSI GOOGLE SHEETS
+         * ---------------------------------------------------- */
+        function renderPresensiConfig(cfg) {
             const sheetUrls = cfg.sheetUrls || {};
             const defaultYear = cfg.defaultYear || '2026';
 
+            // Populate Year Select
             const selectEl = document.getElementById('pres_defaultYear');
             selectEl.innerHTML = '';
-            Object.keys(sheetUrls).sort().forEach(yr => {
+            const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
+            years.forEach(yr => {
                 const opt = document.createElement('option');
                 opt.value = yr;
-                opt.innerText = `Tahun ${yr}` + (yr === defaultYear ? ' (Default)' : '');
+                opt.innerText = `Tahun ${yr}` + (yr === defaultYear ? ' (Aktif)' : '');
                 if (yr === defaultYear) opt.selected = true;
                 selectEl.appendChild(opt);
             });
             selectEl.onchange = function () {
+                currentContent.presensiConfig = currentContent.presensiConfig || {};
                 currentContent.presensiConfig.defaultYear = this.value;
+                markDirty();
             };
 
+            // Populate URLs Inputs
             const container = document.getElementById('presensiSheetsContainer');
             container.innerHTML = '';
-            Object.keys(sheetUrls).sort().forEach(yr => {
-                container.innerHTML += `
-                    <div class="flex items-center gap-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                        <span class="w-16 font-mono font-bold text-xs text-emerald-400">${yr}</span>
-                        <input type="text" value="${sheetUrls[yr]}" oninput="updateSheetUrl('${yr}', this.value)"
-                            class="glass-input flex-1 px-3 py-1.5 rounded-lg text-xs text-white font-mono" placeholder="https://docs.google.com/spreadsheets/d/.../export?format=csv...">
-                        <button onclick="deletePresensiYear('${yr}')" class="p-2 rounded-lg bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs" title="Hapus Tahun"><i class="fa-solid fa-trash"></i></button>
-                    </div>`;
+
+            years.forEach(yr => {
+                const row = document.createElement('div');
+                row.className = "flex items-center gap-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800";
+                row.innerHTML = `
+                    <span class="w-16 font-mono font-bold text-xs text-emerald-400">${yr}</span>
+                    <input type="text" value="${sheetUrls[yr]}" oninput="updateSheetUrl('${yr}', this.value)"
+                        class="glass-input flex-1 px-3 py-1.5 rounded-lg text-xs text-white font-mono"
+                        placeholder="https://docs.google.com/spreadsheets/d/.../export?format=csv...">
+                    <button onclick="deletePresensiYear('${yr}')" class="p-2 rounded-lg bg-slate-800 hover:bg-rose-950/70 text-slate-400 hover:text-rose-300 text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(row);
             });
-        };
+        }
 
-        window.updateSheetUrl = function (year, val) {
-            currentContent.presensiConfig.sheetUrls[year] = val;
-        };
-
-        window.addNewPresensiYear = function () {
-            const yr = prompt("Masukkan Tahun Baru (misal: 2027):");
-            if (!yr) return;
+        function updateSheetUrl(year, url) {
             currentContent.presensiConfig = currentContent.presensiConfig || { sheetUrls: {} };
-            currentContent.presensiConfig.sheetUrls[yr] = "";
+            currentContent.presensiConfig.sheetUrls[year] = url;
+            markDirty();
+        }
+
+        function addNewPresensiYear() {
+            const year = prompt("Masukkan Tahun Baru (misal: 2027):");
+            if (!year) return;
+            const url = prompt(`Masukkan Link CSV Google Sheets untuk tahun ${year}:`, "");
+
+            currentContent.presensiConfig = currentContent.presensiConfig || { sheetUrls: {} };
+            currentContent.presensiConfig.sheetUrls[year] = url || "";
             renderPresensiConfig(currentContent.presensiConfig);
-            showToast(`Tahun ${yr} ditambahkan!`, "success");
-        };
+            markDirty();
+        }
 
-        window.deletePresensiYear = function (yr) {
-            if (confirm(`Hapus tahun presensi ${yr}?`)) {
-                delete currentContent.presensiConfig.sheetUrls[yr];
+        function deletePresensiYear(year) {
+            if (confirm(`Hapus konfigurasi presensi untuk tahun ${year}?`)) {
+                delete currentContent.presensiConfig.sheetUrls[year];
                 renderPresensiConfig(currentContent.presensiConfig);
-                showToast(`Tahun ${yr} dihapus.`, "info");
+                markDirty();
             }
-        };
+        }
 
-        window.exportBackupJson = function () {
+        /* ----------------------------------------------------
+         * GANTI PIN & KEAMANAN
+         * ---------------------------------------------------- */
+        function handleUpdatePin(event) {
+            event.preventDefault();
+            const newPin = document.getElementById('sec_newPin').value;
+            const confirmPin = document.getElementById('sec_confirmPin').value;
+
+            if (newPin !== confirmPin) {
+                alert("Konfirmasi PIN baru tidak cocok!");
+                return;
+            }
+
+            currentContent.adminSettings = currentContent.adminSettings || {};
+            currentContent.adminSettings.adminPin = newPin;
+
+            saveAllContent().then(() => {
+                alert("PIN Admin berhasil diubah!");
+                document.getElementById('sec_newPin').value = '';
+                document.getElementById('sec_confirmPin').value = '';
+            });
+        }
+
+        /* ----------------------------------------------------
+         * BACKUP & RESTORE JSON
+         * ---------------------------------------------------- */
+        function exportBackupJson() {
             const data = collectFormData();
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const jsonStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `backup_content_${Date.now()}.json`;
+            a.download = `pengajian_content_backup_${new Date().toISOString().slice(0, 10)}.json`;
             a.click();
-        };
+            URL.revokeObjectURL(url);
+            showToast("File backup berhasil diunduh!", "success");
+        }
 
-        window.switchTab = function (tabId) {
-            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            document.querySelectorAll('#adminSidebarNav button').forEach(btn => {
-                btn.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all";
-            });
-            const active = document.getElementById('nav-' + tabId);
-            if (active) active.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all text-emerald-300 bg-emerald-950/70 border border-emerald-500/30";
-        };
+        function handleImportJson(event) {
+            const file = event.target.files[0];
+            if (!file) return;
 
-        window.showToast = function (msg, type = 'success') {
-            const toast = document.getElementById('toastNotification');
-            document.getElementById('toastMessage').innerText = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none'), 3000);
-        };
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (confirm("Gantikan seluruh konten saat ini dengan file backup yang dipilih?")) {
+                        currentContent = parsed;
+                        populateForms(currentContent);
+                        markDirty();
+                        showToast("Data backup berhasil dimuat ke formulir. Jangan lupa Simpan!", "info");
+                    }
+                } catch (err) {
+                    alert("File JSON tidak valid atau rusak!");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        async function confirmResetDefaults() {
+            if (confirm("PERINGATAN: Apakah Anda yakin ingin me-reset seluruh konten ke pengaturan standar?")) {
+                try {
+                    const res = await fetch('/api/reset', { method: 'POST' });
+                    const result = await res.json();
+                    if (res.ok && result.success) {
+                        currentContent = result.content;
+                        populateForms(currentContent);
+                        markClean();
+                        updateOverviewWidgets();
+                        showToast("Konten berhasil di-reset ke standar pabrik.", "success");
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (err) {
+                    alert("Gagal reset: " + err.message);
+                }
+            }
+        }
+
+        /* ----------------------------------------------------
+         * HELPER INTERAKSI FORM
+         * ---------------------------------------------------- */
+        function updateLogoPreview(url) {
+            const preview1 = document.getElementById('navLogoPreview');
+            const preview2 = document.getElementById('formLogoPreview');
+            if (preview1 && url) preview1.src = url;
+            if (preview2 && url) preview2.src = url;
+        }
+
+        function updateAnnouncementPreview() {
+            const badge = document.getElementById('gen_announcement_badge').value;
+            const text = document.getElementById('gen_announcement_text').value;
+            document.getElementById('previewAnnouncementBadge').innerText = badge || 'PENGUMUMAN';
+            document.getElementById('previewAnnouncementText').innerText = text || '-';
+        }
+
+        function handleTargetDateChange(localIsoVal) {
+            if (!localIsoVal) return;
+            const d = new Date(localIsoVal);
+            document.getElementById('meet_targetDate').value = d.toISOString();
+            document.getElementById('meet_targetDate_readable').innerText = d.toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' });
+            markDirty();
+        }
+
+        function updateGasTestLink(url) {
+            const btn = document.getElementById('testGasApiBtn');
+            if (btn) btn.href = url || '#';
+        }
 
         function updateOverviewWidgets() {
             if (!currentContent) return;
-            document.getElementById('overviewTotalSchedules').innerText = (currentContent.schedules || []).length;
-            document.getElementById('overviewNextMeeting').innerText = currentContent.nextMeeting?.dateDisplay || '-';
-            document.getElementById('overviewAnnouncementStatus').innerText = currentContent.general?.announcement?.enabled ? 'Aktif' : 'Nonaktif';
-            document.getElementById('overviewTotalPillars').innerText = (currentContent.pillars || []).length;
+            const schCount = (currentContent.schedules || []).length;
+            const pilCount = (currentContent.pillars || []).length;
+            const meetDate = (currentContent.nextMeeting && currentContent.nextMeeting.dateDisplay) || '-';
+            const ann = (currentContent.general && currentContent.general.announcement) || {};
+
+            document.getElementById('overviewTotalSchedules').innerText = `${schCount} Putaran`;
+            document.getElementById('overviewTotalPillars').innerText = `${pilCount} Pilar`;
+            document.getElementById('overviewNextMeeting').innerText = meetDate;
+            document.getElementById('overviewAnnouncementStatus').innerText = ann.enabled ? 'Aktif' : 'Nonaktif';
+            document.getElementById('overviewAnnouncementBadge').innerText = ann.text ? ann.text.substring(0, 30) + '...' : '-';
         }
 
-        function setVal(id, val) { const el = document.getElementById(id); if (el) el.value = val || ''; }
-        function getVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
-        function setCheckbox(id, val) { const el = document.getElementById(id); if (el) el.checked = !!val; }
-        function getCheckbox(id) { const el = document.getElementById(id); return el ? el.checked : false; }
+        function markDirty() {
+            isContentDirty = true;
+            const dot = document.getElementById('saveStatusDot');
+            const text = document.getElementById('saveStatusText');
+            if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+            if (text) text.innerText = "Ada perubahan belum disimpan";
+        }
 
+        function markClean() {
+            isContentDirty = false;
+            const dot = document.getElementById('saveStatusDot');
+            const text = document.getElementById('saveStatusText');
+            if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-400";
+            if (text) text.innerText = "Semua tersimpan";
+        }
+
+        // Shortcut Ctrl+S
+        window.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                saveAllContent();
+            }
+        });
+
+        // Deteksi perubahan input
+        document.addEventListener('input', function (e) {
+            if (e.target && e.target.closest('main')) {
+                markDirty();
+                if (e.target.id === 'gen_announcement_badge' || e.target.id === 'gen_announcement_text') {
+                    updateAnnouncementPreview();
+                }
+            }
+        });
+
+        /* ----------------------------------------------------
+         * TAB SWITCHER
+         * ---------------------------------------------------- */
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(tabId);
+            if (target) target.classList.remove('hidden');
+
+            // Update Nav highlight
+            document.querySelectorAll('#adminSidebarNav button').forEach(btn => {
+                btn.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all";
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-emerald-400', 'text-slate-400');
+            });
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) {
+                activeNav.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all text-emerald-300 bg-emerald-950/70 border border-emerald-500/30";
+                const icon = activeNav.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-slate-400', 'text-emerald-400');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ----------------------------------------------------
+         * TOAST NOTIFICATION
+         * ---------------------------------------------------- */
+        let toastTimeout;
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastBox = document.getElementById('toastInnerBox');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+
+            if (type === 'error') {
+                toastBox.className = "glass-panel px-5 py-3 rounded-2xl border border-rose-500/50 text-xs font-semibold text-rose-200 shadow-2xl flex items-center gap-3";
+                toastIcon.className = "fa-solid fa-circle-xmark text-rose-400 text-base";
+            } else if (type === 'info') {
+                toastBox.className = "glass-panel px-5 py-3 rounded-2xl border border-amber-500/50 text-xs font-semibold text-amber-200 shadow-2xl flex items-center gap-3";
+                toastIcon.className = "fa-solid fa-circle-info text-amber-400 text-base";
+            } else {
+                toastBox.className = "glass-panel px-5 py-3 rounded-2xl border border-emerald-500/50 text-xs font-semibold text-emerald-200 shadow-2xl flex items-center gap-3";
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        /* ----------------------------------------------------
+         * FORM HELPERS
+         * ---------------------------------------------------- */
+        function getVal(id) {
+            const el = document.getElementById(id);
+            return el ? el.value.trim() : '';
+        }
+        function setVal(id, val) {
+            const el = document.getElementById(id);
+            if (el) el.value = val !== undefined && val !== null ? val : '';
+        }
+        function getCheckbox(id) {
+            const el = document.getElementById(id);
+            return el ? el.checked : false;
+        }
+        function setCheckbox(id, val) {
+            const el = document.getElementById(id);
+            if (el) el.checked = !!val;
+        }
+
+        // Init on load
         window.addEventListener('DOMContentLoaded', () => {
             checkAuth();
         });
