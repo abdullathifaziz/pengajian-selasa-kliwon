@@ -1141,7 +1141,7 @@
             galleryConfig: { gasApiUrl: "", sectionTitle: "", sectionSubtitle: "", customAlbums: [] },
             presensiConfig: { sheetUrls: {}, defaultYear: "2026" },
             contactAndFooter: { contactPerson: "", whatsappNumber: "", address: "", donationInfo: { enabled: true, bank: "", accountNumber: "", accountName: "" }, copyrightText: "" },
-            adminSettings: { adminPin: "admin123" }
+            adminSettings: { adminPin: "gampangbanget" }
         };
 
         /* ----------------------------------------------------
@@ -1187,7 +1187,7 @@
                 }
             } catch (err) {
                 // Fallback jika API backend belum aktif
-                if (pin === 'admin123') {
+                if (pin === 'gampangbanget') {
                     authToken = 'psk_fallback_' + Date.now();
                     sessionStorage.setItem('psk_admin_token', authToken);
                     document.getElementById('authGateModal').classList.add('hidden');
