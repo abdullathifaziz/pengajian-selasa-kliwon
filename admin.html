@@ -1425,41 +1425,6 @@
             return data;
         }
 
-        /* ----------------------------------------------------
-         * SIMPAN SEMUA KONTEN KE BACKEND
-         * ---------------------------------------------------- */
-        async function saveAllContent() {
-            const saveBtn = document.getElementById('globalSaveBtn');
-            const originalHtml = saveBtn.innerHTML;
-            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyimpan...';
-            saveBtn.disabled = true;
-
-            const updatedData = collectFormData();
-
-            try {
-                const res = await fetch('/api/content', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(updatedData)
-                });
-                const result = await res.json();
-
-                if (res.ok && result.success) {
-                    currentContent = updatedData;
-                    markClean();
-                    updateOverviewWidgets();
-                    showToast('Semua perubahan berhasil disimpan!', 'success');
-                } else {
-                    throw new Error(result.error || 'Gagal menyimpan konten');
-                }
-            } catch (err) {
-                console.error(err);
-                showToast('Gagal menyimpan: ' + err.message, 'error');
-            } finally {
-                saveBtn.innerHTML = originalHtml;
-                saveBtn.disabled = false;
-            }
-        }
 
         /* ----------------------------------------------------
          * PILAR CRUD
