@@ -1228,6 +1228,17 @@
         /* ----------------------------------------------------
          * LOAD DATA DARI BACKEND
          * ---------------------------------------------------- */
+
+        async function loadContentData() {
+            // Memanggil fungsi dari modul Firebase yang mendownload data dari Firestore
+            if (window.loadContentDataFromFirebase) {
+                await window.loadContentDataFromFirebase();
+            } else {
+                showToast('Modul Firestore belum siap.', 'error');
+            }
+        }
+
+
         async function saveAllContent() {
             const saveBtn = document.getElementById('globalSaveBtn');
             const originalHtml = saveBtn.innerHTML;
