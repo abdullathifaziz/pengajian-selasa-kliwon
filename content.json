@@ -1,0 +1,138 @@
+{
+  "general": {
+    "siteTitle": "Pengajian Selasa Kliwon — Portal Resmi Dokumentasi & Presensi",
+    "brandName": "Pengajian Selasa Kliwon",
+    "brandTagline": "Arsip Dokumentasi & Presensi Jamaah",
+    "logoUrl": "https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f",
+    "announcement": {
+      "enabled": true,
+      "badge": "PENGUMUMAN",
+      "text": "Mulai bulan ini presensi kehadiran menggunakan sistem barcode untuk mempermudah proses absensi."
+    }
+  },
+  "hero": {
+    "bismillah": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "headline": "Arsip Kegiatan & Silaturahmi Jamaah",
+    "description": "Portal resmi dokumentasi foto & video kenangan pengajian, rekapitulasi presensi kehadiran jamaah, serta pusat syiar ukhuwah Islamiyah Pengajian Selasa Kliwon.",
+    "ctaGalleryText": "Buka Galeri Dokumentasi",
+    "ctaPresensiText": "Rekap Presensi Jamaah",
+    "ctaScheduleText": "Jadwal Acara"
+  },
+  "nextMeeting": {
+    "enabled": true,
+    "badge": "Pengajian Selasa Kliwon Bulan Oktober 2026",
+    "dateDisplay": "Selasa Kliwon, 20 Oktober 2026",
+    "targetDate": "2026-10-20T19:30:00+07:00",
+    "location": "RUMAH ALM BP H. RAHAD PRADIPTO",
+    "address": "JL LANGENASTRAN LOR NO. 6",
+    "mapsUrl": "https://maps.google.com/?q=JL+LANGENASTRAN+LOR+NO.+6+Yogyakarta",
+    "time": "Pukul 19.30 WIB (Ba'da Isya) - Selesai",
+    "calendarUrl": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pengajian+Selasa+Kliwon&details=Pengajian+Rutin+Selapanan+Selasa+Kliwon+Jamaah+nJero+Benteng+Kraton+Yogyakarta.&dates=20261020T123000Z/20261020T153000Z",
+    "shareMessage": "Insya Allah Pengajian Rutin Selapanan Selasa Kliwon berikutnya dilaksanakan pada Selasa Kliwon, 20 Oktober 2026 ba'da Isya (19.30 WIB). Bertempat di RUMAH ALM BP H. RAHAD PRADIPTO | JL LANGENASTRAN LOR NO. 6"
+  },
+  "stats": {
+    "totalJamaahManual": "214+",
+    "useAutoJamaah": true,
+    "totalWilayahManual": "20+",
+    "useAutoWilayah": true,
+    "cycleText": "35 Hari",
+    "cycleSubtext": "Siklus Selapanan"
+  },
+  "pillars": [
+    {
+      "id": "pilar-1",
+      "icon": "fa-solid fa-calendar-check",
+      "title": "Jadwal Rutin Selapanan",
+      "description": "Dilaksanakan secara istiqomah setiap siklus penanggalan Jawa <b>Selasa Kliwon</b> bertempat secara bergilir di kediaman para anggota jamaah.",
+      "footerLabel": "Siklus Pertemuan",
+      "footerIcon": "fa-solid fa-clock"
+    },
+    {
+      "id": "pilar-2",
+      "icon": "fa-solid fa-users-rectangle",
+      "title": "Tujuan & Silaturahmi",
+      "description": "Mempererat tali persaudaraan antarwarga dan jamaah, memperdalam ilmu agama islam, serta menumbuhkan kepedulian sosial sesama.",
+      "footerLabel": "Ukhuwah Islamiyah",
+      "footerIcon": "fa-solid fa-heart"
+    },
+    {
+      "id": "pilar-3",
+      "icon": "fa-solid fa-book-quran",
+      "title": "Agenda Utama",
+      "description": "Pembacaan ayat suci Al-Qur'an, doa bersama, tausiyah keagamaan, serta musyawarah dan ramah tamah antarjamaah.",
+      "footerLabel": "Kajian & Doa Bersama",
+      "footerIcon": "fa-solid fa-book-open"
+    }
+  ],
+  "schedules": [
+    {
+      "id": 1,
+      "roundNumber": "SEPTEMBER",
+      "status": "Terlaksana ✓",
+      "statusType": "completed",
+      "date": "15 September 2026",
+      "host": "Rumah Bp. Budhy H.",
+      "note": "Lihat Foto Kegiatan",
+      "actionType": "galeri"
+    },
+    {
+      "id": 2,
+      "roundNumber": "OKTOBER",
+      "status": "Berikutnya ✨",
+      "statusType": "active",
+      "date": "20 Oktober 2026",
+      "host": "RUMAH ALM BP H. RAHAD PRADIPTO",
+      "note": "Pukul 19.30 WIB",
+      "actionType": "clock"
+    },
+    {
+      "id": 3,
+      "roundNumber": "NOVEMBER",
+      "status": "Mendatang",
+      "statusType": "upcoming",
+      "date": "24 November 2026",
+      "host": "Kediaman Jamaah",
+      "note": "Siklus 35 Hari",
+      "actionType": "calendar"
+    },
+    {
+      "id": 4,
+      "roundNumber": "DESEMBER",
+      "status": "Mendatang",
+      "statusType": "upcoming",
+      "date": "29 Desember 2026",
+      "host": "Kediaman Jamaah",
+      "note": "Akhir Tahun 2026",
+      "actionType": "calendar"
+    }
+  ],
+  "galleryConfig": {
+    "gasApiUrl": "https://script.google.com/macros/s/AKfycbySPpw7C8ktUmQGtb6QWLhZ_QwL8TVwrht40VePuzt0FllsLPENo143Od01mGWAfyaK/exec",
+    "sectionTitle": "Album Kegiatan Pengajian",
+    "sectionSubtitle": "Pilih salah satu folder di bawah ini untuk melihat foto & video kegiatan.",
+    "customAlbums": []
+  },
+  "presensiConfig": {
+    "sheetUrls": {
+      "2026": "https://docs.google.com/spreadsheets/d/1KcpS1gOud7yqaIvPjSquYL1ExW5WCEyhcaGvrc-MP6k/export?format=csv&gid=203264463",
+      "2027": "https://docs.google.com/spreadsheets/d/1KcpS1gOud7yqaIvPjSquYL1ExW5WCEyhcaGvrc-MP6k/edit?resourcekey=&gid=197387263#gid=197387263",
+      "2028": "https://docs.google.com/spreadsheets/d/1KcpS1gOud7yqaIvPjSquYL1ExW5WCEyhcaGvrc-MP6k/edit?resourcekey=&gid=1783002452#gid=1783002452"
+    },
+    "defaultYear": "2026"
+  },
+  "contactAndFooter": {
+    "contactPerson": "Sekretariat Pengajian",
+    "whatsappNumber": "",
+    "address": "",
+    "donationInfo": {
+      "enabled": true,
+      "bank": "BSI (Bank Syariah Indonesia)",
+      "accountNumber": "-",
+      "accountName": "Pengajian Selasa Kliwon"
+    },
+    "copyrightText": "© 2026 Pengajian Selasa Kliwon. All rights reserved."
+  },
+  "adminSettings": {
+    "adminPin": "gampangbanget"
+  }
+}

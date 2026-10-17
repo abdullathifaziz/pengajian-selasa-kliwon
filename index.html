@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengajian Selasa Kliwon — Portal Resmi Dokumentasi & Presensi</title>
+
+    <!-- Meta SEO & Open Graph -->
+    <meta name="description"
+        content="Portal Resmi Dokumentasi, Galeri Foto & Presensi Kehadiran Jamaah Pengajian Selasa Kliwon nJero Benteng Kraton Yogyakarta.">
+    <meta name="theme-color" content="#022c22">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                        serif: ['Amiri', 'serif']
+                    },
+                    boxShadow: {
+                        'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.4)',
+                        'glow-amber': '0 0 25px -5px rgba(245, 158, 11, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-color: #030806;
+        }
+
+        /* Islamic Geometric Background Pattern */
+        .bg-islamic-pattern {
+            background-color: #030806;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(5, 150, 105, 0.22) 0%, transparent 60%),
+                radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2310b981' fill-opacity='0.035' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40l20 20-20 20-20-20 20-20zm0 40l20 20-20 20-20-20 20-20zM20 60l20 20-20-20zm40-40l20 20-20-20z'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+        }
+
+        /* Custom Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020d09;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #10b981, #047857);
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34d399;
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(6, 25, 20, 0.85) 0%, rgba(2, 44, 34, 0.45) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(16, 185, 129, 0.22);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-panel-gold {
+            background: linear-gradient(135deg, rgba(20, 24, 15, 0.88) 0%, rgba(45, 33, 10, 0.45) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(251, 191, 36, 0.1);
+        }
+
+        .glass-card-hover {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-6px);
+            border-color: rgba(52, 211, 153, 0.55);
+            box-shadow: 0 20px 40px -12px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Gold and Emerald Gradient Typography */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-emerald {
+            background: linear-gradient(135deg, #ecfdf5 0%, #6ee7b7 40%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Page Transition Animations */
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.99);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-page-enter {
+            animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Ambient Glow Animations */
+        @keyframes gentleGlow {
+
+            0%,
+            100% {
+                opacity: 0.35;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.65;
+                transform: scale(1.08);
+            }
+        }
+
+        .animate-ambient-glow {
+            animation: gentleGlow 9s ease-in-out infinite;
+        }
+
+        /* Pulse for audio equalizer */
+        @keyframes soundBar {
+
+            0%,
+            100% {
+                height: 4px;
+            }
+
+            50% {
+                height: 16px;
+            }
+        }
+
+        .sound-bar-1 {
+            animation: soundBar 0.8s ease-in-out infinite;
+        }
+
+        .sound-bar-2 {
+            animation: soundBar 1.1s ease-in-out infinite 0.2s;
+        }
+
+        .sound-bar-3 {
+            animation: soundBar 0.9s ease-in-out infinite 0.4s;
+        }
+
+        /* Print friendly style */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            header,
+            footer,
+            nav,
+            #navButtons,
+            #presensiToolbar,
+            .no-print {
+                display: none !important;
+            }
+
+            .glass-panel {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                color: black !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #999 !important;
+                color: black !important;
+                padding: 6px !important;
+            }
+
+            th {
+                background-color: #f0f0f0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-islamic-pattern text-slate-100 flex flex-col min-h-screen relative selection:bg-emerald-500 selection:text-slate-950">
+
+    <!-- Ambient Glowing Orbs Background -->
+    <div
+        class="fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-emerald-600/15 blur-[190px] rounded-full pointer-events-none -z-10 animate-ambient-glow">
+    </div>
+    <div
+        class="fixed bottom-10 right-[-100px] w-[650px] h-[650px] bg-teal-900/15 blur-[220px] rounded-full pointer-events-none -z-10">
+    </div>
+    <div
+        class="fixed top-1/3 left-[-150px] w-[500px] h-[500px] bg-amber-600/10 blur-[200px] rounded-full pointer-events-none -z-10">
+    </div>
+
+
+    <!-- ================= MAIN HEADER & NAVIGATION ================= -->
+    <header
+        class="bg-slate-950/85 backdrop-blur-2xl border-b border-emerald-900/50 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex justify-between items-center">
+
+            <!-- Brand Logo & Title -->
+            <div onclick="switchPage('home')" class="flex items-center space-x-3.5 cursor-pointer group"
+                data-aos="fade-right">
+                <div
+                    class="relative w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-amber-400 via-emerald-400 to-teal-500 shadow-lg shadow-emerald-950/80 group-hover:scale-105 group-hover:rotate-3 transition-all duration-300">
+                    <div
+                        class="w-full h-full rounded-full overflow-hidden bg-slate-950 p-1 flex items-center justify-center">
+                        <img id="mainHeaderLogo" src="https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f"
+                            onerror="this.src='https://lh3.googleusercontent.com/d/1wXTaYINwOtdSRYLqCQZsK5Kf5Q9t7oa8'"
+                            alt="Logo Pengajian Selasa Kliwon" class="w-full h-full object-contain">
+                    </div>
+                </div>
+                <div>
+                    <h1 id="mainHeaderBrandName"
+                        class="text-lg md:text-xl font-extrabold tracking-tight text-gradient-emerald group-hover:brightness-125 transition-all flex items-center gap-2">
+                        Pengajian Selasa Kliwon
+                    </h1>
+                    <p id="mainHeaderBrandTagline" class="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+                        Arsip Dokumentasi & Presensi Jamaah
+                    </p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-2" id="navButtons" data-aos="fade-left">
+                <button onclick="switchPage('home')" id="navHomeBtn"
+                    class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs font-bold transition-all duration-300 shadow-md shadow-emerald-950/80 flex items-center hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-house mr-2"></i> Beranda
+                </button>
+                <button onclick="switchPage('galeri')" id="navGaleriBtn"
+                    class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 hover:bg-emerald-950/80 text-emerald-300 hover:text-white text-xs font-semibold transition-all duration-300 flex items-center hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-images mr-2 text-emerald-400"></i> Galeri Dokumentasi
+                </button>
+                <button onclick="switchPage('presensi')" id="navPresensiBtn"
+                    class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 hover:bg-emerald-950/80 text-emerald-300 hover:text-white text-xs font-semibold transition-all duration-300 flex items-center hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-clipboard-user mr-2 text-emerald-400"></i> Presensi Kehadiran
+                </button>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button onclick="toggleMobileMenu()"
+                class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none rounded-xl bg-slate-900 border border-slate-800">
+                <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu"
+            class="hidden md:hidden px-4 pt-2 pb-4 bg-slate-950 border-b border-emerald-900/60 space-y-2">
+            <button onclick="switchPage('home'); toggleMobileMenu()"
+                class="w-full text-left px-4 py-3 rounded-xl bg-emerald-950/50 text-emerald-300 font-bold text-xs flex items-center justify-between border border-emerald-500/30">
+                <span><i class="fa-solid fa-house mr-2.5 text-emerald-400"></i> Beranda</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+            <button onclick="switchPage('galeri'); toggleMobileMenu()"
+                class="w-full text-left px-4 py-3 rounded-xl bg-slate-900 text-slate-200 font-semibold text-xs flex items-center justify-between border border-slate-800">
+                <span><i class="fa-solid fa-images mr-2.5 text-emerald-400"></i> Galeri Dokumentasi</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+            <button onclick="switchPage('presensi'); toggleMobileMenu()"
+                class="w-full text-left px-4 py-3 rounded-xl bg-slate-900 text-slate-200 font-semibold text-xs flex items-center justify-between border border-slate-800">
+                <span><i class="fa-solid fa-clipboard-user mr-2.5 text-emerald-400"></i> Presensi Kehadiran</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Announcement Banner Container -->
+    <div id="mainAnnouncementBanner"></div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-12 flex-grow w-full">
+
+        <!-- ================= PAGE 1: BERANDA ================= -->
+        <div id="pageHome" class="space-y-16 animate-page-enter">
+
+            <!-- Hero Section -->
+            <section class="relative py-8 md:py-12 px-2 text-center overflow-hidden">
+                <div class="max-w-4xl mx-auto relative z-10" data-aos="zoom-in" data-aos-duration="900">
+
+                    <!-- Bismillah Calligraphy -->
+                    <div class="inline-block relative mb-5">
+                        <div id="mainHeroBismillah"
+                            class="font-arabic text-3xl md:text-5xl text-gradient-gold tracking-wide py-2 leading-relaxed drop-shadow-[0_4px_18px_rgba(245,158,11,0.35)]">
+                            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                        </div>
+                        <div
+                            class="w-32 h-[2px] bg-gradient-to-r from-transparent via-amber-400/70 to-transparent mx-auto mt-1">
+                        </div>
+                    </div>
+
+
+                    <!-- Headline -->
+                    <h2 id="mainHeroHeadline"
+                        class="text-3xl sm:text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-100 via-emerald-300 to-teal-100 tracking-tight leading-tight md:leading-snug mb-5">
+                        Arsip Kegiatan & Silaturahmi Jamaah
+                    </h2>
+
+                    <!-- Subtitle -->
+                    <p id="mainHeroDescription"
+                        class="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+                        Portal resmi dokumentasi foto & video kenangan pengajian, rekapitulasi presensi kehadiran
+                        jamaah, serta pusat syiar ukhuwah Islamiyah Pengajian Selasa Kliwon.
+                    </p>
+
+                    <!-- CTA Action Buttons -->
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-3.5 text-xs sm:text-sm">
+                        <button id="mainHeroCtaGallery" onclick="switchPage('galeri')"
+                            class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold transition-all duration-300 shadow-xl shadow-emerald-950/80 flex items-center hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-folder-open mr-2.5 text-base"></i> Buka Galeri Dokumentasi
+                        </button>
+                        <button id="mainHeroCtaPresensi" onclick="switchPage('presensi')"
+                            class="px-6 py-3.5 rounded-xl bg-slate-900/90 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-950 hover:text-white font-bold transition-all duration-300 shadow-xl flex items-center hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-clipboard-user mr-2.5 text-base text-emerald-400"></i> Rekap Presensi
+                            Jamaah
+                        </button>
+                        <button id="mainHeroCtaSchedule" onclick="scrollToUpcomingSchedule()"
+                            class="px-5 py-3.5 rounded-xl bg-slate-900/80 border border-amber-500/30 text-amber-300 hover:bg-amber-950/40 font-semibold transition-all duration-300 flex items-center hover:scale-105">
+                            <i class="fa-regular fa-calendar-check mr-2 text-amber-400"></i> Jadwal Acara
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= WIDGET COUNTDOWN & INFO PERTEMUAN BERIKUTNYA ================= -->
+            <section class="max-w-4xl mx-auto" data-aos="fade-up" id="nextMeetingCard">
+                <div class="glass-panel-gold rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+                    <div
+                        class="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/10 blur-3xl rounded-full pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute -bottom-12 -left-12 w-48 h-48 bg-emerald-500/15 blur-3xl rounded-full pointer-events-none">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                        <!-- Left Info -->
+                        <div class="text-center md:text-left space-y-2">
+                            <div id="mainNextMeetingBadge"
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold uppercase tracking-wider">
+                                <i class="fa-solid fa-bell animate-bounce text-amber-400"></i>
+                                Pengajian Selapanan Terdekat
+                            </div>
+                            <h3 id="mainNextMeetingDate" class="text-2xl sm:text-3xl font-extrabold text-white">
+                                Selasa Kliwon, 20 Oktober 2026
+                            </h3>
+                            <p id="mainNextMeetingLocation"
+                                class="text-slate-200 text-xs sm:text-sm font-semibold flex items-center justify-center md:justify-start gap-2">
+                                <i class="fa-solid fa-house-chimney text-emerald-400"></i>
+                                <span id="mainNextMeetingLocationText">Kediaman RUMAH ALM BP H. RAHAD PRADIPTO</span>
+                            </p>
+                            <p id="mainNextMeetingAddress"
+                                class="text-slate-300 text-xs sm:text-sm flex items-center justify-center md:justify-start gap-2">
+                                <i class="fa-solid fa-location-dot text-amber-400"></i>
+                                <span id="mainNextMeetingAddressText">JL LANGENASTRAN LOR NO. 6</span>
+                                <a id="mainNextMeetingMapsLink" href="#" target="_blank"
+                                    class="hidden text-amber-300 hover:text-white underline text-[11px] font-bold ml-1 inline-flex items-center gap-1">
+                                    <i class="fa-solid fa-diamond-turn-right text-[10px]"></i> Buka Peta
+                                </a>
+                            </p>
+                            <p id="mainNextMeetingTime" class="text-slate-400 text-xs flex items-center justify-center md:justify-start gap-2">
+                                <i class="fa-solid fa-clock text-emerald-400"></i>
+                                <span id="mainNextMeetingTimeText">Pukul 19.30 WIB (Ba'da Isya) - Selesai</span>
+                            </p>
+                        </div>
+
+                        <!-- Right: Live Dynamic Countdown Box -->
+                        <div class="flex flex-col items-center">
+                            <div class="grid grid-cols-4 gap-2 sm:gap-3 text-center" id="countdownContainer">
+                                <div
+                                    class="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-2.5 sm:p-3.5 min-w-[62px] sm:min-w-[70px] shadow-lg">
+                                    <span id="countdownDays"
+                                        class="block text-xl sm:text-2xl font-black text-amber-300">--</span>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Hari</span>
+                                </div>
+                                <div
+                                    class="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-2.5 sm:p-3.5 min-w-[62px] sm:min-w-[70px] shadow-lg">
+                                    <span id="countdownHours"
+                                        class="block text-xl sm:text-2xl font-black text-amber-300">--</span>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Jam</span>
+                                </div>
+                                <div
+                                    class="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-2.5 sm:p-3.5 min-w-[62px] sm:min-w-[70px] shadow-lg">
+                                    <span id="countdownMinutes"
+                                        class="block text-xl sm:text-2xl font-black text-amber-300">--</span>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Menit</span>
+                                </div>
+                                <div
+                                    class="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-2.5 sm:p-3.5 min-w-[62px] sm:min-w-[70px] shadow-lg">
+                                    <span id="countdownSeconds"
+                                        class="block text-xl sm:text-2xl font-black text-emerald-400">--</span>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Detik</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center gap-2">
+                                <a id="mainNextMeetingCalendarBtn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pengajian+Selasa+Kliwon&details=Pengajian+Rutin+Selapanan+Selasa+Kliwon+Jamaah+nJero+Benteng+Kraton+Yogyakarta.&dates=20261020T123000Z/20261020T153000Z"
+                                    target="_blank"
+                                    class="text-[11px] font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-3 py-1.5 rounded-xl border border-amber-500/40 transition-all flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-calendar-plus"></i> Simpan ke Kalender
+                                </a>
+                                <button onclick="shareMeetingInfo()"
+                                    class="text-[11px] font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl border border-slate-700 transition-all flex items-center gap-1.5">
+                                    <i class="fa-solid fa-share-nodes"></i> Bagikan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= METRIK & STATISTIK RINGKAS ================= -->
+            <section class="grid grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up">
+                <div
+                    class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center space-x-4 glass-card-hover">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl shadow-inner">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white" id="statTotalJamaah">140+</div>
+                        <p class="text-[11px] text-slate-400 font-medium">Jamaah Terdaftar</p>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center space-x-4 glass-card-hover">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-2xl shadow-inner">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white" id="statTotalWilayah">9</div>
+                        <p class="text-[11px] text-slate-400 font-medium">Wilayah Kampung</p>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center space-x-4 glass-card-hover">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center text-2xl shadow-inner">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white" id="statTotalAlbum">...</div>
+                        <p class="text-[11px] text-slate-400 font-medium">Album Dokumentasi</p>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-5 rounded-2xl border border-slate-800 flex items-center space-x-4 glass-card-hover">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center text-2xl shadow-inner">
+                        <i class="fa-solid fa-rotate"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-white" id="statCycleText">35 Hari</div>
+                        <p class="text-[11px] text-slate-400 font-medium" id="statCycleSubtext">Siklus Selapanan</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PROFIL & KEGIATAN ================= -->
+            <section class="space-y-8" data-aos="fade-up">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span
+                        class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2 mb-2 bg-emerald-950/60 py-1 px-4 rounded-full border border-emerald-500/30 w-fit mx-auto">
+                        <i class="fa-solid fa-mosque"></i> Profil & Kegiatan
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">Mengenal Lebih Dekat</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-2">Informasi seputar pelaksanaan, tujuan, dan agenda
+                        rutin jamaah.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="pillarsGridContainer">
+                    <!-- Kartu 1 -->
+                    <div
+                        class="glass-panel p-7 rounded-3xl border border-slate-800 flex flex-col justify-between glass-card-hover group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none">
+                        </div>
+                        <div>
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-white mb-2.5 group-hover:text-emerald-300 transition-colors">
+                                Jadwal Rutin Selapanan</h4>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                Dilaksanakan secara istiqomah setiap siklus penanggalan Jawa <b>Selasa Kliwon</b>
+                                bertempat secara bergilir di kediaman para anggota jamaah.
+                            </p>
+                        </div>
+                        <div
+                            class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Siklus Pertemuan</span>
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 2 -->
+                    <div
+                        class="glass-panel p-7 rounded-3xl border border-slate-800 flex flex-col justify-between glass-card-hover group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none">
+                        </div>
+                        <div>
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-users-rectangle"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-white mb-2.5 group-hover:text-emerald-300 transition-colors">
+                                Tujuan & Silaturahmi</h4>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                Mempererat tali persaudaraan antarwarga dan jamaah, memperdalam ilmu agama islam, serta
+                                menumbuhkan kepedulian sosial sesama.
+                            </p>
+                        </div>
+                        <div
+                            class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Ukhuwah Islamiyah</span>
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <!-- Kartu 3 -->
+                    <div
+                        class="glass-panel p-7 rounded-3xl border border-slate-800 flex flex-col justify-between glass-card-hover group relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none">
+                        </div>
+                        <div>
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                <i class="fa-solid fa-book-quran"></i>
+                            </div>
+                            <h4
+                                class="text-lg font-bold text-white mb-2.5 group-hover:text-emerald-300 transition-colors">
+                                Agenda Utama</h4>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                Pembacaan ayat suci Al-Qur'an, doa bersama, tausiyah keagamaan, serta musyawarah dan
+                                ramah tamah antarjamaah.
+                            </p>
+                        </div>
+                        <div
+                            class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-emerald-400 font-semibold flex items-center justify-between">
+                            <span>Kajian & Doa Bersama</span>
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= JADWAL SIKLUS SELAPANAN 2026 ================= -->
+            <section class="scroll-mt-24 space-y-6" id="scheduleSection" data-aos="fade-up">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <span
+                            class="text-amber-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2 mb-1">
+                            <i class="fa-regular fa-calendar-days"></i> Kalender Agenda 2026
+                        </span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-white">Siklus Pertemuan Selasa Kliwon</h3>
+                        <p class="text-xs text-slate-400 mt-1">Daftar perkiraan tanggal pelaksanaan pengajian setiap 35
+                            hari sekali</p>
+                    </div>
+                    <span
+                        class="text-xs text-emerald-400 bg-emerald-950/60 px-3 py-1.5 rounded-xl border border-emerald-500/30 font-medium">
+                        <i class="fa-solid fa-location-dot mr-1"></i> Bergilir ke Rumah Anggota
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="schedulesGridContainer">
+                    <!-- Sesi 1 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-bold text-slate-400">Putaran #1</span>
+                            <span
+                                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Terlaksana
+                                ✓</span>
+                        </div>
+                        <h5 class="text-base font-bold text-white mb-1">15 September 2026</h5>
+                        <p class="text-xs text-slate-400 mb-3"><i
+                                class="fa-solid fa-house-chimney text-emerald-400 mr-1.5"></i>Rumah Bp. Budhy H.</p>
+                        <button onclick="switchPage('galeri')"
+                            class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center justify-between pt-2 border-t border-slate-800/80">
+                            <span>Lihat Foto Kegiatan</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Sesi 2 (Terdekat) -->
+                    <div
+                        class="glass-panel-gold p-5 rounded-2xl border border-amber-500/40 flex flex-col justify-between relative shadow-glow-amber">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-bold text-amber-300">Putaran #2</span>
+                            <span
+                                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">Berikutnya
+                                ✨</span>
+                        </div>
+                        <h5 class="text-base font-bold text-amber-200 mb-1">20 Oktober 2026</h5>
+                        <p class="text-xs text-slate-300 mb-3"><i
+                                class="fa-solid fa-house-chimney text-amber-400 mr-1.5"></i>Tuan Rumah Berikutnya</p>
+                        <div
+                            class="text-xs font-semibold text-amber-400 flex items-center justify-between pt-2 border-t border-amber-500/30">
+                            <span>Pukul 19.30 WIB</span>
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sesi 3 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between relative opacity-85">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-bold text-slate-400">Putaran #3</span>
+                            <span
+                                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800">Mendatang</span>
+                        </div>
+                        <h5 class="text-base font-bold text-white mb-1">24 November 2026</h5>
+                        <p class="text-xs text-slate-400 mb-3"><i
+                                class="fa-solid fa-house-chimney text-emerald-400 mr-1.5"></i>Kediaman Jamaah</p>
+                        <div
+                            class="text-xs font-semibold text-slate-500 flex items-center justify-between pt-2 border-t border-slate-800/80">
+                            <span>Siklus 35 Hari</span>
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sesi 4 -->
+                    <div
+                        class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between relative opacity-85">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-bold text-slate-400">Putaran #4</span>
+                            <span
+                                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800">Mendatang</span>
+                        </div>
+                        <h5 class="text-base font-bold text-white mb-1">29 Desember 2026</h5>
+                        <p class="text-xs text-slate-400 mb-3"><i
+                                class="fa-solid fa-house-chimney text-emerald-400 mr-1.5"></i>Kediaman Jamaah</p>
+                        <div
+                            class="text-xs font-semibold text-slate-500 flex items-center justify-between pt-2 border-t border-slate-800/80">
+                            <span>Akhir Tahun 2026</span>
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+        </div>
+
+
+        <!-- ================= PAGE 2: GALERI DOKUMENTASI ================= -->
+        <div id="pageGaleri" class="hidden space-y-8 animate-page-enter">
+
+            <!-- Gallery Navigation Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/80 pb-5">
+                <div>
+                    <button onclick="switchPage('home')"
+                        class="mb-3 inline-flex items-center text-xs text-emerald-400 hover:text-emerald-300 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-all hover:scale-105">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
+                    </button>
+                    <span
+                        class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-images"></i> Arsip Media & Foto
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white" id="galleryTitle">
+                        Album Kegiatan Pengajian
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1" id="gallerySubtitle">
+                        Pilih salah satu folder di bawah ini untuk melihat foto & video kegiatan.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <button id="backBtn" onclick="showFolderList()"
+                        class="hidden items-center px-4 py-2.5 bg-slate-900 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-950 text-xs font-bold rounded-xl transition-all shadow-md">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Daftar Album
+                    </button>
+
+                    <!-- Search folder -->
+                    <div class="relative min-w-[200px]" id="folderSearchBox">
+                        <i
+                            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                        <input type="text" id="gallerySearchInput" onkeyup="filterGalleryFolders()"
+                            placeholder="Cari album / tanggal..."
+                            class="w-full pl-8 pr-3 py-2 text-xs border border-slate-800 rounded-xl focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500 shadow-md transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAMPILAN 1: DAFTAR KARTU FOLDER -->
+            <div id="folderListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full text-center py-20 text-slate-400 glass-panel rounded-2xl">
+                    <i class="fa-solid fa-circle-notch animate-spin text-emerald-400 text-3xl mb-3"></i>
+                    <p class="text-xs font-semibold">Menghubungkan ke Google Drive Pengajian...</p>
+                    <p class="text-[11px] text-slate-500 mt-1">Memuat daftar album foto & video otomatis</p>
+                </div>
+            </div>
+
+            <!-- TAMPILAN 2: ISI FOTO & VIDEO DALAM FOLDER -->
+            <div id="folderContentContainer" class="hidden space-y-6">
+                <!-- Banner info folder aktif -->
+                <div
+                    class="glass-panel p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-emerald-500/30">
+                    <div class="flex items-center space-x-3.5">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-slate-950 flex items-center justify-center text-xl shadow-lg font-bold">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div>
+                            <span
+                                class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">Album
+                                Sedang Dibuka</span>
+                            <h4 class="text-base sm:text-lg font-extrabold text-white" id="currentFolderName">Nama
+                                Folder</h4>
+                            <p class="text-xs text-slate-400" id="currentFolderStats">Memuat rincian...</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="showFolderList()"
+                            class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 text-xs text-slate-300 font-medium transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-list-ul text-emerald-400"></i> Pilih Album Lain
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid Media Foto/Video -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="mediaGrid"></div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 3: PRESENSI KEHADIRAN ================= -->
+        <div id="pagePresensi" class="hidden space-y-8 animate-page-enter">
+
+            <!-- Header Presensi -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/80 pb-5">
+                <div>
+                    <button onclick="switchPage('home')"
+                        class="mb-3 inline-flex items-center text-xs text-emerald-400 hover:text-emerald-300 font-semibold bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 transition-all hover:scale-105">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Beranda
+                    </button>
+                    <span
+                        class="text-emerald-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-chart-pie"></i> Rekapitulasi Presensi
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white">
+                        Daftar Kehadiran Jamaah
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                        Data kehadiran selapanan jamaah per bulan berdasarkan rekapan lembar presensi.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5" id="presensiToolbar">
+                    <!-- Tombol Refresh Presensi -->
+                    <button onclick="refreshPresensiData()" title="Muat Ulang Data"
+                        class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/30 hover:bg-emerald-950 text-emerald-300 text-xs font-semibold transition-all shadow-md flex items-center hover:scale-105 active:scale-95">
+                        <i id="refreshIcon" class="fa-solid fa-rotate mr-1.5 text-emerald-400"></i> Refresh
+                    </button>
+
+                    <!-- Dropdown Tahun -->
+                    <div
+                        class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 shadow-md">
+                        <i class="fa-regular fa-calendar-days text-emerald-400 text-xs"></i>
+                        <label for="yearSelect" class="text-xs text-slate-400 font-medium">Tahun:</label>
+                        <select id="yearSelect" onchange="changeYear()"
+                            class="bg-transparent text-emerald-300 text-xs font-bold focus:outline-none cursor-pointer">
+                            <option value="2026" class="bg-slate-900 text-slate-200">2026</option>
+                            <option value="2025" class="bg-slate-900 text-slate-200">2025</option>
+                            <option value="2024" class="bg-slate-900 text-slate-200">2024</option>
+                        </select>
+                    </div>
+
+                    <!-- Tombol Cetak / Ekspor -->
+                    <button onclick="printAttendanceTable()" title="Cetak Rekap"
+                        class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 text-amber-300 text-xs font-semibold transition-all shadow-md flex items-center hover:scale-105">
+                        <i class="fa-solid fa-print mr-1.5 text-amber-400"></i> Cetak
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ringkasan Metrik Presensi -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Jamaah</p>
+                        <h4 class="text-xl font-extrabold text-white" id="statPresensiTotal">-</h4>
+                    </div>
+                    <i class="fa-solid fa-user-group text-emerald-400 text-xl opacity-80"></i>
+                </div>
+
+                <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Kehadiran (H)</p>
+                        <h4 class="text-xl font-extrabold text-emerald-400" id="statPresensiHadir">-</h4>
+                    </div>
+                    <i class="fa-solid fa-circle-check text-emerald-400 text-xl opacity-80"></i>
+                </div>
+
+                <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Jumlah Wilayah</p>
+                        <h4 class="text-xl font-extrabold text-teal-400" id="statPresensiWilayah">-</h4>
+                    </div>
+                    <i class="fa-solid fa-tree-city text-teal-400 text-xl opacity-80"></i>
+                </div>
+            </div>
+
+            <!-- Rekap Presensi Kehadiran Tiap Bulan -->
+            <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-800 space-y-3">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 border-b border-slate-800/80 pb-3">
+                    <div class="flex items-center gap-2.5">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm shadow-sm">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs sm:text-sm font-extrabold text-white">Total Presensi Kehadiran Tiap Bulan
+                            </h4>
+                            <p class="text-[11px] text-slate-400">Jumlah kehadiran jamaah di setiap putaran pertemuan
+                                bulanan</p>
+                        </div>
+                    </div>
+                    <span
+                        class="text-[11px] font-mono text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-500/30 w-fit">
+                        Tahun <span id="monthlySummaryYear">2026</span>
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2"
+                    id="monthlyAttendanceContainer">
+                    <!-- Diisi otomatis melalui JavaScript -->
+                </div>
+            </div>
+
+            <!-- Toolbar Filter Wilayah & Pencarian Jamaah -->
+            <div
+                class="glass-panel p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Filter Wilayah Dropdown -->
+                    <div
+                        class="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs shadow-sm">
+                        <i class="fa-solid fa-filter text-emerald-400"></i>
+                        <label for="wilayahFilter" class="text-slate-400">Wilayah:</label>
+                        <select id="wilayahFilter" onchange="filterTable()"
+                            class="bg-transparent text-emerald-300 font-bold focus:outline-none cursor-pointer">
+                            <option value="ALL" class="bg-slate-900 text-slate-200">Semua Wilayah</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggle Tampilan Tabel vs Kartu -->
+                    <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1">
+                        <button onclick="setViewMode('table')" id="viewModeTableBtn"
+                            class="px-3 py-1 text-xs rounded-lg font-bold bg-emerald-600 text-white transition-all">
+                            <i class="fa-solid fa-table-list mr-1"></i> Tabel
+                        </button>
+                        <button onclick="setViewMode('cards')" id="viewModeCardsBtn"
+                            class="px-3 py-1 text-xs rounded-lg font-bold text-slate-400 hover:text-white transition-all">
+                            <i class="fa-solid fa-id-card mr-1"></i> Kartu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Pencarian -->
+                <div class="relative min-w-[240px]">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                    <input type="text" id="searchInput" onkeyup="filterTable()"
+                        placeholder="Cari No Kode / Nama / Alamat..."
+                        class="w-full pl-9 pr-4 py-2 text-xs border border-slate-800 rounded-xl focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500 shadow-inner transition-all">
+                </div>
+            </div>
+
+            <!-- TAMPILAN 1: TABEL LENGKAP -->
+            <div id="tableViewContainer"
+                class="glass-panel rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs whitespace-nowrap" id="attendanceTable">
+                        <thead>
+                            <tr
+                                class="bg-slate-900/95 text-slate-200 border-b border-slate-800 font-bold uppercase tracking-wider text-[11px]">
+                                <th class="py-3.5 px-3 text-center border-r border-slate-800">No</th>
+                                <th class="py-3.5 px-3 text-emerald-400 font-bold border-r border-slate-800">NO KODE
+                                </th>
+                                <th
+                                    class="py-3.5 px-4 min-w-[180px] sticky left-0 bg-slate-900 z-20 border-r border-slate-800 shadow-[4px_0_10px_-2px_rgba(0,0,0,0.5)]">
+                                    Nama Jamaah</th>
+                                <th class="py-3.5 px-4 min-w-[140px]">Alamat</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Jan</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Feb</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Mar</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Apr</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Mei</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Jun</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Jul</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Agu</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px] bg-emerald-950/20 text-emerald-300">Sep
+                                </th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px] bg-amber-950/20 text-amber-300">Okt</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Nov</th>
+                                <th class="py-3.5 px-2 text-center min-w-[45px]">Des</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody" class="divide-y divide-slate-800/60 text-slate-300">
+                            <tr>
+                                <td colspan="16" class="text-center py-16 text-slate-500">
+                                    <i class="fa-solid fa-circle-notch animate-spin text-emerald-500 text-3xl mb-3"></i>
+                                    <p class="text-xs font-semibold">Menghubungkan ke Google Spreadsheet Presensi...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAMPILAN 2: KARTU JAMAAH (MOBILE OPTIMIZED) -->
+            <div id="cardsViewContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Diisi secara dinamis via JavaScript -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= MODAL LIGHTBOX VIEW FOTO & VIDEO ================= -->
+    <div id="lightboxModal" onclick="closeLightbox()"
+        class="fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-[100] hidden items-center justify-center p-4 cursor-pointer select-none">
+
+        <!-- Tombol Tutup & Kontrol Atas -->
+        <div class="absolute top-4 right-4 flex items-center gap-2 z-20">
+            <button onclick="event.stopPropagation(); downloadCurrentImage()" title="Unduh Foto Ini"
+                class="text-slate-300 hover:text-emerald-400 text-base bg-slate-900/90 w-11 h-11 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110">
+                <i class="fa-solid fa-download"></i>
+            </button>
+            <button onclick="event.stopPropagation(); toggleFullscreen()" title="Layar Penuh"
+                class="text-slate-300 hover:text-white text-base bg-slate-900/90 w-11 h-11 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+            <button onclick="closeLightbox()" title="Tutup"
+                class="text-slate-300 hover:text-rose-400 text-xl font-bold bg-slate-900/90 w-11 h-11 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Tombol Panah Kiri -->
+        <button onclick="event.stopPropagation(); prevMedia()" title="Foto Sebelumnya (Panah Kiri)"
+            class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-emerald-300 hover:text-white text-xl bg-slate-900/80 hover:bg-emerald-600/90 w-12 h-12 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110 z-20">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Tombol Panah Kanan -->
+        <button onclick="event.stopPropagation(); nextMedia()" title="Foto Selanjutnya (Panah Kanan)"
+            class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-emerald-300 hover:text-white text-xl bg-slate-900/80 hover:bg-emerald-600/90 w-12 h-12 rounded-full flex items-center justify-center border border-slate-700 shadow-2xl transition-all hover:scale-110 z-20">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Konten Foto -->
+        <div class="relative max-w-5xl w-full flex flex-col items-center" onclick="event.stopPropagation()"
+            id="lightboxTouchArea">
+            <div
+                class="glass-panel p-2 rounded-2xl overflow-hidden max-h-[76vh] w-full flex items-center justify-center shadow-2xl border border-emerald-500/30">
+                <img id="lightboxImg" src="" alt="Pratinjau Foto Dokumentasi"
+                    class="max-h-[72vh] w-auto max-w-full object-contain rounded-xl transition-all duration-300">
+            </div>
+
+            <!-- Keterangan & Counter -->
+            <div class="mt-3.5 flex flex-col sm:flex-row items-center justify-between w-full gap-2 px-2">
+                <span id="lightboxCounter"
+                    class="text-xs font-mono bg-emerald-950/80 text-emerald-300 px-3.5 py-1.5 rounded-xl border border-emerald-500/40 font-bold"></span>
+                <p id="lightboxCaption"
+                    class="text-xs font-mono text-slate-200 font-semibold text-center bg-slate-900/90 px-4 py-1.5 rounded-xl border border-slate-800 shadow-md truncate max-w-md">
+                </p>
+                <span class="text-[11px] text-slate-400 hidden sm:inline">Gunakan tombol panah ◀ ▶ pada keyboard</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL DETAIL JAMAAH (POPUP) ================= -->
+    <div id="jamaahDetailModal" onclick="closeJamaahModal()"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[90] hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-md w-full p-6 border border-emerald-500/40 relative shadow-2xl animate-page-enter"
+            onclick="event.stopPropagation()">
+            <button onclick="closeJamaahModal()"
+                class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center border border-slate-800">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-3.5 mb-4">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold border border-emerald-500/30">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider"
+                        id="modalJamaahKode">KODE</span>
+                    <h4 class="text-base font-extrabold text-white" id="modalJamaahNama">Nama Jamaah</h4>
+                    <p class="text-xs text-slate-400" id="modalJamaahAlamat">Alamat</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800/80 space-y-2 mb-4">
+                <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Wilayah / Kampung:</span>
+                    <span class="font-bold text-slate-200" id="modalJamaahWilayah">-</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Total Hadir Tahun Ini:</span>
+                    <span class="font-bold text-emerald-400" id="modalJamaahTotalHadir">0 Kali</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Persentase Kehadiran:</span>
+                    <span class="font-bold text-amber-300" id="modalJamaahPersentase">0%</span>
+                </div>
+            </div>
+
+            <div class="space-y-1.5">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Rekam Jejak Kehadiran Bulanan:
+                </p>
+                <div class="grid grid-cols-6 gap-1.5 text-center" id="modalMonthsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FLOATING ACTION BUTTONS ================= -->
+    <!-- Tombol Scroll Back to Top -->
+    <button onclick="scrollToTop()" id="backToTopBtn" title="Kembali ke Atas"
+        class="fixed bottom-6 right-6 z-40 w-11 h-11 bg-slate-900/90 hover:bg-emerald-950 text-emerald-400 rounded-full border border-emerald-500/30 shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+    <div id="toastNotification"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div
+            class="glass-panel px-5 py-2.5 rounded-full border border-emerald-500/50 text-xs font-semibold text-emerald-200 shadow-2xl flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-emerald-400" id="toastIcon"></i>
+            <span id="toastMessage">Pemberitahuan</span>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+        class="bg-slate-950 border-t border-emerald-950/80 text-slate-400 py-12 text-xs mt-auto relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+
+            <div class="flex items-center space-x-3 text-center md:text-left">
+                <div
+                    class="w-10 h-10 rounded-full bg-slate-900 p-1 border border-emerald-500/30 flex items-center justify-center">
+                    <img id="mainFooterLogo" src="https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f"
+                        onerror="this.src='https://lh3.googleusercontent.com/d/1wXTaYINwOtdSRYLqCQZsK5Kf5Q9t7oa8'"
+                        alt="Logo" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <h4 id="mainFooterBrand" class="font-bold text-white text-sm">Pengajian Selasa Kliwon</h4>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 text-slate-400 text-xs font-medium">
+                <button onclick="switchPage('home')" class="hover:text-emerald-300 transition-colors">Beranda</button>
+                <span>•</span>
+                <button onclick="switchPage('galeri')" class="hover:text-emerald-300 transition-colors">Galeri
+                    Media</button>
+                <span>•</span>
+                <button onclick="switchPage('presensi')"
+                    class="hover:text-emerald-300 transition-colors">Presensi</button>
+                <span>•</span>
+                <a href="/admin.html" class="hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5 text-slate-400 font-semibold">
+                    <i class="fa-solid fa-lock text-[10px] text-emerald-400"></i> Admin Panel
+                </a>
+            </div>
+
+            <div class="text-center md:text-right text-[11px] text-slate-500">
+                <p id="mainFooterCopyright">© 2026 Pengajian Selasa Kliwon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- ================= CORE JAVASCRIPT ================= -->
+    <script>
+        // Inisialisasi AOS Animation
+        AOS.init({ once: true, duration: 750 });
+
+        // URL Integrasi Google Apps Script & Google Sheets
+        let GAS_API_URL = "https://script.google.com/macros/s/AKfycbySPpw7C8ktUmQGtb6QWLhZ_QwL8TVwrht40VePuzt0FllsLPENo143Od01mGWAfyaK/exec";
+
+        let sheetUrls = {
+            '2026': 'https://docs.google.com/spreadsheets/d/1KcpS1gOud7yqaIvPjSquYL1ExW5WCEyhcaGvrc-MP6k/export?format=csv&gid=203264463',
+            '2027': '',
+            '2028': ''
+        };
+
+        // State Global
+        let folderDatabase = {};
+        let rawFoldersList = [];
+        let currentActiveFolderId = '';
+        let currentMediaIndex = 0;
+        let attendanceData = [];
+        let wilayahListSet = new Set();
+        let currentViewMode = 'table'; // 'table' or 'cards'
+        let isAudioPlaying = false;
+        let currentMeetingShareMessage = "";
+        let currentSiteContent = null;
+
+        // Tanggal Acara Terdekat (Selasa Kliwon, 20 Oktober 2026 19:30 WIB)
+        let TARGET_MEETING_DATE = new Date("2026-10-20T19:30:00+07:00").getTime();
+
+        // Nama Bulan
+        const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+
+        /* ----------------------------------------------------
+         * NAVIGATION & PAGE SWITCHER
+         * ---------------------------------------------------- */
+        function switchPage(pageId) {
+            document.getElementById('pageHome').classList.add('hidden');
+            document.getElementById('pageGaleri').classList.add('hidden');
+            document.getElementById('pagePresensi').classList.add('hidden');
+
+            const navHomeBtn = document.getElementById('navHomeBtn');
+            const navGaleriBtn = document.getElementById('navGaleriBtn');
+            const navPresensiBtn = document.getElementById('navPresensiBtn');
+
+            const defaultClass = "px-4 py-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30 hover:bg-emerald-950/80 text-emerald-300 hover:text-white text-xs font-semibold transition-all duration-300 flex items-center hover:scale-105 active:scale-95";
+            const activeClass = "px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-slate-950 font-extrabold text-xs transition-all duration-300 shadow-md shadow-emerald-950/80 flex items-center hover:scale-105 active:scale-95";
+
+            if (navHomeBtn) navHomeBtn.className = defaultClass;
+            if (navGaleriBtn) navGaleriBtn.className = defaultClass;
+            if (navPresensiBtn) navPresensiBtn.className = defaultClass;
+
+            if (pageId === 'home') {
+                document.getElementById('pageHome').classList.remove('hidden');
+                if (navHomeBtn) navHomeBtn.className = activeClass;
+            } else if (pageId === 'galeri') {
+                document.getElementById('pageGaleri').classList.remove('hidden');
+                if (navGaleriBtn) navGaleriBtn.className = activeClass;
+            } else if (pageId === 'presensi') {
+                document.getElementById('pagePresensi').classList.remove('hidden');
+                if (navPresensiBtn) navPresensiBtn.className = activeClass;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+
+        function scrollToUpcomingSchedule() {
+            const el = document.getElementById('scheduleSection');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Tampilkan tombol back-to-top saat scroll
+        window.addEventListener('scroll', function () {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 400) {
+                btn.classList.remove('opacity-0', 'pointer-events-none');
+                btn.classList.add('opacity-100');
+            } else {
+                btn.classList.add('opacity-0', 'pointer-events-none');
+                btn.classList.remove('opacity-100');
+            }
+        });
+
+
+        /* ----------------------------------------------------
+         * COUNTDOWN PENGINGAT ACARA
+         * ---------------------------------------------------- */
+        function startCountdown() {
+            function update() {
+                const now = new Date().getTime();
+                const diff = TARGET_MEETING_DATE - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdownDays').innerText = "00";
+                    document.getElementById('countdownHours').innerText = "00";
+                    document.getElementById('countdownMinutes').innerText = "00";
+                    document.getElementById('countdownSeconds').innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdownDays').innerText = String(days).padStart(2, '0');
+                document.getElementById('countdownHours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('countdownMinutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('countdownSeconds').innerText = String(seconds).padStart(2, '0');
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+
+        function shareMeetingInfo() {
+            const text = currentMeetingShareMessage || "Insya Allah Pengajian Rutin Selapanan Selasa Kliwon berikutnya dilaksanakan pada Selasa Kliwon, 20 Oktober 2026 ba'da Isya (19.30 WIB). Mari hadir menyambung tali silaturahmi jamaah nJero Benteng!";
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Pengajian Selasa Kliwon',
+                    text: text,
+                    url: window.location.href
+                }).catch(() => { });
+            } else {
+                navigator.clipboard.writeText(text);
+                showToast("Informasi acara telah disalin!");
+            }
+        }
+
+
+        /* ----------------------------------------------------
+         * GALERI & DRIVE AUTOMATION (APPS SCRIPT)
+         * ---------------------------------------------------- */
+        async function fetchMediaAutomated() {
+            const folderListContainer = document.getElementById('folderListContainer');
+
+            try {
+                const response = await fetch(GAS_API_URL);
+                const folders = await response.json();
+
+                rawFoldersList = folders;
+                folderDatabase = {};
+                folderListContainer.innerHTML = '';
+
+                // Perbarui Counter di Nav & Stat
+                const navFolderBadge = document.getElementById('navFolderBadge');
+                if (navFolderBadge) navFolderBadge.innerText = folders.length;
+                const statTotalAlbum = document.getElementById('statTotalAlbum');
+                if (statTotalAlbum) statTotalAlbum.innerText = `${folders.length} Album`;
+
+                if (!folders || folders.length === 0) {
+                    folderListContainer.innerHTML = `
+                        <div class="col-span-full text-center py-16 text-slate-400 glass-panel rounded-2xl">
+                            <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-600"></i>
+                            <h4 class="text-base font-bold text-white mb-1">Belum Ada Folder Dokumentasi</h4>
+                            <p class="text-xs">Dokumentasi Google Drive akan otomatis muncul di sini setelah diunggah.</p>
+                        </div>`;
+                    return;
+                }
+
+                renderFolderCards(folders);
+
+            } catch (error) {
+                console.error("Gagal memuat otomatis:", error);
+                folderListContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-rose-300 text-xs glass-panel rounded-2xl border border-rose-500/30">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl mb-2 text-rose-400"></i><br>
+                        Gagal memuat album otomatis dari Google Drive.<br>
+                        <span class="text-slate-400 text-[11px] mt-1 block">Pastikan koneksi internet aktif dan deployment Google Apps Script dapat diakses.</span>
+                    </div>`;
+            }
+        }
+
+        function renderFolderCards(folders) {
+            const folderListContainer = document.getElementById('folderListContainer');
+            folderListContainer.innerHTML = '';
+
+            folders.forEach((folder, index) => {
+                folderDatabase[folder.id] = {
+                    title: folder.name,
+                    media: folder.files.map(file => ({
+                        src: file.url,
+                        title: file.name
+                    }))
+                };
+
+                const fileCount = folder.files.length;
+                const isLatest = index === 0;
+
+                // Tentukan preview image dari file pertama jika ada
+                let previewImgHtml = '';
+                if (folder.files.length > 0 && folder.files[0].url) {
+                    previewImgHtml = `
+                        <div class="w-full h-36 rounded-xl overflow-hidden mb-4 bg-slate-950 relative border border-slate-800">
+                            <img src="${folder.files[0].url}" alt="${folder.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-900/90 text-emerald-300 border border-emerald-500/30">
+                                <i class="fa-solid fa-camera mr-1"></i> ${fileCount} File
+                            </span>
+                        </div>
+                    `;
+                }
+
+                folderListContainer.innerHTML += `
+                    <div onclick="openFolder('${folder.id}')" 
+                         class="glass-panel rounded-3xl p-6 glass-card-hover cursor-pointer group flex flex-col justify-between border border-slate-800 relative">
+                        
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-md">
+                                <i class="fa-solid fa-folder-closed"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${isLatest ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse' : 'bg-slate-900 text-slate-400 border border-slate-800'}">
+                                ${isLatest ? '✨ Terbaru' : `${fileCount} Foto`}
+                            </span>
+                        </div>
+
+                        ${previewImgHtml}
+
+                        <div>
+                            <h4 class="text-base font-extrabold text-white group-hover:text-emerald-300 transition-colors mb-1.5 uppercase leading-snug">
+                                ${folder.name}
+                            </h4>
+                            <p class="text-xs text-slate-400 line-clamp-2">Arsip dokumentasi kegiatan pengajian selapanan jamaah periode ${folder.name}.</p>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-emerald-400">
+                            <span>Buka Album</span>
+                            <span class="w-7 h-7 rounded-full bg-slate-900 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-0.5 transition-transform"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterGalleryFolders() {
+            const query = document.getElementById('gallerySearchInput').value.toLowerCase();
+            const filtered = rawFoldersList.filter(f => f.name.toLowerCase().includes(query));
+            renderFolderCards(filtered);
+        }
+
+        function openFolder(folderId) {
+            currentActiveFolderId = folderId;
+            document.getElementById('folderListContainer').classList.add('hidden');
+            document.getElementById('folderSearchBox').classList.add('hidden');
+            document.getElementById('folderContentContainer').classList.remove('hidden');
+            document.getElementById('backBtn').classList.remove('hidden');
+            document.getElementById('backBtn').classList.add('inline-flex');
+
+            const folderData = folderDatabase[folderId];
+            document.getElementById('galleryTitle').innerText = 'Isi Album Kegiatan';
+            document.getElementById('gallerySubtitle').innerText = 'Klik salah satu foto untuk memperbesar, geser kiri-kanan atau unduh.';
+            document.getElementById('currentFolderName').innerText = folderData ? folderData.title : 'Album Kegiatan';
+            document.getElementById('currentFolderStats').innerText = folderData ? `${folderData.media.length} Foto & Video Dokumentasi Tersedia` : '';
+
+            const mediaGrid = document.getElementById('mediaGrid');
+            mediaGrid.innerHTML = '';
+
+            if (folderData && folderData.media.length > 0) {
+                folderData.media.forEach((item, index) => {
+                    mediaGrid.innerHTML += `
+                        <div onclick="openLightbox(${index})" 
+                             class="glass-panel rounded-2xl overflow-hidden glass-card-hover group cursor-pointer relative border border-slate-800">
+                            <div class="aspect-square overflow-hidden bg-slate-950 relative">
+                                <img src="${item.src}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+                                <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                    <span class="w-9 h-9 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg"><i class="fa-solid fa-magnifying-glass-plus text-xs"></i></span>
+                                </div>
+                            </div>
+                            <div class="p-2.5 bg-slate-900/80">
+                                <p class="text-[10px] font-mono text-emerald-400 font-semibold truncate" title="${item.title}">${item.title}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                mediaGrid.innerHTML = `
+                    <div class="col-span-full text-center py-16 text-slate-500 glass-panel rounded-2xl">
+                        <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-600"></i>
+                        <p class="text-xs">Belum ada foto atau video di dalam album ini.</p>
+                    </div>
+                `;
+            }
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+        }
+
+        function showFolderList() {
+            document.getElementById('folderContentContainer').classList.add('hidden');
+            document.getElementById('folderListContainer').classList.remove('hidden');
+            document.getElementById('folderSearchBox').classList.remove('hidden');
+            document.getElementById('backBtn').classList.add('hidden');
+            document.getElementById('backBtn').classList.remove('inline-flex');
+
+            document.getElementById('galleryTitle').innerText = 'Album Kegiatan Pengajian';
+            document.getElementById('gallerySubtitle').innerText = 'Pilih folder di bawah untuk membuka kumpulan dokumentasi foto & video silaturahmi.';
+        }
+
+        /* ----------------------------------------------------
+         * LIGHTBOX VIEWER 2.0
+         * ---------------------------------------------------- */
+        function openLightbox(index) {
+            currentMediaIndex = index;
+            updateLightboxContent();
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function updateLightboxContent() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData || !folderData.media[currentMediaIndex]) return;
+
+            const item = folderData.media[currentMediaIndex];
+            const imgEl = document.getElementById('lightboxImg');
+
+            imgEl.style.opacity = '0.2';
+            imgEl.src = item.src;
+            imgEl.onload = () => { imgEl.style.opacity = '1'; };
+
+            document.getElementById('lightboxCaption').innerText = item.title;
+            document.getElementById('lightboxCounter').innerText = `Foto ${currentMediaIndex + 1} dari ${folderData.media.length}`;
+        }
+
+        function nextMedia() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData) return;
+            currentMediaIndex = (currentMediaIndex + 1) % folderData.media.length;
+            updateLightboxContent();
+        }
+
+        function prevMedia() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData) return;
+            currentMediaIndex = (currentMediaIndex - 1 + folderData.media.length) % folderData.media.length;
+            updateLightboxContent();
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('lightboxImg').src = '';
+        }
+
+        function downloadCurrentImage() {
+            const folderData = folderDatabase[currentActiveFolderId];
+            if (!folderData || !folderData.media[currentMediaIndex]) return;
+            const item = folderData.media[currentMediaIndex];
+            window.open(item.src, '_blank');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => { });
+            } else {
+                document.exitFullscreen().catch(() => { });
+            }
+        }
+
+        // Keyboard & Swipe Controls Lightbox
+        window.addEventListener('keydown', function (e) {
+            const modal = document.getElementById('lightboxModal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') nextMedia();
+                if (e.key === 'ArrowLeft') prevMedia();
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const touchArea = document.getElementById('lightboxTouchArea');
+        if (touchArea) {
+            touchArea.addEventListener('touchstart', function (e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            touchArea.addEventListener('touchend', function (e) {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) nextMedia();
+                if (touchEndX > touchStartX + 50) prevMedia();
+            }, { passive: true });
+        }
+
+        /* ----------------------------------------------------
+         * PRESENSI INTEGRATION (GOOGLE SHEETS CSV)
+         * ---------------------------------------------------- */
+        function formatGoogleSheetCsvUrl(rawUrl) {
+            if (!rawUrl) return '';
+            let url = rawUrl.trim();
+            if (url.includes('docs.google.com/spreadsheets')) {
+                const idMatch = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+                const gidMatch = url.match(/[?&#]gid=([0-9]+)/);
+                if (idMatch) {
+                    const sheetId = idMatch[1];
+                    const gid = gidMatch ? gidMatch[1] : '0';
+                    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+                }
+            }
+            return url;
+        }
+
+        async function fetchPresensi() {
+            const yearSelect = document.getElementById('yearSelect');
+            const selectedYear = yearSelect ? yearSelect.value : '2026';
+            const rawCsvUrl = sheetUrls[selectedYear];
+            const csvUrl = formatGoogleSheetCsvUrl(rawCsvUrl);
+            const tableBody = document.getElementById('tableBody');
+
+            if (!csvUrl) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="16" class="text-center py-12 text-amber-400 text-xs">
+                            <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i><br>
+                            Data presensi untuk tahun <b>${selectedYear}</b> belum dikaitkan.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="16" class="text-center py-16 text-slate-500">
+                        <i class="fa-solid fa-circle-notch animate-spin text-emerald-500 text-3xl mb-3"></i>
+                        <p class="text-xs font-semibold">Memuat data presensi tahun ${selectedYear} dari Google Sheets...</p>
+                    </td>
+                </tr>`;
+
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                const rows = data.split('\n').map(row => row.split(','));
+
+                attendanceData = [];
+                wilayahListSet = new Set();
+                let currentWilayah = 'Umum';
+
+                // Pemetaan kolom bulan: Jan-Agu (idx 7-14), Sep-Des (idx 3-6)
+                const monthColumnMapping = [7, 8, 9, 10, 11, 12, 13, 14, 3, 4, 5, 6];
+                const START_ROW_INDEX = 4;
+
+                let totalHadirTahunIni = 0;
+                const monthlyAttendanceCounts = Array(12).fill(0);
+
+                for (let i = START_ROW_INDEX; i < rows.length; i++) {
+                    const cols = rows[i];
+                    if (!cols || cols.length === 0) continue;
+
+                    const col0 = cols[0] ? cols[0].replace(/"/g, '').trim() : '';
+                    const col1 = cols[1] ? cols[1].replace(/"/g, '').trim() : '';
+                    const col2 = cols[2] ? cols[2].replace(/"/g, '').trim() : '';
+
+                    // Cek jika ini header kategori wilayah (misal: "100 - GADING" atau "1000 - NAMBURAN KIDUL")
+                    if (/^[0-9]{3,4}\s*-\s*/.test(col0) && (!col1 || col1 === '')) {
+                        currentWilayah = col0;
+                        wilayahListSet.add(col0);
+                        continue;
+                    }
+
+                    // Baris jamaah valid
+                    if (col1 && col1 !== '' && !col1.includes('NAMA DI KERTAS')) {
+                        const monthlyStatus = [];
+                        let jamaahHadirCount = 0;
+
+                        monthColumnMapping.forEach((sheetIdx, mIdx) => {
+                            const val = cols[sheetIdx] ? cols[sheetIdx].replace(/"/g, '').trim() : '';
+                            monthlyStatus.push(val);
+
+                            const u = val.toUpperCase();
+                            if (u === 'H' || u === 'HADIR') {
+                                totalHadirTahunIni++;
+                                jamaahHadirCount++;
+                                monthlyAttendanceCounts[mIdx]++;
+                            }
+                        });
+
+                        attendanceData.push({
+                            id: attendanceData.length + 1,
+                            kode: col0 || '-',
+                            nama: col1,
+                            alamat: col2 || '-',
+                            wilayah: currentWilayah,
+                            months: monthlyStatus,
+                            totalHadir: jamaahHadirCount
+                        });
+                    }
+                }
+
+                // Update Statistik Presensi
+                document.getElementById('statPresensiTotal').innerText = `${attendanceData.length} Jamaah`;
+                document.getElementById('statPresensiHadir').innerText = `${totalHadirTahunIni} Kali`;
+                document.getElementById('statPresensiWilayah').innerText = `${wilayahListSet.size} Wilayah`;
+
+                // Render Rekap Kehadiran Tiap Bulan
+                renderMonthlySummary(selectedYear, monthlyAttendanceCounts);
+
+                // Update Home Stat
+                const homeStat = document.getElementById('statTotalJamaah');
+                if (homeStat) homeStat.innerText = `${attendanceData.length}+`;
+                const homeWilayah = document.getElementById('statTotalWilayah');
+                if (homeWilayah) homeWilayah.innerText = wilayahListSet.size || 9;
+
+                // Populate Wilayah Filter Dropdown
+                populateWilayahDropdown();
+
+                // Render Tabel & Kartu
+                renderAttendanceView();
+
+            } catch (error) {
+                console.error('Error fetching Google Sheets data:', error);
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="16" class="text-center py-10 text-rose-300 text-xs">
+                            <i class="fa-solid fa-triangle-exclamation text-xl mb-1 text-rose-400"></i><br>
+                            Gagal memuat data presensi dari Google Spreadsheet.<br>
+                            <span class="text-slate-400 text-[11px]">Pastikan dokumen Spreadsheet sudah dipublikasikan ke web dalam format CSV.</span>
+                        </td>
+                    </tr>`;
+            }
+        }
+
+        function populateWilayahDropdown() {
+            const select = document.getElementById('wilayahFilter');
+            select.innerHTML = '<option value="ALL" class="bg-slate-900 text-slate-200">Semua Wilayah</option>';
+            wilayahListSet.forEach(w => {
+                const opt = document.createElement('option');
+                opt.value = w;
+                opt.className = "bg-slate-900 text-slate-200";
+                opt.innerText = w;
+                select.appendChild(opt);
+            });
+        }
+
+        function renderMonthlySummary(selectedYear, counts) {
+            const monthlyContainer = document.getElementById('monthlyAttendanceContainer');
+            if (!monthlyContainer) return;
+
+            monthlyContainer.innerHTML = '';
+            const summaryYearEl = document.getElementById('monthlySummaryYear');
+            if (summaryYearEl) summaryYearEl.innerText = selectedYear;
+
+            MONTH_NAMES.forEach((mName, mIdx) => {
+                const count = counts[mIdx] || 0;
+                const isCurrentActive = (count > 0);
+
+                monthlyContainer.innerHTML += `
+                    <div class="${isCurrentActive ? 'bg-emerald-950/80 border-emerald-500/50 shadow-glow-emerald' : 'bg-slate-900/60 border-slate-800/80 opacity-60'} p-2.5 rounded-xl border flex flex-col items-center justify-center transition-all hover:scale-105">
+                        <span class="text-[10px] font-bold uppercase tracking-wider ${isCurrentActive ? 'text-emerald-300 font-extrabold' : 'text-slate-400'}">${mName}</span>
+                        <span class="text-base sm:text-lg font-black my-0.5 ${isCurrentActive ? 'text-white' : 'text-slate-500'}">${isCurrentActive ? count : '-'}</span>
+                        <span class="text-[9px] ${isCurrentActive ? 'text-emerald-400 font-bold' : 'text-slate-500'}">${isCurrentActive ? 'Jamaah' : 'Hadir'}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAttendanceView() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const wilayahVal = document.getElementById('wilayahFilter').value;
+
+            // Filter data
+            const filteredData = attendanceData.filter(item => {
+                const matchSearch = item.nama.toLowerCase().includes(searchVal) ||
+                    item.kode.toLowerCase().includes(searchVal) ||
+                    item.alamat.toLowerCase().includes(searchVal);
+                const matchWilayah = (wilayahVal === 'ALL') || (item.wilayah === wilayahVal);
+                return matchSearch && matchWilayah;
+            });
+
+            // 1. Render Table View
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="16" class="text-center py-12 text-slate-500">Tidak ada data jamaah yang cocok dengan pencarian / filter.</td></tr>`;
+            } else {
+                let currentGroup = '';
+
+                filteredData.forEach((item, idx) => {
+                    // Tampilkan divider wilayah jika berpindah grup dan opsi 'ALL' aktif
+                    if (wilayahVal === 'ALL' && item.wilayah !== currentGroup) {
+                        currentGroup = item.wilayah;
+                        const groupTr = document.createElement('tr');
+                        groupTr.className = "bg-emerald-950/60 text-emerald-300 font-bold uppercase text-[11px] tracking-wider border-y border-emerald-900/60";
+                        groupTr.innerHTML = `
+                            <td colspan="16" class="py-2.5 px-4 sticky left-0 bg-emerald-950/95 z-20 shadow-[4px_0_10px_-2px_rgba(0,0,0,0.5)]">
+                                <div class="sticky left-4 inline-flex items-center">
+                                    <i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> ${currentGroup}
+                                </div>
+                            </td>
+                        `;
+                        tableBody.appendChild(groupTr);
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-emerald-950/30 transition-all duration-150 cursor-pointer group";
+                    tr.onclick = () => openJamaahModal(item);
+
+                    let rowHtml = `
+                        <td class="py-3 px-3 text-center text-slate-500 border-r border-slate-800/80 font-mono text-[11px]">${idx + 1}</td>
+                        <td class="py-3 px-3 font-mono font-bold text-emerald-400 border-r border-slate-800/80">${item.kode}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-100 sticky left-0 bg-slate-950 group-hover:bg-emerald-950 border-r border-slate-800/80 z-10 shadow-[4px_0_10px_-2px_rgba(0,0,0,0.5)]">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="truncate max-w-[150px] sm:max-w-none">${item.nama}</span>
+                                <i class="fa-solid fa-circle-info text-[10px] text-slate-600 group-hover:text-emerald-400 flex-shrink-0"></i>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4 text-slate-400">${item.alamat}</td>
+                    `;
+
+                    item.months.forEach((mVal, mIdx) => {
+                        const isHighlight = (mIdx === 8 || mIdx === 9); // Sep & Okt
+                        rowHtml += `<td class="py-3 px-2 text-center ${isHighlight ? 'bg-emerald-950/15' : ''}">${getStatusBadge(mVal)}</td>`;
+                    });
+
+                    tr.innerHTML = rowHtml;
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            // 2. Render Cards View
+            const cardsContainer = document.getElementById('cardsViewContainer');
+            cardsContainer.innerHTML = '';
+
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = "glass-panel p-4 rounded-2xl border border-slate-800 glass-card-hover cursor-pointer space-y-3";
+                    card.onclick = () => openJamaahModal(item);
+
+                    let monthBadgesHtml = '';
+                    item.months.forEach((mVal, mIdx) => {
+                        monthBadgesHtml += `
+                            <div class="flex flex-col items-center">
+                                <span class="text-[9px] text-slate-500 font-bold uppercase mb-0.5">${MONTH_NAMES[mIdx]}</span>
+                                ${getStatusBadge(mVal)}
+                            </div>
+                        `;
+                    });
+
+                    card.innerHTML = `
+                        <div class="flex items-start justify-between border-b border-slate-800/80 pb-2.5">
+                            <div>
+                                <span class="text-[10px] font-mono font-bold text-emerald-400">${item.kode}</span>
+                                <h4 class="text-sm font-extrabold text-white">${item.nama}</h4>
+                                <p class="text-[11px] text-slate-400"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i>${item.alamat}</p>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 font-medium">
+                                ${item.wilayah.split('-')[1] || item.wilayah}
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-6 gap-1 pt-1">
+                            ${monthBadgesHtml}
+                        </div>
+                    `;
+                    cardsContainer.appendChild(card);
+                });
+            }
+        }
+
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            const tableEl = document.getElementById('tableViewContainer');
+            const cardsEl = document.getElementById('cardsViewContainer');
+            const tableBtn = document.getElementById('viewModeTableBtn');
+            const cardsBtn = document.getElementById('viewModeCardsBtn');
+
+            if (mode === 'table') {
+                tableEl.classList.remove('hidden');
+                cardsEl.classList.add('hidden');
+                tableBtn.className = "px-3 py-1 text-xs rounded-lg font-bold bg-emerald-600 text-white transition-all";
+                cardsBtn.className = "px-3 py-1 text-xs rounded-lg font-bold text-slate-400 hover:text-white transition-all";
+            } else {
+                tableEl.classList.add('hidden');
+                cardsEl.classList.remove('hidden');
+                tableBtn.className = "px-3 py-1 text-xs rounded-lg font-bold text-slate-400 hover:text-white transition-all";
+                cardsBtn.className = "px-3 py-1 text-xs rounded-lg font-bold bg-emerald-600 text-white transition-all";
+            }
+        }
+
+        function filterTable() {
+            renderAttendanceView();
+        }
+
+        function changeYear() {
+            fetchPresensi();
+        }
+
+        async function refreshPresensiData() {
+            const icon = document.getElementById('refreshIcon');
+            icon.classList.add('fa-spin');
+            await fetchPresensi();
+            setTimeout(() => {
+                icon.classList.remove('fa-spin');
+                showToast("Data presensi berhasil diperbarui!");
+            }, 600);
+        }
+
+        function getStatusBadge(status) {
+            const val = (status || '').trim().toUpperCase();
+            if (val === 'H' || val === 'HADIR') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 font-bold text-[11px] shadow-[0_0_8px_rgba(16,185,129,0.3)]" title="Hadir">H</span>`;
+            } else if (val === 'I' || val === 'IZIN') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-amber-500/25 text-amber-300 border border-amber-500/40 font-bold text-[11px]" title="Izin">I</span>`;
+            } else if (val === 'S' || val === 'SAKIT') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-blue-500/25 text-blue-300 border border-blue-500/40 font-bold text-[11px]" title="Sakit">S</span>`;
+            } else if (val === 'A' || val === 'ALPA') {
+                return `<span class="inline-block w-6 h-6 leading-6 rounded-md bg-rose-500/25 text-rose-300 border border-rose-500/40 font-bold text-[11px]" title="Alpa">A</span>`;
+            } else {
+                return `<span class="text-slate-600 font-mono text-xs">-</span>`;
+            }
+        }
+
+        /* ----------------------------------------------------
+         * MODAL DETAIL JAMAAH
+         * ---------------------------------------------------- */
+        function openJamaahModal(item) {
+            document.getElementById('modalJamaahKode').innerText = item.kode;
+            document.getElementById('modalJamaahNama').innerText = item.nama;
+            document.getElementById('modalJamaahAlamat').innerText = item.alamat;
+            document.getElementById('modalJamaahWilayah').innerText = item.wilayah;
+            document.getElementById('modalJamaahTotalHadir').innerText = `${item.totalHadir} Kali`;
+
+            const percentage = Math.round((item.totalHadir / 12) * 100);
+            document.getElementById('modalJamaahPersentase').innerText = `${percentage}%`;
+
+            const grid = document.getElementById('modalMonthsGrid');
+            grid.innerHTML = '';
+
+            item.months.forEach((mVal, mIdx) => {
+                grid.innerHTML += `
+                    <div class="bg-slate-900/90 p-2 rounded-xl border border-slate-800 flex flex-col items-center">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase mb-1">${MONTH_NAMES[mIdx]}</span>
+                        ${getStatusBadge(mVal)}
+                    </div>
+                `;
+            });
+
+            const modal = document.getElementById('jamaahDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeJamaahModal() {
+            const modal = document.getElementById('jamaahDetailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* ----------------------------------------------------
+         * PRINT / EXPORT
+         * ---------------------------------------------------- */
+        function printAttendanceTable() {
+            window.print();
+        }
+
+        /* ----------------------------------------------------
+         * TOAST NOTIFICATION
+         * ---------------------------------------------------- */
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        /* ----------------------------------------------------
+         * LOAD DYNAMIC CONTENT DARI CMS / API
+         * ---------------------------------------------------- */
+        async function loadDynamicSiteContent() {
+            try {
+                const res = await fetch('/api/content');
+                if (res.ok) {
+                    currentSiteContent = await res.json();
+                } else {
+                    const fallback = await fetch('/content.json');
+                    currentSiteContent = await fallback.json();
+                }
+            } catch (e) {
+                try {
+                    const fallback = await fetch('/content.json');
+                    currentSiteContent = await fallback.json();
+                } catch (err) {
+                    console.warn("Using default static content");
+                }
+            }
+
+            if (!currentSiteContent) return;
+            const c = currentSiteContent;
+
+            // 1. General & Branding
+            if (c.general) {
+                if (c.general.siteTitle) document.title = c.general.siteTitle;
+                if (c.general.brandName) {
+                    const el = document.getElementById('mainHeaderBrandName');
+                    if (el) el.innerText = c.general.brandName;
+                    const ft = document.getElementById('mainFooterBrand');
+                    if (ft) ft.innerText = c.general.brandName;
+                }
+                if (c.general.brandTagline) {
+                    const el = document.getElementById('mainHeaderBrandTagline');
+                    if (el) el.innerText = c.general.brandTagline;
+                }
+                if (c.general.logoUrl) {
+                    const lg = document.getElementById('mainHeaderLogo');
+                    if (lg) lg.src = c.general.logoUrl;
+                    const ftLg = document.getElementById('mainFooterLogo');
+                    if (ftLg) ftLg.src = c.general.logoUrl;
+                }
+
+                // Announcement Banner
+                const annContainer = document.getElementById('mainAnnouncementBanner');
+                if (annContainer) {
+                    const ann = c.general.announcement;
+                    if (ann && ann.enabled && ann.text) {
+                        annContainer.innerHTML = `
+                            <div class="bg-gradient-to-r from-emerald-950 via-slate-950 to-emerald-950 border-b border-emerald-500/30 py-2.5 px-4 text-xs">
+                                <div class="max-w-7xl mx-auto flex items-center justify-center gap-2.5 text-center flex-wrap">
+                                    <span class="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">${ann.badge || 'PENGUMUMAN'}</span>
+                                    <span class="text-emerald-200 font-medium">${ann.text}</span>
+                                </div>
+                            </div>
+                        `;
+                        annContainer.classList.remove('hidden');
+                    } else {
+                        annContainer.innerHTML = '';
+                        annContainer.classList.add('hidden');
+                    }
+                }
+            }
+
+            // 2. Hero Section
+            if (c.hero) {
+                if (c.hero.bismillah) {
+                    const el = document.getElementById('mainHeroBismillah');
+                    if (el) el.innerText = c.hero.bismillah;
+                }
+                if (c.hero.headline) {
+                    const el = document.getElementById('mainHeroHeadline');
+                    if (el) el.innerText = c.hero.headline;
+                }
+                if (c.hero.description) {
+                    const el = document.getElementById('mainHeroDescription');
+                    if (el) el.innerText = c.hero.description;
+                }
+                if (c.hero.ctaGalleryText) {
+                    const el = document.getElementById('mainHeroCtaGallery');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-folder-open mr-2.5 text-base"></i> ${c.hero.ctaGalleryText}`;
+                }
+                if (c.hero.ctaPresensiText) {
+                    const el = document.getElementById('mainHeroCtaPresensi');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-clipboard-user mr-2.5 text-base text-emerald-400"></i> ${c.hero.ctaPresensiText}`;
+                }
+                if (c.hero.ctaScheduleText) {
+                    const el = document.getElementById('mainHeroCtaSchedule');
+                    if (el) el.innerHTML = `<i class="fa-regular fa-calendar-check mr-2 text-amber-400"></i> ${c.hero.ctaScheduleText}`;
+                }
+            }
+
+            // 3. Next Meeting
+            if (c.nextMeeting) {
+                const sec = document.getElementById('nextMeetingCard');
+                if (sec) {
+                    if (c.nextMeeting.enabled === false) {
+                        sec.classList.add('hidden');
+                    } else {
+                        sec.classList.remove('hidden');
+                    }
+                }
+                if (c.nextMeeting.badge) {
+                    const el = document.getElementById('mainNextMeetingBadge');
+                    if (el) el.innerHTML = `<i class="fa-solid fa-bell animate-bounce text-amber-400 mr-1.5"></i> ${c.nextMeeting.badge}`;
+                }
+                if (c.nextMeeting.dateDisplay) {
+                    const el = document.getElementById('mainNextMeetingDate');
+                    if (el) el.innerText = c.nextMeeting.dateDisplay;
+                }
+                if (c.nextMeeting.location) {
+                    const textEl = document.getElementById('mainNextMeetingLocationText');
+                    if (textEl) {
+                        textEl.innerText = c.nextMeeting.location;
+                    } else {
+                        const el = document.getElementById('mainNextMeetingLocation');
+                        if (el) el.innerHTML = `<i class="fa-solid fa-house-chimney text-emerald-400 mr-2"></i> ${c.nextMeeting.location}`;
+                    }
+                }
+                // Handle Alamat Lengkap
+                const addressEl = document.getElementById('mainNextMeetingAddress');
+                const addressText = document.getElementById('mainNextMeetingAddressText');
+                if (c.nextMeeting.address && c.nextMeeting.address.trim() !== '') {
+                    if (addressText) addressText.innerText = c.nextMeeting.address;
+                    if (addressEl) addressEl.classList.remove('hidden');
+                } else if (addressEl) {
+                    addressEl.classList.add('hidden');
+                }
+                // Handle Maps Link
+                const mapsLink = document.getElementById('mainNextMeetingMapsLink');
+                if (c.nextMeeting.mapsUrl && c.nextMeeting.mapsUrl.trim() !== '') {
+                    if (mapsLink) {
+                        mapsLink.href = c.nextMeeting.mapsUrl;
+                        mapsLink.classList.remove('hidden');
+                    }
+                } else if (mapsLink) {
+                    mapsLink.classList.add('hidden');
+                }
+                if (c.nextMeeting.time) {
+                    const textEl = document.getElementById('mainNextMeetingTimeText');
+                    if (textEl) {
+                        textEl.innerText = c.nextMeeting.time;
+                    } else {
+                        const el = document.getElementById('mainNextMeetingTime');
+                        if (el) el.innerHTML = `<i class="fa-solid fa-clock text-emerald-400 mr-2"></i> ${c.nextMeeting.time}`;
+                    }
+                }
+                if (c.nextMeeting.calendarUrl) {
+                    const el = document.getElementById('mainNextMeetingCalendarBtn');
+                    if (el) el.href = c.nextMeeting.calendarUrl;
+                }
+                if (c.nextMeeting.shareMessage) {
+                    currentMeetingShareMessage = c.nextMeeting.shareMessage;
+                }
+                if (c.nextMeeting.targetDate) {
+                    const parsedTarget = new Date(c.nextMeeting.targetDate).getTime();
+                    if (!isNaN(parsedTarget)) {
+                        TARGET_MEETING_DATE = parsedTarget;
+                    }
+                }
+            }
+
+            // 4. Stats
+            if (c.stats) {
+                if (!c.stats.useAutoJamaah && c.stats.totalJamaahManual) {
+                    const el = document.getElementById('statTotalJamaah');
+                    if (el) el.innerText = c.stats.totalJamaahManual;
+                }
+                if (!c.stats.useAutoWilayah && c.stats.totalWilayahManual) {
+                    const el = document.getElementById('statTotalWilayah');
+                    if (el) el.innerText = c.stats.totalWilayahManual;
+                }
+                if (c.stats.cycleText) {
+                    const el = document.getElementById('statCycleText');
+                    if (el) el.innerText = c.stats.cycleText;
+                }
+                if (c.stats.cycleSubtext) {
+                    const el = document.getElementById('statCycleSubtext');
+                    if (el) el.innerText = c.stats.cycleSubtext;
+                }
+            }
+
+            // 5. Pillars Dynamic Render
+            if (c.pillars && Array.isArray(c.pillars) && c.pillars.length > 0) {
+                const grid = document.getElementById('pillarsGridContainer');
+                if (grid) {
+                    grid.innerHTML = c.pillars.map(p => `
+                        <div class="glass-panel p-7 rounded-3xl border border-slate-800 flex flex-col justify-between glass-card-hover group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                            <div>
+                                <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-lg">
+                                    <i class="${p.icon || 'fa-solid fa-star'}"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2.5 group-hover:text-emerald-300 transition-colors">${p.title}</h4>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">${p.description}</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-800/80 text-xs text-emerald-400 font-semibold flex items-center justify-between">
+                                <span>${p.footerLabel || 'Kegiatan'}</span>
+                                <i class="${p.footerIcon || 'fa-solid fa-arrow-right'}"></i>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            // 6. Schedules Dynamic Render
+            if (c.schedules && Array.isArray(c.schedules) && c.schedules.length > 0) {
+                const grid = document.getElementById('schedulesGridContainer');
+                if (grid) {
+                    grid.innerHTML = c.schedules.map(sch => {
+                        let badgeClass = "bg-slate-900 text-slate-400 border-slate-800";
+                        let panelClass = "glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between relative";
+                        let titleClass = "text-base font-bold text-white mb-1";
+                        let hostClass = "fa-solid fa-house-chimney text-emerald-400 mr-1.5";
+                        let footClass = "text-xs font-semibold text-slate-500 flex items-center justify-between pt-2 border-t border-slate-800/80";
+
+                        if (sch.statusType === 'completed') {
+                            badgeClass = "bg-slate-800 text-slate-300 border-slate-700";
+                        } else if (sch.statusType === 'active') {
+                            panelClass = "glass-panel-gold p-5 rounded-2xl border border-amber-500/40 flex flex-col justify-between relative shadow-glow-amber";
+                            badgeClass = "bg-amber-500/20 text-amber-300 border-amber-500/40 animate-pulse";
+                            titleClass = "text-base font-bold text-amber-200 mb-1";
+                            hostClass = "fa-solid fa-house-chimney text-amber-400 mr-1.5";
+                            footClass = "text-xs font-semibold text-amber-400 flex items-center justify-between pt-2 border-t border-amber-500/30";
+                        }
+
+                        let actionIcon = "fa-solid fa-calendar";
+                        if (sch.actionType === 'galeri') actionIcon = "fa-solid fa-arrow-right";
+                        if (sch.actionType === 'clock') actionIcon = "fa-regular fa-clock";
+
+                        return `
+                            <div class="${panelClass}">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-[11px] font-bold ${sch.statusType === 'active' ? 'text-amber-300' : 'text-slate-400'}">${sch.roundNumber}</span>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeClass}">${sch.status}</span>
+                                </div>
+                                <h5 class="${titleClass}">${sch.date}</h5>
+                                <p class="text-xs text-slate-400 mb-3"><i class="${hostClass}"></i>${sch.host}</p>
+                                ${sch.actionType === 'galeri' ? 
+                                    `<button onclick="switchPage('galeri')" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center justify-between pt-2 border-t border-slate-800/80">
+                                        <span>${sch.note || 'Lihat Foto Kegiatan'}</span>
+                                        <i class="${actionIcon}"></i>
+                                    </button>` :
+                                    `<div class="${footClass}">
+                                        <span>${sch.note || '-'}</span>
+                                        <i class="${actionIcon}"></i>
+                                    </div>`
+                                }
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // 7. Gallery config
+            if (c.galleryConfig) {
+                if (c.galleryConfig.gasApiUrl) GAS_API_URL = c.galleryConfig.gasApiUrl;
+                if (c.galleryConfig.sectionTitle) {
+                    const el = document.getElementById('galleryTitle');
+                    if (el) el.innerText = c.galleryConfig.sectionTitle;
+                }
+                if (c.galleryConfig.sectionSubtitle) {
+                    const el = document.getElementById('gallerySubtitle');
+                    if (el) el.innerText = c.galleryConfig.sectionSubtitle;
+                }
+            }
+
+            // 8. Presensi config (Sinkronisasi Otomatis dengan Admin Panel)
+            if (c.presensiConfig) {
+                if (c.presensiConfig.sheetUrls && typeof c.presensiConfig.sheetUrls === 'object') {
+                    sheetUrls = Object.assign({}, c.presensiConfig.sheetUrls);
+                }
+                const yearSelect = document.getElementById('yearSelect');
+                if (yearSelect && sheetUrls) {
+                    const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
+                    if (years.length > 0) {
+                        yearSelect.innerHTML = '';
+                        const defaultTarget = c.presensiConfig.defaultYear || years[0];
+                        years.forEach(yr => {
+                            const opt = document.createElement('option');
+                            opt.value = yr;
+                            opt.className = "bg-slate-900 text-slate-200";
+                            opt.innerText = yr;
+                            if (yr === defaultTarget) opt.selected = true;
+                            yearSelect.appendChild(opt);
+                        });
+                    }
+                }
+            }
+
+            // 9. Contact & Footer
+            if (c.contactAndFooter) {
+                if (c.contactAndFooter.copyrightText) {
+                    const el = document.getElementById('mainFooterCopyright');
+                    if (el) el.innerText = c.contactAndFooter.copyrightText;
+                }
+            }
+        }
+
+        /* ----------------------------------------------------
+         * WINDOW ONLOAD
+         * ---------------------------------------------------- */
+        window.onload = async function () {
+            await loadDynamicSiteContent();
+            startCountdown();
+            fetchMediaAutomated();
+            fetchPresensi();
+        };
+    </script>
+</body>
+
+</html>
