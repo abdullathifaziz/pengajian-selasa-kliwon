@@ -171,7 +171,6 @@
 <body
     class="bg-islamic-pattern text-slate-100 flex flex-col min-h-screen relative selection:bg-emerald-500 selection:text-slate-950">
 
-    <!-- Ambient Glowing Orbs Background -->
     <div
         class="fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-emerald-600/15 blur-[190px] rounded-full pointer-events-none -z-10 animate-ambient-glow">
     </div>
@@ -636,12 +635,18 @@
             if (d.general) {
                 if (d.general.siteTitle) document.title = d.general.siteTitle;
                 if (d.general.brandName) {
-                    document.getElementById('mainHeaderBrandName').innerText = d.general.brandName;
-                    document.getElementById('mainFooterBrand').innerText = d.general.brandName;
+                    const el = document.getElementById('mainHeaderBrandName');
+                    if (el) el.innerText = d.general.brandName;
+                    const ft = document.getElementById('mainFooterBrand');
+                    if (ft) ft.innerText = d.general.brandName;
                 }
-                if (d.general.brandTagline) document.getElementById('mainHeaderBrandTagline').innerText = d.general.brandTagline;
+                if (d.general.brandTagline) {
+                    const el = document.getElementById('mainHeaderBrandTagline');
+                    if (el) el.innerText = d.general.brandTagline;
+                }
                 if (d.general.logoUrl) {
-                    document.getElementById('mainHeaderLogo').src = d.general.logoUrl;
+                    const lg = document.getElementById('mainHeaderLogo');
+                    if (lg) lg.src = d.general.logoUrl;
                 }
 
                 const ann = d.general.announcement;
@@ -665,60 +670,91 @@
             // 3. Next Meeting
             if (d.nextMeeting) {
                 const m = d.nextMeeting;
-                if (m.enabled === false) {
-                    document.getElementById('nextMeetingCard').classList.add('hidden');
-                } else {
-                    document.getElementById('nextMeetingCard').classList.remove('hidden');
-                    if (m.badge) document.getElementById('mainNextMeetingBadge').innerHTML = `<i class="fa-solid fa-bell text-amber-400"></i> ${m.badge}`;
-                    if (m.dateDisplay) document.getElementById('mainNextMeetingDate').innerText = m.dateDisplay;
-                    if (m.location) document.getElementById('mainNextMeetingLocationText').innerText = m.location;
-                    if (m.address) document.getElementById('mainNextMeetingAddressText').innerText = m.address;
-                    if (m.time) document.getElementById('mainNextMeetingTimeText').innerText = m.time;
-                    if (m.mapsUrl) {
-                        const mapsBtn = document.getElementById('mainNextMeetingMapsLink');
-                        mapsBtn.href = m.mapsUrl;
-                        mapsBtn.classList.remove('hidden');
-                    }
-                    if (m.targetDate) {
-                        const parsed = new Date(m.targetDate).getTime();
-                        if (!isNaN(parsed)) TARGET_MEETING_DATE = parsed;
+                const card = document.getElementById('nextMeetingCard');
+                if (card) {
+                    if (m.enabled === false) {
+                        card.classList.add('hidden');
+                    } else {
+                        card.classList.remove('hidden');
+                        if (m.badge) {
+                            const badgeEl = document.getElementById('mainNextMeetingBadge');
+                            if (badgeEl) badgeEl.innerHTML = `<i class="fa-solid fa-bell text-amber-400"></i> ${m.badge}`;
+                        }
+                        if (m.dateDisplay) {
+                            const dateEl = document.getElementById('mainNextMeetingDate');
+                            if (dateEl) dateEl.innerText = m.dateDisplay;
+                        }
+                        if (m.location) {
+                            const locEl = document.getElementById('mainNextMeetingLocationText');
+                            if (locEl) locEl.innerText = m.location;
+                        }
+                        if (m.address) {
+                            const addrEl = document.getElementById('mainNextMeetingAddressText');
+                            if (addrEl) addrEl.innerText = m.address;
+                        }
+                        if (m.time) {
+                            const timeEl = document.getElementById('mainNextMeetingTimeText');
+                            if (timeEl) timeEl.innerText = m.time;
+                        }
+                        if (m.mapsUrl) {
+                            const mapsBtn = document.getElementById('mainNextMeetingMapsLink');
+                            if (mapsBtn) {
+                                mapsBtn.href = m.mapsUrl;
+                                mapsBtn.classList.remove('hidden');
+                            }
+                        }
+                        if (m.targetDate) {
+                            const parsed = new Date(m.targetDate).getTime();
+                            if (!isNaN(parsed)) TARGET_MEETING_DATE = parsed;
+                        }
                     }
                 }
             }
 
             // 4. Stats
             if (d.stats) {
-                if (d.stats.totalJamaahManual) document.getElementById('statTotalJamaah').innerText = d.stats.totalJamaahManual;
-                if (d.stats.totalWilayahManual) document.getElementById('statTotalWilayah').innerText = d.stats.totalWilayahManual;
+                if (d.stats.totalJamaahManual) {
+                    const el = document.getElementById('statTotalJamaah');
+                    if (el) el.innerText = d.stats.totalJamaahManual;
+                }
+                if (d.stats.totalWilayahManual) {
+                    const el = document.getElementById('statTotalWilayah');
+                    if (el) el.innerText = d.stats.totalWilayahManual;
+                }
             }
 
             // 5. Pillars
             if (d.pillars && d.pillars.length > 0) {
                 const grid = document.getElementById('pillarsGridContainer');
-                grid.innerHTML = d.pillars.map(p => `
-                    <div class="glass-panel p-7 rounded-3xl border border-slate-800 space-y-3">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl">
-                            <i class="${p.icon || 'fa-solid fa-star'}"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white">${p.title}</h4>
-                        <p class="text-xs sm:text-sm text-slate-400">${p.description}</p>
-                    </div>`).join('');
+                if (grid) {
+                    grid.innerHTML = d.pillars.map(p => `
+                        <div class="glass-panel p-7 rounded-3xl border border-slate-800 space-y-3">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl">
+                                <i class="${p.icon || 'fa-solid fa-star'}"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white">${p.title}</h4>
+                            <p class="text-xs sm:text-sm text-slate-400">${p.description}</p>
+                        </div>`).join('');
+                }
             }
 
             // 6. Schedules
             if (d.schedules && d.schedules.length > 0) {
                 const grid = document.getElementById('schedulesGridContainer');
-                grid.innerHTML = d.schedules.map(sch => `
-                    <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-2">
-                        <span class="text-[11px] font-bold text-emerald-400">${sch.roundNumber} - ${sch.date}</span>
-                        <h5 class="text-base font-bold text-white"><i class="fa-solid fa-house mr-1"></i>${sch.host}</h5>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">${sch.status}</span>
-                    </div>`).join('');
+                if (grid) {
+                    grid.innerHTML = d.schedules.map(sch => `
+                        <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-2">
+                            <span class="text-[11px] font-bold text-emerald-400">${sch.roundNumber} - ${sch.date}</span>
+                            <h5 class="text-base font-bold text-white"><i class="fa-solid fa-house mr-1"></i>${sch.host}</h5>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">${sch.status}</span>
+                        </div>`).join('');
+                }
             }
 
             // 7. Gallery Config
             if (d.galleryConfig && d.galleryConfig.gasApiUrl) {
                 GAS_API_URL = d.galleryConfig.gasApiUrl;
+                fetchMediaAutomated();
             }
 
             // 8. Presensi Config & Tahun
@@ -726,7 +762,7 @@
                 sheetUrls = d.presensiConfig.sheetUrls;
                 const yearSelect = document.getElementById('yearSelect');
                 const years = Object.keys(sheetUrls).sort((a, b) => b.localeCompare(a));
-                if (years.length > 0) {
+                if (years.length > 0 && yearSelect) {
                     yearSelect.innerHTML = '';
                     const defaultTarget = d.presensiConfig.defaultYear || years[0];
                     years.forEach(yr => {
@@ -737,6 +773,7 @@
                         yearSelect.appendChild(opt);
                     });
                 }
+                fetchPresensi();
             }
         }
 
