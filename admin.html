@@ -1228,28 +1228,32 @@
         /* ----------------------------------------------------
          * LOAD DATA DARI BACKEND
          * ---------------------------------------------------- */
-        async function loadContentData() {
+        async function saveAllContent() {
+            const saveBtn = document.getElementById('globalSaveBtn');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyimpan ke Firebase...';
+            saveBtn.disabled = true;
+
+            const updatedData = collectFormData();
+
             try {
-                const res = await fetch('/api/content');
-                if (res.ok) {
-                    currentContent = await res.json();
+                // Simpan langsung menggunakan fungsi Firestore yang ada di modul
+                if (window.saveAllContentToFirebase) {
+                    await window.saveAllContentToFirebase(updatedData);
+                    currentContent = updatedData;
+                    markClean();
+                    updateOverviewWidgets();
+                    showToast('Semua perubahan berhasil disimpan ke Firebase!', 'success');
                 } else {
-                    throw new Error('Gagal memuat dari /api/content');
+                    throw new Error('Modul Firestore belum siap.');
                 }
             } catch (err) {
-                console.warn('Menggunakan fallback data lokal:', err);
-                // Coba ambil dari content.json statis
-                try {
-                    const fallbackRes = await fetch('/content.json');
-                    currentContent = await fallbackRes.json();
-                } catch (e) {
-                    currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
-                }
+                console.error(err);
+                showToast('Gagal menyimpan ke Firebase: ' + err.message, 'error');
+            } finally {
+                saveBtn.innerHTML = originalHtml;
+                saveBtn.disabled = false;
             }
-
-            populateForms(currentContent);
-            updateOverviewWidgets();
-            markClean();
         }
 
         /* ----------------------------------------------------
