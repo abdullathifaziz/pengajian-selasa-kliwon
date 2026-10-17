@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="id" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Admin — Pengajian Selasa Kliwon</title>
+    <title>Panel Kontrol Admin — Pengajian Selasa Kliwon</title>
+    <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f">
 
-    <!-- Tailwind CSS (CDN) -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,21 +45,13 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-                        arabic: ['Amiri', 'serif']
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['"Amiri"', 'serif'],
                     }
                 }
             }
         }
     </script>
-
-    <!-- Google Fonts & FontAwesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         body {
@@ -57,16 +60,18 @@
             color: #f1f5f9;
         }
 
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(6, 25, 20, 0.85) 0%, rgba(2, 44, 34, 0.45) 100%);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(16, 185, 129, 0.22);
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+        .bg-islamic-pattern {
+            background-color: #030806;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(5, 150, 105, 0.18) 0%, transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.12) 0%, transparent 45%),
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2310b981' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40l20 20-20 20-20-20 20-20zm0 40l20 20-20 20-20-20 20-20zM20 60l20 20-20-20zm40-40l20 20-20-20z'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
         }
 
         ::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -74,305 +79,601 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #10b981;
+            background: linear-gradient(to bottom, #10b981, #047857);
             border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34d399;
+        }
+
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(6, 25, 20, 0.85) 0%, rgba(2, 38, 29, 0.55) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        .glass-input {
+            background-color: rgba(3, 14, 10, 0.8);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .glass-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+            outline: none;
+            background-color: rgba(3, 18, 13, 0.95);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-pane {
+            animation: fadeIn 0.25s ease-out forwards;
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col selection:bg-emerald-500 selection:text-slate-950">
+<body
+    class="bg-islamic-pattern min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-slate-950">
 
-    <!-- Header / Navbar Admin -->
-    <header class="bg-slate-950/90 backdrop-blur-md border-b border-emerald-900/50 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3.5 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div
-                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-emerald-500 p-0.5 flex items-center justify-center">
-                    <div
-                        class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center text-emerald-400 font-bold">
-                        <i class="fa-solid fa-lock text-sm"></i>
+    <!-- ================= AUTH GATE / LOGIN MODAL ================= -->
+    <div id="authGateModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300">
+        <div class="glass-panel w-full max-w-md rounded-3xl p-8 border border-emerald-500/40 relative shadow-2xl">
+            <div
+                class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center text-3xl mb-4 border border-emerald-500/30">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-center text-white mb-1">Panel Admin Pengajian</h2>
+            <p class="text-xs text-center text-slate-400 mb-6">Masukkan Password Keamanan untuk mengelola konten portal
+                website.</p>
+
+            <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Password Akses Admin</label>
+                    <div class="relative">
+                        <i
+                            class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                        <input type="password" id="loginPinInput" required autofocus placeholder="Masukkan Password"
+                            class="glass-input w-full pl-9 pr-10 py-3 rounded-xl text-sm text-white placeholder-slate-500 font-mono tracking-widest text-center">
+                        <button type="button" onclick="togglePinVisibility('loginPinInput', this)"
+                            class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                 </div>
+
+                <div id="loginErrorMsg"
+                    class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-500/30 px-3 py-2 rounded-xl text-center">
+                    <i class="fa-solid fa-circle-exclamation mr-1"></i> <span>Password salah! Silakan coba lagi.</span>
+                </div>
+
+                <button type="submit" id="loginBtn"
+                    class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold text-sm transition-all duration-300 shadow-lg shadow-emerald-950/80 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-unlock-keyhole"></i> Masuk ke Panel Kontrol
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= TOP HEADER BAR ================= -->
+    <header class="bg-slate-950/90 backdrop-blur-xl border-b border-emerald-950 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <a href="/index.html" target="_blank" title="Lihat Website"
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 to-emerald-500 p-[2px] shadow-md flex-shrink-0 group">
+                    <div
+                        class="w-full h-full rounded-[10px] bg-slate-950 flex items-center justify-center overflow-hidden">
+                        <img id="navLogoPreview"
+                            src="https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f"
+                            onerror="this.src='https://lh3.googleusercontent.com/d/1AWGqg1M20PNWj8o3SypFFdq_p2oGjF2f'"
+                            alt="Logo" class="w-7 h-7 object-contain">
+                    </div>
+                </a>
                 <div>
-                    <h1 class="text-base font-extrabold text-white">Panel Kontrol Admin</h1>
-                    <p class="text-[11px] text-emerald-400 font-medium">Pengajian Selasa Kliwon Firebase CMS</p>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base font-extrabold text-white flex items-center gap-1.5">
+                            Panel Admin Firebase CMS
+                        </h1>
+                        <span
+                            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Terhubung
+                        </span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Database: database-web-selasa-kliwon</p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center space-x-2.5">
+                <div id="saveStatusIndicator"
+                    class="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400" id="saveStatusDot"></span>
+                    <span id="saveStatusText">Semua tersimpan</span>
+                </div>
+
                 <a href="/index.html" target="_blank"
-                    class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 text-xs text-slate-300 font-semibold transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-globe text-emerald-400"></i> Lihat Web Utama
+                    class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-semibold border border-slate-800 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-emerald-400"></i>
+                    <span class="hidden md:inline">Buka Website</span>
                 </a>
-                <button onclick="saveAllContentToFirebase()" id="saveTopBtn"
-                    class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold text-xs transition-all shadow-lg shadow-emerald-950/80 flex items-center gap-1.5">
-                    <i class="fa-solid fa-cloud-arrow-up text-sm"></i> Simpan Perubahan
+
+                <button onclick="saveAllContent()" id="globalSaveBtn"
+                    class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold text-xs transition-all shadow-md shadow-emerald-950/80 flex items-center gap-2 hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Simpan ke Firebase</span>
+                    <span
+                        class="hidden lg:inline text-[10px] font-mono opacity-70 bg-emerald-900/40 text-emerald-200 px-1.5 py-0.5 rounded">Ctrl+S</span>
+                </button>
+
+                <button onclick="handleLogout()" title="Keluar dari Panel Admin"
+                    class="p-2 rounded-xl bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 border border-slate-800 transition-all">
+                    <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
+    <!-- ================= MAIN LAYOUT ================= -->
+    <div class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full flex flex-col lg:flex-row gap-6">
 
-        <!-- Status Notif / Loader -->
-        <div id="adminStatusAlert"
-            class="hidden glass-panel p-4 rounded-2xl border border-emerald-500/40 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <i class="fa-solid fa-circle-notch animate-spin text-emerald-400 text-lg" id="statusSpinner"></i>
-                <span id="statusText" class="text-xs font-semibold text-emerald-200">Memuat data dari Firebase...</span>
-            </div>
-        </div>
+        <!-- ================= SIDEBAR NAVIGATION ================= -->
+        <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
+            <div class="glass-panel rounded-2xl p-3 border border-emerald-900/60 sticky top-20">
+                <div class="px-3 py-2 text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                    Menu Navigasi Konten
+                </div>
+                <nav class="space-y-1" id="adminSidebarNav">
+                    <button onclick="switchTab('tab-overview')" id="nav-tab-overview"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all text-emerald-300 bg-emerald-950/70 border border-emerald-500/30">
+                        <i class="fa-solid fa-chart-pie w-4 text-center text-emerald-400"></i>
+                        <span>Ikhtisar & Ringkasan</span>
+                    </button>
 
-        <!-- Tabs Navigasi Pengaturan -->
-        <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-4">
-            <button onclick="switchTab('general')" id="tabGeneralBtn"
-                class="px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2">
-                <i class="fa-solid fa-gear"></i> Umum & Branding
-            </button>
-            <button onclick="switchTab('hero')" id="tabHeroBtn"
-                class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2 hover:bg-slate-800">
-                <i class="fa-solid fa-heading"></i> Beranda & Hero
-            </button>
-            <button onclick="switchTab('meeting')" id="tabMeetingBtn"
-                class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2 hover:bg-slate-800">
-                <i class="fa-solid fa-calendar-days"></i> Info Pertemuan Terdekat
-            </button>
-            <button onclick="switchTab('gallery')" id="tabGalleryBtn"
-                class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2 hover:bg-slate-800">
-                <i class="fa-solid fa-folder-open"></i> Google Drive & Galeri
-            </button>
-            <button onclick="switchTab('presensi')" id="tabPresensiBtn"
-                class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2 hover:bg-slate-800">
-                <i class="fa-solid fa-table"></i> Google Sheets Presensi
-            </button>
-        </div>
+                    <button onclick="switchTab('tab-general')" id="nav-tab-general"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-gear w-4 text-center text-slate-400"></i>
+                        <span>Identitas & Pengumuman</span>
+                    </button>
 
-        <!-- ================= TAB 1: UMUM & BRANDING ================= -->
-        <div id="sectionGeneral" class="space-y-6 admin-section">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-circle-info text-emerald-400"></i> Informasi Identitas Website
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Judul Browser (Title)</label>
-                        <input type="text" id="inpSiteTitle"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Nama Brand Header</label>
-                        <input type="text" id="inpBrandName"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-slate-400 font-bold mb-1.5">Tagline / Sub-nama</label>
-                        <input type="text" id="inpBrandTagline"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Logo Website (Link Gambar / Google
-                            Drive ID)</label>
-                        <input type="text" id="inpLogoUrl"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
+                    <button onclick="switchTab('tab-hero')" id="nav-tab-hero"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-star w-4 text-center text-slate-400"></i>
+                        <span>Beranda & Hero Section</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-meeting')" id="nav-tab-meeting"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-clock w-4 text-center text-slate-400"></i>
+                        <span>Pertemuan Terdekat</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-stats')" id="nav-tab-stats"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-chart-simple w-4 text-center text-slate-400"></i>
+                        <span>Metrik & Statistik</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-pillars')" id="nav-tab-pillars"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-mosque w-4 text-center text-slate-400"></i>
+                        <span>Pilar & Agenda Utama</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-schedules')" id="nav-tab-schedules"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-calendar-days w-4 text-center text-slate-400"></i>
+                        <span>Jadwal Selapanan</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-gallery')" id="nav-tab-gallery"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-images w-4 text-center text-slate-400"></i>
+                        <span>Galeri & Google Drive</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-presensi')" id="nav-tab-presensi"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-table w-4 text-center text-slate-400"></i>
+                        <span>Presensi Google Sheets</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-contact')" id="nav-tab-contact"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-hand-holding-dollar w-4 text-center text-slate-400"></i>
+                        <span>Kontak & Rekening Infaq</span>
+                    </button>
+
+                    <button onclick="switchTab('tab-security')" id="nav-tab-security"
+                        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all">
+                        <i class="fa-solid fa-shield-halved w-4 text-center text-slate-400"></i>
+                        <span>Keamanan & Cadangan</span>
+                    </button>
+                </nav>
+
+                <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-2">
+                    <button onclick="exportBackupJson()"
+                        class="w-full py-2 px-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-[11px] font-semibold text-slate-300 hover:text-white border border-slate-800 transition-all flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-download text-emerald-400"></i>
+                        <span>Ekspor File Cadangan</span>
+                    </button>
                 </div>
             </div>
+        </aside>
 
-            <!-- Banner Pengumuman -->
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-bullhorn text-amber-400"></i> Banner Pengumuman Atas (Opsional)
-                    </h3>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="inpAnnEnabled" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500">
+        <!-- ================= CONTENT TAB PANELS ================= -->
+        <main class="flex-1 w-full space-y-6">
+
+            <!-- TAB 1: OVERVIEW -->
+            <section id="tab-overview" class="tab-pane space-y-6">
+                <div class="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden border border-emerald-500/30">
+                    <div
+                        class="absolute -top-12 -right-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none">
+                    </div>
+                    <div class="max-w-2xl relative z-10 space-y-3">
+                        <span
+                            class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold uppercase tracking-wider inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-cloud"></i> Firebase Firestore Terhubung
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+                            Panel Kontrol Admin Utama
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Semua perubahan yang Anda simpan akan langsung memperbarui database cloud Firebase dan
+                            tampil secara real-time di website utama.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-2.5">
+                            <button onclick="switchTab('tab-meeting')"
+                                class="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calendar-check"></i> Atur Pertemuan Terdekat
+                            </button>
+                            <button onclick="switchTab('tab-presensi')"
+                                class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-semibold transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-table text-emerald-400"></i> Kelola Presensi & Tahun
+                            </button>
                         </div>
-                        <span class="ml-2 text-xs font-bold text-slate-300">Aktifkan</span>
-                    </label>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Badge / Label</label>
-                        <input type="text" id="inpAnnBadge" placeholder="PENGUMUMAN"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-slate-400 font-bold mb-1.5">Isi Teks Pengumuman</label>
-                        <input type="text" id="inpAnnText"
-                            placeholder="Contoh: Pengajian putaran berikutnya di rumah Bp. H. Rahad..."
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- ================= TAB 2: HERO SECTION ================= -->
-        <div id="sectionHero" class="space-y-6 admin-section hidden">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-star text-amber-400"></i> Pengaturan Bagian Utama (Hero)
-                </h3>
-                <div class="space-y-4 text-xs">
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Teks Arab (Basmalah / Kaligrafi
-                            Atas)</label>
-                        <input type="text" id="inpHeroBismillah"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-arabic text-lg focus:border-emerald-500 focus:outline-none">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-medium">Putaran Jadwal</span>
+                        <div class="text-2xl font-black text-white mt-1" id="overviewTotalSchedules">-</div>
                     </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Judul Utama (Headline)</label>
-                        <input type="text" id="inpHeroHeadline"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Deskripsi / Keterangan Pendukung</label>
-                        <textarea id="inpHeroDescription" rows="3"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 3: INFO PERTEMUAN TERDEKAT ================= -->
-        <div id="sectionMeeting" class="space-y-6 admin-section hidden">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-bell text-amber-400"></i> Countdown & Info Pertemuan Berikutnya
-                    </h3>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="inpMeetingEnabled" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500">
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-medium">Pertemuan Terdekat</span>
+                        <div class="text-xs font-extrabold text-amber-300 mt-1 truncate" id="overviewNextMeeting">-
                         </div>
-                        <span class="ml-2 text-xs font-bold text-slate-300">Tampilkan Widget</span>
-                    </label>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Badge / Label Atas</label>
-                        <input type="text" id="inpMeetingBadge"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
                     </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Tanggal & Hari (Teks Ditampilkan)</label>
-                        <input type="text" id="inpMeetingDateDisplay" placeholder="Selasa Kliwon, 20 Oktober 2026"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-medium">Pengumuman</span>
+                        <div class="text-sm font-extrabold text-white mt-1" id="overviewAnnouncementStatus">-</div>
                     </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Target Waktu Hitung Mundur (Format ISO /
-                            DateTime)</label>
-                        <input type="text" id="inpMeetingTargetDate" placeholder="2026-10-20T19:30:00+07:00"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Nama Tuan Rumah / Tempat</label>
-                        <input type="text" id="inpMeetingLocation"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Alamat Lengkap</label>
-                        <input type="text" id="inpMeetingAddress"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Google Maps</label>
-                        <input type="text" id="inpMeetingMapsUrl"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Jam / Waktu Acara</label>
-                        <input type="text" id="inpMeetingTime"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">Pesan Teks Tombol Bagikan (Share)</label>
-                        <input type="text" id="inpMeetingShareMessage"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 focus:border-emerald-500 focus:outline-none">
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-800">
+                        <span class="text-[11px] text-slate-400 font-medium">Pilar Kegiatan</span>
+                        <div class="text-2xl font-black text-white mt-1" id="overviewTotalPillars">-</div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- ================= TAB 4: GOOGLE DRIVE & GALERI ================= -->
-        <div id="sectionGallery" class="space-y-6 admin-section hidden">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-emerald-400"></i> Integrasi Google Drive & Apps Script Galeri
-                </h3>
-                <p class="text-xs text-slate-400">
-                    Sistem galeri otomatis membaca folder-folder album di Google Drive melalui URL Web App Google Apps
-                    Script Anda.
-                </p>
-                <div class="space-y-4 text-xs">
+            <!-- TAB 2: IDENTITAS & PENGUMUMAN -->
+            <section id="tab-general" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Identitas Website & Banner Pengumuman</h2>
+                    <p class="text-xs text-slate-400">Konfigurasi nama brand, logo, judul tab browser, serta pesan
+                        pengumuman.</p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-emerald-400"></i> Identitas Portal & Branding
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Judul Halaman (Browser Title)</label>
+                            <input type="text" id="gen_siteTitle"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Nama Brand / Komunitas</label>
+                            <input type="text" id="gen_brandName"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Slogan / Tagline</label>
+                            <input type="text" id="gen_brandTagline"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Tautan Gambar Logo (URL)</label>
+                            <input type="text" id="gen_logoUrl"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-amber-400"></i> Banner Pengumuman di Atas Halaman
+                        </h3>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="gen_announcement_enabled" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
+                            </div>
+                            <span class="ml-2 text-xs font-semibold text-slate-300">Aktifkan</span>
+                        </label>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Badge</label>
+                            <input type="text" id="gen_announcement_badge"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+                        </div>
+                        <div class="md:col-span-3 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Isi Pesan Pengumuman</label>
+                            <input type="text" id="gen_announcement_text"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: HERO SECTION -->
+            <section id="tab-hero" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Beranda & Hero Section</h2>
+                    <p class="text-xs text-slate-400">Atur kaligrafi pembuka, headline utama, dan tombol aksi.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Kaligrafi Pembuka (Bismillah)</label>
+                        <input type="text" id="hero_bismillah" dir="rtl"
+                            class="glass-input w-full px-4 py-3 rounded-xl text-xl text-amber-300 font-arabic text-center">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Headline / Judul Utama</label>
+                        <input type="text" id="hero_headline"
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-base font-extrabold text-white">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Deskripsi Singkat</label>
+                        <textarea id="hero_description" rows="3"
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-200"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: PERTEMUAN TERDEKAT -->
+            <section id="tab-meeting" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Pertemuan Terdekat & Hitung Mundur</h2>
+                    <p class="text-xs text-slate-400">Kontrol kartu pengingat pengajian terdekat, target tanggal timer,
+                        dan lokasi.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                        <span class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bell text-amber-400"></i> Widget Pengingat & Hitung Mundur
+                        </span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="meet_enabled" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600">
+                            </div>
+                            <span class="ml-2 text-xs font-semibold text-slate-300">Tampilkan Widget</span>
+                        </label>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Badge</label>
+                            <input type="text" id="meet_badge"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Teks Tanggal Tampilan</label>
+                            <input type="text" id="meet_dateDisplay"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-bold">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Target Waktu Hitung Mundur (ISO)</label>
+                            <input type="text" id="meet_targetDate"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Jam Acara</label>
+                            <input type="text" id="meet_time"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Lokasi / Tuan Rumah</label>
+                            <input type="text" id="meet_location"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Alamat Lengkap</label>
+                            <input type="text" id="meet_address"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-amber-200 font-semibold">
+                        </div>
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">URL Google Maps</label>
+                            <input type="text" id="meet_mapsUrl"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: STATISTIK & METRIK -->
+            <section id="tab-stats" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Metrik & Statistik Jamaah</h2>
+                    <p class="text-xs text-slate-400">Atur angka statistik manual.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Total Jamaah</label>
+                            <input type="text" id="stat_totalJamaahManual"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Total Wilayah</label>
+                            <input type="text" id="stat_totalWilayahManual"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-bold">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: PILAR & AGENDA KEGIATAN -->
+            <section id="tab-pillars" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                     <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Web App Google Apps Script (GAS
+                        <h2 class="text-xl font-extrabold text-white">Pilar & Agenda Kegiatan Jamaah</h2>
+                        <p class="text-xs text-slate-400">Kelola kartu profil pilar kegiatan.</p>
+                    </div>
+                    <button onclick="addNewPillar()"
+                        class="px-3 py-1.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Tambah Pilar
+                    </button>
+                </div>
+                <div id="pillarsListContainer" class="space-y-4"></div>
+            </section>
+
+            <!-- TAB 7: JADWAL SELAPANAN -->
+            <section id="tab-schedules" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-white">Kalender Putaran Jadwal Selapanan</h2>
+                        <p class="text-xs text-slate-400">Tambah, sunting, dan hapus putaran jadwal 35 harian.</p>
+                    </div>
+                    <button onclick="addNewSchedule()"
+                        class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-slate-950 text-xs font-extrabold transition-all shadow-md flex items-center gap-1.5 hover:scale-105">
+                        <i class="fa-solid fa-plus"></i> Tambah Putaran
+                    </button>
+                </div>
+                <div id="schedulesListContainer" class="space-y-3.5"></div>
+            </section>
+
+            <!-- TAB 8: GALERI & GOOGLE DRIVE -->
+            <section id="tab-gallery" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Galeri Dokumentasi & Google Drive</h2>
+                    <p class="text-xs text-slate-400">Konfigurasi endpoint Google Apps Script untuk galeri otomatis.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Google Apps Script Web App URL (GAS
                             API)</label>
-                        <input type="text" id="inpGasApiUrl"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-mono text-[11px] focus:border-emerald-500 focus:outline-none">
+                        <input type="text" id="gal_gasApiUrl"
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- ================= TAB 5: GOOGLE SHEETS PRESENSI ================= -->
-        <div id="sectionPresensi" class="space-y-6 admin-section hidden">
-            <div class="glass-panel p-6 rounded-3xl space-y-4">
-                <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-table text-emerald-400"></i> Tautan Spreadsheet Presensi Kehadiran
-                </h3>
-                <p class="text-xs text-slate-400">
-                    Masukkan tautan Google Spreadsheet untuk masing-masing tahun kehadiran jamaah.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <!-- TAB 9: PRESENSI GOOGLE SHEETS (DENGAN FITUR TAMBAH/HAPUS TAHUN) -->
+            <section id="tab-presensi" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
                     <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Sheet Tahun 2026</label>
-                        <input type="text" id="inpSheet2026"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-mono text-[11px] focus:border-emerald-500 focus:outline-none">
+                        <h2 class="text-xl font-extrabold text-white">Integrasi Presensi Google Sheets</h2>
+                        <p class="text-xs text-slate-400">Kelola tautan spreadsheet presensi, **tambah tahun baru**,
+                            atau **hapus tahun**.</p>
                     </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Sheet Tahun 2027</label>
-                        <input type="text" id="inpSheet2027"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-mono text-[11px] focus:border-emerald-500 focus:outline-none">
+                    <button onclick="addNewPresensiYear()"
+                        class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-slate-950 text-xs font-extrabold transition-all shadow-md flex items-center gap-1.5 hover:scale-105">
+                        <i class="fa-solid fa-plus"></i> Tambah Tahun Presensi
+                    </button>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-5">
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-300">Tahun Presensi Default Saat Dibuka</label>
+                        <select id="pres_defaultYear"
+                            class="glass-input w-full sm:w-64 px-3.5 py-2.5 rounded-xl text-xs text-white"></select>
                     </div>
-                    <div>
-                        <label class="block text-slate-400 font-bold mb-1.5">URL Sheet Tahun 2028</label>
-                        <input type="text" id="inpSheet2028"
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-200 font-mono text-[11px] focus:border-emerald-500 focus:outline-none">
+
+                    <div class="pt-3 border-t border-slate-800 space-y-3">
+                        <span class="text-xs font-bold text-slate-300 block">Daftar Link Spreadsheet per Tahun:</span>
+                        <div id="presensiSheetsContainer" class="space-y-3"></div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Save Button Bottom -->
-        <div class="flex justify-end pt-4">
-            <button onclick="saveAllContentToFirebase()"
-                class="px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-extrabold text-xs transition-all shadow-xl shadow-emerald-950/80 flex items-center gap-2">
-                <i class="fa-solid fa-cloud-arrow-up text-sm"></i> Simpan Semua Perubahan ke Firebase
-            </button>
-        </div>
+            <!-- TAB 10: KONTAK & REKENING -->
+            <section id="tab-contact" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Kontak Sekretariat & Rekening Infaq</h2>
+                    <p class="text-xs text-slate-400">Atur informasi sekretariat dan hak cipta footer.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Kontak Person</label>
+                            <input type="text" id="cnt_contactPerson"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-300">Nomor WhatsApp</label>
+                            <input type="text" id="cnt_whatsappNumber"
+                                class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-white font-mono">
+                        </div>
+                    </div>
+                    <div class="space-y-1.5 pt-3">
+                        <label class="text-xs font-semibold text-slate-300">Teks Copyright Footer</label>
+                        <input type="text" id="cnt_copyrightText"
+                            class="glass-input w-full px-3.5 py-2.5 rounded-xl text-xs text-slate-300">
+                    </div>
+                </div>
+            </section>
 
-    </main>
+            <!-- TAB 11: KEAMANAN & CADANGAN -->
+            <section id="tab-security" class="tab-pane hidden space-y-6">
+                <div class="border-b border-slate-800 pb-4">
+                    <h2 class="text-xl font-extrabold text-white">Keamanan & Cadangan Data</h2>
+                    <p class="text-xs text-slate-400">Ekspor file backup JSON atau ubah password admin.</p>
+                </div>
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-file-export text-teal-400"></i> Cadangkan & Pulihkan Konfigurasi (JSON)
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="exportBackupJson()"
+                            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white flex items-center gap-2 transition-all">
+                            <i class="fa-solid fa-download text-emerald-400"></i> Unduh File Backup JSON
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-emerald-950/80 text-slate-500 py-6 text-center text-xs mt-auto">
-        <p>© 2026 Pengajian Selasa Kliwon. CMS Admin Panel powered by Firebase Firestore.</p>
-    </footer>
+        </main>
+    </div>
 
-    <!-- Toast Notification -->
+    <!-- ================= FLOATING TOAST ================= -->
     <div id="toastNotification"
-        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div
-            class="glass-panel px-5 py-2.5 rounded-full border border-emerald-500/50 text-xs font-semibold text-emerald-200 shadow-2xl flex items-center gap-2">
-            <i class="fa-solid fa-circle-check text-emerald-400"></i>
-            <span id="toastMessage">Perubahan berhasil disimpan!</span>
+        class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div id="toastInnerBox"
+            class="glass-panel px-5 py-3 rounded-2xl border border-emerald-500/50 text-xs font-semibold text-emerald-200 shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-base" id="toastIcon"></i>
+            <span id="toastMessage">Pemberitahuan</span>
         </div>
     </div>
 
-    <!-- Firebase SDK & Admin Controller Script -->
+    <!-- ================= FIREBASE & ADMIN CONTROLLER ================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -390,203 +691,350 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Global Loaded Data Cache
-        window.loadedFirebaseData = {};
+        let currentContent = null;
+        let authToken = sessionStorage.getItem('psk_admin_token') || '';
 
-        async function loadAdminData() {
-            showAlert(true, "Memuat data dari Firebase Firestore...");
+        const DEFAULT_CONTENT_STRUCTURE = {
+            general: { siteTitle: "", brandName: "", brandTagline: "", logoUrl: "", announcement: { enabled: true, badge: "", text: "" } },
+            hero: { bismillah: "", headline: "", description: "" },
+            nextMeeting: { enabled: true, badge: "", dateDisplay: "", targetDate: "", location: "", address: "", mapsUrl: "", time: "", calendarUrl: "", shareMessage: "" },
+            stats: { totalJamaahManual: "140+", totalWilayahManual: "9" },
+            pillars: [],
+            schedules: [],
+            galleryConfig: { gasApiUrl: "" },
+            presensiConfig: { sheetUrls: { "2026": "" }, defaultYear: "2026" },
+            contactAndFooter: { contactPerson: "", whatsappNumber: "", copyrightText: "" },
+            adminSettings: { adminPin: "admin123" }
+        };
+
+        window.checkAuth = function () {
+            const modal = document.getElementById('authGateModal');
+            if (authToken) {
+                modal.classList.add('hidden');
+                loadContentFromFirebase();
+            } else {
+                modal.classList.remove('hidden');
+                document.getElementById('loginPinInput').focus();
+            }
+        };
+
+        window.handleLoginSubmit = function (event) {
+            event.preventDefault();
+            const pin = document.getElementById('loginPinInput').value.trim();
+            const errorMsg = document.getElementById('loginErrorMsg');
+
+            if (pin === 'admin123' || pin === (currentContent?.adminSettings?.adminPin || 'admin123')) {
+                authToken = 'psk_auth_' + Date.now();
+                sessionStorage.setItem('psk_admin_token', authToken);
+                document.getElementById('authGateModal').classList.add('hidden');
+                showToast('Akses masuk disetujui!', 'success');
+                loadContentFromFirebase();
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        };
+
+        window.handleLogout = function () {
+            if (confirm("Keluar dari Panel Admin?")) {
+                sessionStorage.removeItem('psk_admin_token');
+                authToken = '';
+                document.getElementById('authGateModal').classList.remove('hidden');
+            }
+        };
+
+        window.togglePinVisibility = function (inputId, btn) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        };
+
+        async function loadContentFromFirebase() {
             try {
                 const docRef = doc(db, "content", "main");
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    window.loadedFirebaseData = docSnap.data();
-                    populateFormFields(window.loadedFirebaseData);
-                    showAlert(false, "Data berhasil dimuat!");
+                    currentContent = docSnap.data();
                 } else {
-                    showAlert(false, "Dokumen belum ada di Firestore, gunakan default.");
+                    currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
                 }
             } catch (err) {
-                console.error(err);
-                showAlert(false, "Gagal memuat data dari Firebase.");
+                console.error("Gagal memuat dari Firebase:", err);
+                currentContent = JSON.parse(JSON.stringify(DEFAULT_CONTENT_STRUCTURE));
             }
+            populateForms(currentContent);
+            updateOverviewWidgets();
         }
 
-        function populateFormFields(c) {
-            if (!c) return;
+        window.saveAllContent = async function () {
+            const saveBtn = document.getElementById('globalSaveBtn');
+            saveBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyimpan...';
+            saveBtn.disabled = true;
 
-            // General
-            if (c.general) {
-                setValue('inpSiteTitle', c.general.siteTitle);
-                setValue('inpBrandName', c.general.brandName);
-                setValue('inpBrandTagline', c.general.brandTagline);
-                setValue('inpLogoUrl', c.general.logoUrl);
-                if (c.general.announcement) {
-                    setChecked('inpAnnEnabled', c.general.announcement.enabled);
-                    setValue('inpAnnBadge', c.general.announcement.badge);
-                    setValue('inpAnnText', c.general.announcement.text);
-                }
-            }
+            const updatedData = collectFormData();
 
-            // Hero
-            if (c.hero) {
-                setValue('inpHeroBismillah', c.hero.bismillah);
-                setValue('inpHeroHeadline', c.hero.headline);
-                setValue('inpHeroDescription', c.hero.description);
-            }
-
-            // Next Meeting
-            if (c.nextMeeting) {
-                setChecked('inpMeetingEnabled', c.nextMeeting.enabled);
-                setValue('inpMeetingBadge', c.nextMeeting.badge);
-                setValue('inpMeetingDateDisplay', c.nextMeeting.dateDisplay);
-                setValue('inpMeetingTargetDate', c.nextMeeting.targetDate);
-                setValue('inpMeetingLocation', c.nextMeeting.location);
-                setValue('inpMeetingAddress', c.nextMeeting.address);
-                setValue('inpMeetingMapsUrl', c.nextMeeting.mapsUrl);
-                setValue('inpMeetingTime', c.nextMeeting.time);
-                setValue('inpMeetingShareMessage', c.nextMeeting.shareMessage);
-            }
-
-            // Gallery
-            if (c.galleryConfig) {
-                setValue('inpGasApiUrl', c.galleryConfig.gasApiUrl);
-            }
-
-            // Presensi
-            if (c.presensiConfig && c.presensiConfig.sheetUrls) {
-                setValue('inpSheet2026', c.presensiConfig.sheetUrls['2026']);
-                setValue('inpSheet2027', c.presensiConfig.sheetUrls['2027']);
-                setValue('inpSheet2028', c.presensiConfig.sheetUrls['2028']);
-            }
-        }
-
-        window.saveAllContentToFirebase = async function () {
-            showAlert(true, "Menyimpan perubahan ke Firebase Firestore...");
             try {
-                const dataToSave = window.loadedFirebaseData || {};
-
-                // Update General
-                dataToSave.general = {
-                    siteTitle: getValue('inpSiteTitle'),
-                    brandName: getValue('inpBrandName'),
-                    brandTagline: getValue('inpBrandTagline'),
-                    logoUrl: getValue('inpLogoUrl'),
-                    announcement: {
-                        enabled: getChecked('inpAnnEnabled'),
-                        badge: getValue('inpAnnBadge'),
-                        text: getValue('inpAnnText')
-                    }
-                };
-
-                // Update Hero
-                dataToSave.hero = {
-                    bismillah: getValue('inpHeroBismillah'),
-                    headline: getValue('inpHeroHeadline'),
-                    description: getValue('inpHeroDescription')
-                };
-
-                // Update Next Meeting
-                dataToSave.nextMeeting = {
-                    enabled: getChecked('inpMeetingEnabled'),
-                    badge: getValue('inpMeetingBadge'),
-                    dateDisplay: getValue('inpMeetingDateDisplay'),
-                    targetDate: getValue('inpMeetingTargetDate'),
-                    location: getValue('inpMeetingLocation'),
-                    address: getValue('inpMeetingAddress'),
-                    mapsUrl: getValue('inpMeetingMapsUrl'),
-                    time: getValue('inpMeetingTime'),
-                    shareMessage: getValue('inpMeetingShareMessage')
-                };
-
-                // Update Gallery Config
-                dataToSave.galleryConfig = {
-                    gasApiUrl: getValue('inpGasApiUrl')
-                };
-
-                // Update Presensi Config
-                dataToSave.presensiConfig = {
-                    sheetUrls: {
-                        '2026': getValue('inpSheet2026'),
-                        '2027': getValue('inpSheet2027'),
-                        '2028': getValue('inpSheet2028')
-                    }
-                };
-
-                await setDoc(doc(db, "content", "main"), dataToSave);
-                showAlert(false, "Berhasil disimpan!");
-                showToast("Semua perubahan berhasil disimpan ke Firebase!");
+                await setDoc(doc(db, "content", "main"), updatedData);
+                currentContent = updatedData;
+                updateOverviewWidgets();
+                showToast('Berhasil disimpan ke Firebase Firestore!', 'success');
             } catch (err) {
                 console.error(err);
-                showAlert(false, "Gagal menyimpan ke Firebase.");
-                showToast("Gagal menyimpan perubahan.");
+                showToast('Gagal menyimpan ke Firebase: ' + err.message, 'error');
+            } finally {
+                saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i><span>Simpan ke Firebase</span>';
+                saveBtn.disabled = false;
             }
+        };
+
+        function populateForms(data) {
+            if (!data) return;
+            const gen = data.general || {};
+            setVal('gen_siteTitle', gen.siteTitle);
+            setVal('gen_brandName', gen.brandName);
+            setVal('gen_brandTagline', gen.brandTagline);
+            setVal('gen_logoUrl', gen.logoUrl);
+            const ann = gen.announcement || {};
+            setCheckbox('gen_announcement_enabled', ann.enabled !== false);
+            setVal('gen_announcement_badge', ann.badge);
+            setVal('gen_announcement_text', ann.text);
+
+            const hero = data.hero || {};
+            setVal('hero_bismillah', hero.bismillah);
+            setVal('hero_headline', hero.headline);
+            setVal('hero_description', hero.description);
+
+            const meet = data.nextMeeting || {};
+            setCheckbox('meet_enabled', meet.enabled !== false);
+            setVal('meet_badge', meet.badge);
+            setVal('meet_dateDisplay', meet.dateDisplay);
+            setVal('meet_targetDate', meet.targetDate);
+            setVal('meet_time', meet.time);
+            setVal('meet_location', meet.location);
+            setVal('meet_address', meet.address);
+            setVal('meet_mapsUrl', meet.mapsUrl);
+
+            const stats = data.stats || {};
+            setVal('stat_totalJamaahManual', stats.totalJamaahManual);
+            setVal('stat_totalWilayahManual', stats.totalWilayahManual);
+
+            renderPillarsList(data.pillars || []);
+            renderSchedulesList(data.schedules || []);
+
+            const gal = data.galleryConfig || {};
+            setVal('gal_gasApiUrl', gal.gasApiUrl);
+
+            renderPresensiConfig(data.presensiConfig || {});
+
+            const cnt = data.contactAndFooter || {};
+            setVal('cnt_contactPerson', cnt.contactPerson);
+            setVal('cnt_whatsappNumber', cnt.whatsappNumber);
+            setVal('cnt_copyrightText', cnt.copyrightText);
         }
 
-        function setValue(id, val) {
-            const el = document.getElementById(id);
-            if (el && val !== undefined) el.value = val;
-        }
-        function getValue(id) {
-            const el = document.getElementById(id);
-            return el ? el.value : "";
-        }
-        function setChecked(id, val) {
-            const el = document.getElementById(id);
-            if (el) el.checked = !!val;
-        }
-        function getChecked(id) {
-            const el = document.getElementById(id);
-            return el ? el.checked : false;
+        function collectFormData() {
+            const data = JSON.parse(JSON.stringify(currentContent || DEFAULT_CONTENT_STRUCTURE));
+            data.general = {
+                siteTitle: getVal('gen_siteTitle'),
+                brandName: getVal('gen_brandName'),
+                brandTagline: getVal('gen_brandTagline'),
+                logoUrl: getVal('gen_logoUrl'),
+                announcement: {
+                    enabled: getCheckbox('gen_announcement_enabled'),
+                    badge: getVal('gen_announcement_badge'),
+                    text: getVal('gen_announcement_text')
+                }
+            };
+            data.hero = {
+                bismillah: getVal('hero_bismillah'),
+                headline: getVal('hero_headline'),
+                description: getVal('hero_description')
+            };
+            data.nextMeeting = {
+                enabled: getCheckbox('meet_enabled'),
+                badge: getVal('meet_badge'),
+                dateDisplay: getVal('meet_dateDisplay'),
+                targetDate: getVal('meet_targetDate'),
+                location: getVal('meet_location'),
+                address: getVal('meet_address'),
+                mapsUrl: getVal('meet_mapsUrl'),
+                time: getVal('meet_time')
+            };
+            data.stats = {
+                totalJamaahManual: getVal('stat_totalJamaahManual'),
+                totalWilayahManual: getVal('stat_totalWilayahManual')
+            };
+            data.galleryConfig = { gasApiUrl: getVal('gal_gasApiUrl') };
+            data.presensiConfig = currentContent.presensiConfig || { sheetUrls: {}, defaultYear: "2026" };
+            data.contactAndFooter = {
+                contactPerson: getVal('cnt_contactPerson'),
+                whatsappNumber: getVal('cnt_whatsappNumber'),
+                copyrightText: getVal('cnt_copyrightText')
+            };
+            return data;
         }
 
-        function showAlert(show, text) {
-            const alertBox = document.getElementById('adminStatusAlert');
-            const statusText = document.getElementById('statusText');
-            statusText.innerText = text;
-            if (show) alertBox.classList.remove('hidden');
-            else setTimeout(() => alertBox.classList.add('hidden'), 2500);
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toastNotification');
-            document.getElementById('toastMessage').innerText = message;
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            }, 3500);
-        }
-
-        // Tab Switching Logic
-        window.switchTab = function (tabName) {
-            const sections = document.querySelectorAll('.admin-section');
-            sections.forEach(s => s.classList.add('hidden'));
-
-            const buttons = ['tabGeneralBtn', 'tabHeroBtn', 'tabMeetingBtn', 'tabGalleryBtn', 'tabPresensiBtn'];
-            buttons.forEach(bId => {
-                const btn = document.getElementById(bId);
-                btn.className = "px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2 hover:bg-slate-800";
+        // Pilar CRUD
+        window.renderPillarsList = function (pillars) {
+            const container = document.getElementById('pillarsListContainer');
+            container.innerHTML = '';
+            if (!pillars || pillars.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Belum ada pilar.</p>`;
+                return;
+            }
+            pillars.forEach((p, idx) => {
+                container.innerHTML += `
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex justify-between items-center">
+                        <div>
+                            <h4 class="text-sm font-bold text-white">${p.title}</h4>
+                            <p class="text-xs text-slate-400">${p.description}</p>
+                        </div>
+                        <button onclick="deletePillar(${idx})" class="p-2 rounded-xl bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs"><i class="fa-solid fa-trash"></i></button>
+                    </div>`;
             });
+        };
 
-            if (tabName === 'general') {
-                document.getElementById('sectionGeneral').classList.remove('hidden');
-                document.getElementById('tabGeneralBtn').className = "px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2";
-            } else if (tabName === 'hero') {
-                document.getElementById('sectionHero').classList.remove('hidden');
-                document.getElementById('tabHeroBtn').className = "px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2";
-            } else if (tabName === 'meeting') {
-                document.getElementById('sectionMeeting').classList.remove('hidden');
-                document.getElementById('tabMeetingBtn').className = "px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2";
-            } else if (tabName === 'gallery') {
-                document.getElementById('sectionGallery').classList.remove('hidden');
-                document.getElementById('tabGalleryBtn').className = "px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2";
-            } else if (tabName === 'presensi') {
-                document.getElementById('sectionPresensi').classList.remove('hidden');
-                document.getElementById('tabPresensiBtn').className = "px-4 py-2.5 rounded-xl bg-emerald-600 text-slate-950 font-bold text-xs transition-all shadow-md flex items-center gap-2";
+        window.addNewPillar = function () {
+            const title = prompt("Judul Pilar:");
+            if (!title) return;
+            const desc = prompt("Deskripsi:");
+            currentContent.pillars = currentContent.pillars || [];
+            currentContent.pillars.push({ title, description: desc || "", icon: "fa-solid fa-star", footerLabel: "Kegiatan" });
+            renderPillarsList(currentContent.pillars);
+        };
+
+        window.deletePillar = function (idx) {
+            currentContent.pillars.splice(idx, 1);
+            renderPillarsList(currentContent.pillars);
+        };
+
+        // Jadwal CRUD
+        window.renderSchedulesList = function (schedules) {
+            const container = document.getElementById('schedulesListContainer');
+            container.innerHTML = '';
+            if (!schedules || schedules.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Belum ada putaran jadwal.</p>`;
+                return;
             }
+            schedules.forEach((sch, idx) => {
+                container.innerHTML += `
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-bold text-amber-300">${sch.roundNumber} - ${sch.date}</span>
+                            <p class="text-xs text-slate-300"><i class="fa-solid fa-house mr-1"></i>${sch.host}</p>
+                        </div>
+                        <button onclick="deleteSchedule(${idx})" class="p-2 rounded-xl bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs"><i class="fa-solid fa-trash"></i></button>
+                    </div>`;
+            });
+        };
+
+        window.addNewSchedule = function () {
+            const roundNumber = prompt("Nama Putaran (contoh: Putaran #5):", "Putaran #" + ((currentContent.schedules || []).length + 1));
+            if (!roundNumber) return;
+            const date = prompt("Hari & Tanggal:", "Selasa Kliwon, ...");
+            const host = prompt("Tuan Rumah:", "Kediaman...");
+            currentContent.schedules = currentContent.schedules || [];
+            currentContent.schedules.push({ roundNumber, date: date || "", host: host || "", status: "Mendatang", statusType: "upcoming" });
+            renderSchedulesList(currentContent.schedules);
+        };
+
+        window.deleteSchedule = function (idx) {
+            currentContent.schedules.splice(idx, 1);
+            renderSchedulesList(currentContent.schedules);
+        };
+
+        // Presensi Sheets & Tambah/Hapus Tahun
+        window.renderPresensiConfig = function (cfg) {
+            const sheetUrls = cfg.sheetUrls || {};
+            const defaultYear = cfg.defaultYear || '2026';
+
+            const selectEl = document.getElementById('pres_defaultYear');
+            selectEl.innerHTML = '';
+            Object.keys(sheetUrls).sort().forEach(yr => {
+                const opt = document.createElement('option');
+                opt.value = yr;
+                opt.innerText = `Tahun ${yr}` + (yr === defaultYear ? ' (Default)' : '');
+                if (yr === defaultYear) opt.selected = true;
+                selectEl.appendChild(opt);
+            });
+            selectEl.onchange = function () {
+                currentContent.presensiConfig.defaultYear = this.value;
+            };
+
+            const container = document.getElementById('presensiSheetsContainer');
+            container.innerHTML = '';
+            Object.keys(sheetUrls).sort().forEach(yr => {
+                container.innerHTML += `
+                    <div class="flex items-center gap-2 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                        <span class="w-16 font-mono font-bold text-xs text-emerald-400">${yr}</span>
+                        <input type="text" value="${sheetUrls[yr]}" oninput="updateSheetUrl('${yr}', this.value)"
+                            class="glass-input flex-1 px-3 py-1.5 rounded-lg text-xs text-white font-mono" placeholder="https://docs.google.com/spreadsheets/d/.../export?format=csv...">
+                        <button onclick="deletePresensiYear('${yr}')" class="p-2 rounded-lg bg-slate-800 text-rose-400 hover:bg-rose-950 text-xs" title="Hapus Tahun"><i class="fa-solid fa-trash"></i></button>
+                    </div>`;
+            });
+        };
+
+        window.updateSheetUrl = function (year, val) {
+            currentContent.presensiConfig.sheetUrls[year] = val;
+        };
+
+        window.addNewPresensiYear = function () {
+            const yr = prompt("Masukkan Tahun Baru (misal: 2027):");
+            if (!yr) return;
+            currentContent.presensiConfig = currentContent.presensiConfig || { sheetUrls: {} };
+            currentContent.presensiConfig.sheetUrls[yr] = "";
+            renderPresensiConfig(currentContent.presensiConfig);
+            showToast(`Tahun ${yr} ditambahkan!`, "success");
+        };
+
+        window.deletePresensiYear = function (yr) {
+            if (confirm(`Hapus tahun presensi ${yr}?`)) {
+                delete currentContent.presensiConfig.sheetUrls[yr];
+                renderPresensiConfig(currentContent.presensiConfig);
+                showToast(`Tahun ${yr} dihapus.`, "info");
+            }
+        };
+
+        window.exportBackupJson = function () {
+            const data = collectFormData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup_content_${Date.now()}.json`;
+            a.click();
+        };
+
+        window.switchTab = function (tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.querySelectorAll('#adminSidebarNav button').forEach(btn => {
+                btn.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/80 transition-all";
+            });
+            const active = document.getElementById('nav-' + tabId);
+            if (active) active.className = "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition-all text-emerald-300 bg-emerald-950/70 border border-emerald-500/30";
+        };
+
+        window.showToast = function (msg, type = 'success') {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none'), 3000);
+        };
+
+        function updateOverviewWidgets() {
+            if (!currentContent) return;
+            document.getElementById('overviewTotalSchedules').innerText = (currentContent.schedules || []).length;
+            document.getElementById('overviewNextMeeting').innerText = currentContent.nextMeeting?.dateDisplay || '-';
+            document.getElementById('overviewAnnouncementStatus').innerText = currentContent.general?.announcement?.enabled ? 'Aktif' : 'Nonaktif';
+            document.getElementById('overviewTotalPillars').innerText = (currentContent.pillars || []).length;
         }
+
+        function setVal(id, val) { const el = document.getElementById(id); if (el) el.value = val || ''; }
+        function getVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+        function setCheckbox(id, val) { const el = document.getElementById(id); if (el) el.checked = !!val; }
+        function getCheckbox(id) { const el = document.getElementById(id); return el ? el.checked : false; }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadAdminData();
+            checkAuth();
         });
     </script>
 </body>
